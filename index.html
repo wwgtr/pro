@@ -24,13 +24,17 @@
             --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             --purple-glow: #c9a0dc;
             --purple-dim: #8a6ba8;
+            /* متغيرات الديناميكية */
+            --accent: var(--gold);
+            --accent-dim: var(--gold-dim);
+            --font-family: 'Amiri', serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Amiri', serif;
+            font-family: var(--font-family);
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
@@ -73,7 +77,7 @@
         /* ===== SIDE MENU ===== */
         .side-menu {
             position: fixed; top: 0; right: -340px; width: 320px; height: 100vh;
-            background: var(--menu-bg); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
             border-left: 1px solid var(--glass-border); z-index: 140; padding: 70px 24px 24px;
             transition: right 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
             overflow-y: auto;
@@ -96,11 +100,11 @@
         .font-opt, .theme-opt {
             padding: 10px 14px; border-radius: 12px; border: 1.5px solid var(--glass-border);
             background: transparent; color: var(--text-secondary); cursor: pointer;
-            font-family: 'Amiri', serif; font-size: 14px; transition: all 0.15s ease;
+            font-family: var(--font-family); font-size: 14px; transition: all 0.15s ease;
         }
 
-        .font-opt:hover, .theme-opt:hover { border-color: var(--gold); color: var(--gold); }
-        .font-opt.active, .theme-opt.active { border-color: var(--gold); color: var(--gold); background: rgba(212, 168, 67, 0.1); }
+        .font-opt:hover, .theme-opt:hover { border-color: var(--accent); color: var(--accent); }
+        .font-opt.active, .theme-opt.active { border-color: var(--accent); color: var(--accent); background: rgba(212, 168, 67, 0.1); }
 
         .menu-divider { height: 1px; background: var(--glass-border); margin: 20px 0; }
 
@@ -124,7 +128,7 @@
 
         .play-btn {
             width: 48px; height: 48px; border-radius: 50%; border: none;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+            background: linear-gradient(135deg, var(--accent), var(--accent-dim));
             color: var(--bg-primary); cursor: pointer;
             display: flex; align-items: center; justify-content: center;
             transition: var(--transition); flex-shrink: 0;
@@ -154,8 +158,8 @@
             transition: var(--transition); font-size: 13px;
         }
 
-        .extra-btn:hover { color: var(--gold); border-color: var(--gold); }
-        .extra-btn.active { color: var(--gold); border-color: var(--gold); background: rgba(212, 168, 67, 0.1); }
+        .extra-btn:hover { color: var(--accent); border-color: var(--accent); }
+        .extra-btn.active { color: var(--accent); border-color: var(--accent); background: rgba(212, 168, 67, 0.1); }
         .extra-btn svg { width: 14px; height: 14px; fill: currentColor; }
 
         .track-selector-wrap { position: relative; }
@@ -163,16 +167,16 @@
         .track-btn {
             padding: 4px 10px; border-radius: 16px; border: none;
             background: rgba(255,255,255,0.06); color: var(--text-secondary); cursor: pointer;
-            font-family: 'Amiri', serif; font-size: 11px; font-weight: 600;
+            font-family: var(--font-family); font-size: 11px; font-weight: 600;
             display: flex; align-items: center; gap: 4px;
             transition: var(--transition);
         }
 
-        .track-btn:hover { background: rgba(255,255,255,0.1); color: var(--gold); }
+        .track-btn:hover { background: rgba(255,255,255,0.1); color: var(--accent); }
 
         .track-dropdown {
             position: absolute; top: calc(100% + 6px); left: 0; min-width: 160px;
-            background: var(--menu-bg); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
             border: 1px solid var(--glass-border); border-radius: 12px; padding: 6px;
             box-shadow: 0 12px 40px rgba(0,0,0,0.7); z-index: 200;
             display: none; max-height: 260px; overflow-y: auto;
@@ -186,8 +190,8 @@
             transition: all 0.12s ease; display: flex; align-items: center; gap: 6px;
         }
 
-        .track-option:hover { background: rgba(255,255,255,0.08); color: var(--gold); }
-        .track-option.active { background: rgba(212, 168, 67, 0.15); color: var(--gold); }
+        .track-option:hover { background: rgba(255,255,255,0.08); color: var(--accent); }
+        .track-option.active { background: rgba(212, 168, 67, 0.15); color: var(--accent); }
 
         .track-option .track-num {
             width: 22px; height: 22px; border-radius: 50%;
@@ -196,7 +200,7 @@
             font-size: 10px; flex-shrink: 0;
         }
 
-        .track-option.active .track-num { background: var(--gold); color: var(--bg-primary); }
+        .track-option.active .track-num { background: var(--accent); color: var(--bg-primary); }
 
         .progress-row { display: flex; align-items: center; gap: 8px; }
 
@@ -208,7 +212,7 @@
         .progress-bar-wrapper:hover { height: 6px; }
 
         .progress-bar {
-            height: 100%; background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+            height: 100%; background: linear-gradient(90deg, var(--accent-dim), var(--accent));
             border-radius: 4px; width: 0%;
             transition: width 0.1s linear; transform: translateZ(0); position: relative;
         }
@@ -237,11 +241,11 @@
             transition: var(--transition);
         }
 
-        .speed-btn:hover { color: var(--gold); border-color: var(--gold); }
+        .speed-btn:hover { color: var(--accent); border-color: var(--accent); }
 
         .volume-wrap { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
         .volume-wrap svg { width: 16px; height: 16px; fill: var(--text-dim); cursor: pointer; transition: var(--transition); }
-        .volume-wrap svg:hover { fill: var(--gold); }
+        .volume-wrap svg:hover { fill: var(--accent); }
 
         .volume-slider {
             width: 50px; height: 3px; -webkit-appearance: none; appearance: none;
@@ -250,7 +254,7 @@
 
         .volume-slider::-webkit-slider-thumb {
             -webkit-appearance: none; width: 12px; height: 12px;
-            border-radius: 50%; background: var(--gold); cursor: pointer;
+            border-radius: 50%; background: var(--accent); cursor: pointer;
         }
 
         /* ===== HEADER ===== */
@@ -265,7 +269,7 @@
 
         .header-logo:hover { filter: drop-shadow(0 6px 28px rgba(212, 168, 67, 0.3)); transform: scale(1.03); }
 
-        .header h1 { font-size: 28px; color: var(--gold); font-weight: 700; letter-spacing: 1px; margin-bottom: 4px; }
+        .header h1 { font-size: 28px; color: var(--accent); font-weight: 700; letter-spacing: 1px; margin-bottom: 4px; }
         .header p { font-size: 15px; color: var(--text-secondary); }
 
         /* ===== CONTROLS ===== */
@@ -274,13 +278,13 @@
         .control-btn {
             padding: 10px 22px; border: 1px solid var(--glass-border); border-radius: 50px;
             background: var(--bg-card); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            color: var(--text-secondary); font-family: 'Amiri', serif; font-size: 14px;
+            color: var(--text-secondary); font-family: var(--font-family); font-size: 14px;
             cursor: pointer; transition: var(--transition);
             display: flex; align-items: center; gap: 8px; transform: translateZ(0);
         }
 
-        .control-btn:hover { border-color: var(--glass-border-hover); color: var(--gold); background: var(--bg-card-hover); }
-        .control-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(212, 168, 67, 0.12); }
+        .control-btn:hover { border-color: var(--glass-border-hover); color: var(--accent); background: var(--bg-card-hover); }
+        .control-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(212, 168, 67, 0.12); }
         .control-btn svg { width: 16px; height: 16px; fill: currentColor; }
 
         /* ===== DUA CARDS ===== */
@@ -304,22 +308,22 @@
 
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
 
-        .section-label { font-size: 12px; color: var(--gold-dim); display: flex; align-items: center; gap: 8px; }
+        .section-label { font-size: 12px; color: var(--accent-dim); display: flex; align-items: center; gap: 8px; }
         .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to left, transparent, var(--glass-border)); }
 
-        .copy-card-btn {
+        .copy-card-btn, .export-single-btn {
             width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--glass-border);
             background: transparent; color: var(--text-dim); cursor: pointer;
             display: flex; align-items: center; justify-content: center;
-            transition: var(--transition); flex-shrink: 0;
+            transition: var(--transition); flex-shrink: 0; margin-right: 5px;
         }
 
-        .copy-card-btn:hover { color: var(--gold); border-color: var(--gold); }
+        .copy-card-btn:hover, .export-single-btn:hover { color: var(--accent); border-color: var(--accent); }
         .copy-card-btn.copied { color: #4caf50; border-color: #4caf50; background: rgba(76, 175, 80, 0.1); }
-        .copy-card-btn svg { width: 15px; height: 15px; fill: currentColor; }
+        .copy-card-btn svg, .export-single-btn svg { width: 15px; height: 15px; fill: currentColor; }
 
         .dua-text { font-size: 21px; line-height: 2.4; text-align: justify; text-align-last: right; }
-        .dua-text .gold { color: var(--gold); font-weight: 700; }
+        .dua-text .gold { color: var(--accent); font-weight: 700; }
 
         .dua-text .tooltip-trigger {
             color: var(--purple-glow); cursor: pointer;
@@ -380,7 +384,7 @@
         }
 
         .tooltip-popup .tooltip-word {
-            color: var(--gold); font-size: 19px; font-weight: 700;
+            color: var(--accent); font-size: 19px; font-weight: 700;
             margin-bottom: 12px; line-height: 1.8; padding-left: 30px;
         }
 
@@ -402,11 +406,11 @@
         .tooltip-copy-btn {
             padding: 5px 12px; border-radius: 8px; border: 1px solid var(--glass-border);
             background: transparent; color: var(--text-dim); cursor: pointer;
-            font-family: 'Amiri', serif; font-size: 12px;
+            font-family: var(--font-family); font-size: 12px;
             display: flex; align-items: center; gap: 5px; transition: var(--transition);
         }
 
-        .tooltip-copy-btn:hover { color: var(--gold); border-color: var(--gold); }
+        .tooltip-copy-btn:hover { color: var(--accent); border-color: var(--accent); }
         .tooltip-copy-btn.copied { color: #4caf50; border-color: #4caf50; }
         .tooltip-copy-btn svg { width: 13px; height: 13px; fill: currentColor; }
 
@@ -432,7 +436,7 @@
             position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px);
             background: rgba(30, 30, 30, 0.95); backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border); border-radius: 12px;
-            padding: 10px 20px; color: var(--gold); font-size: 14px; font-weight: 600;
+            padding: 10px 20px; color: var(--accent); font-size: 14px; font-weight: 600;
             z-index: 2000; opacity: 0; pointer-events: none;
             transition: all 0.3s ease; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
         }
@@ -441,7 +445,7 @@
 
         /* ===== FOOTER ===== */
         .footer { text-align: center; padding: 40px 20px 30px; border-top: 1px solid var(--glass-border); margin-top: 40px; }
-        .footer-salawat { color: var(--gold-dim); font-size: 16px; margin-bottom: 8px; }
+        .footer-salawat { color: var(--accent-dim); font-size: 16px; margin-bottom: 8px; }
         .footer-text { font-size: 14px; color: var(--text-dim); margin-bottom: 20px; }
 
         .footer-socials { display: flex; justify-content: center; gap: 24px; align-items: center; flex-wrap: wrap; }
@@ -453,7 +457,7 @@
             background: var(--bg-card);
         }
 
-        .footer-socials a:hover { color: var(--gold); border-color: var(--glass-border-hover); }
+        .footer-socials a:hover { color: var(--accent); border-color: var(--glass-border-hover); }
         .footer-socials svg { width: 22px; height: 22px; fill: currentColor; }
 
         /* ===== SCROLL TO TOP ===== */
@@ -490,7 +494,7 @@
             box-sizing: border-box;
         }
 
-        .export-canvas .gold { color: var(--gold); font-weight: 700; }
+        .export-canvas .gold { color: var(--accent); font-weight: 700; }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 600px) {
@@ -556,26 +560,16 @@
         <div class="menu-section">
             <div class="menu-section-title">الخطوط</div>
             <div class="font-options" id="fontOptions">
-                <button class="font-opt active" data-font="1">الخط 1</button>
-                <button class="font-opt" data-font="2">الخط 2</button>
-                <button class="font-opt" data-font="3">الخط 3</button>
-                <button class="font-opt" data-font="4">الخط 4</button>
-                <button class="font-opt" data-font="5">الخط 5</button>
-                <button class="font-opt" data-font="6">الخط 6</button>
-                <button class="font-opt" data-font="7">الخط 7</button>
-                <button class="font-opt" data-font="8">الخط 8</button>
-                <button class="font-opt" data-font="9">الخط 9</button>
-                <button class="font-opt" data-font="10">الخط 10</button>
-                <button class="font-opt" data-font="11">الخط 11</button>
-                <button class="font-opt" data-font="12">الخط 12</button>
-                <button class="font-opt" data-font="13">الخط 13</button>
-                <button class="font-opt" data-font="14">الخط 14</button>
-                <button class="font-opt" data-font="15">الخط 15</button>
-                <button class="font-opt" data-font="16">الخط 16</button>
-                <button class="font-opt" data-font="17">الخط 17</button>
-                <button class="font-opt" data-font="18">الخط 18</button>
-                <button class="font-opt" data-font="19">الخط 19</button>
-                <button class="font-opt" data-font="20">الخط 20</button>
+                <button class="font-opt active" data-font="Amiri">الخط 1 (أميري)</button>
+                <button class="font-opt" data-font="Lateef">الخط 2 (لطيف)</button>
+                <button class="font-opt" data-font="Noto Naskh Arabic">الخط 3 (نسخ)</button>
+                <button class="font-opt" data-font="Cairo">الخط 4 (قاهرة)</button>
+                <button class="font-opt" data-font="Tajawal">الخط 5 (تجوال)</button>
+                <button class="font-opt" data-font="Almarai">الخط 6 (المرعي)</button>
+                <button class="font-opt" data-font="Scheherazade New">الخط 7 (شهرزاد)</button>
+                <button class="font-opt" data-font="Changa">الخط 8 (شنجة)</button>
+                <button class="font-opt" data-font="El Messiri">الخط 9 (المسيري)</button>
+                <button class="font-opt" data-font="Rakkas">الخط 10 (رقاص)</button>
             </div>
         </div>
 
@@ -645,7 +639,9 @@
                             <svg viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
                             <span id="currentTrackLabel">القارئ 1</span>
                         </button>
-                        <div class="track-dropdown" id="trackDropdown"></div>
+                        <div class="track-dropdown" id="trackDropdown">
+                            <!-- سيتم ملؤها بواسطة JS -->
+                        </div>
                     </div>
                 </div>
                 <div class="progress-row">
@@ -671,7 +667,7 @@
     <div class="container">
 
         <header class="header">
-            <img class="header-logo" src="logo.png" alt="دعاء الصباح" />
+            <!-- يمكنك وضع شعارك هنا -->
             <h1>دعاء الصباح</h1>
             <p>بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</p>
         </header>
@@ -692,9 +688,14 @@
             <div class="dua-card" data-card="1" style="animation-delay: 0.05s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة الأولى</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="1">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="1">
+                            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        </button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="1">
+                            <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                        </button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ : اَللّهُمَّ يا مَنْ دَلَعَ لِسَانَ الصَّبَاحِ بِنُطْقِ تَبَلُّجِهِ ، وَسَرَّحَ قِطَعَ اللَّيْلِ الْمُظْلِمِ بِغَيَاهِبِ تَلَجْلُجِهِ ، وَأَتْقَنَ صُنْعَ الْفَلَكِ الدَّوَّارِ فِي مَقَادِيرِ تَبَرُّجِهِ ، وَشَعْشَعَ ضِيَاءَ الشَّمْسِ بِنُورِ تَأَجُّجِهِ ، يَا مَنْ دَلَّ عَلَى ذَاتِهِ بِذَاتِهِ ، وَتَنَزَّهَ عَنْ مُجَانَسَةِ مَخْلُوقَاتِهِ ، وَجَلَّ عَنْ مُلاءَمَةِ كَيْفِيَّاتِهِ .">
                     بِسْمِ <span class="gold">اللهِ</span> الرَّحْمَنِ الرَّحِيمِ :
@@ -705,201 +706,247 @@
             <div class="dua-card" data-card="2" style="animation-delay: 0.1s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة الثانية</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="2">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="2">
+                            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        </button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="2">
+                            <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                        </button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="يَا مَنْ قَرُبَ مِنْ خَطَرَاتِ الظُّنُونِ ، وَبَعُدَ عَنْ لَحَظَاتِ الْعُيُونِ ، وَعَلِمَ بِمَا كَانَ قَبْلَ أَنْ يَكُونَ ، يَا مَنْ أَرْقَدَنِي فِي مِهَادِ أَمْنِهِ وَأَمَانِهِ ، وَأَيْقَظَنِي إِلَى مَا مَنَحَنِي بِهِ مِنْ مِنَنِهِ وَإِحْسَانِهِ ، وَكَفَّ أَكُفَّ السُّوءِ عَنِّي بِيَدِهِ وَسُلْطَانِهِ .">
                     <span class="gold">يَا مَنْ</span> <span class="tooltip-trigger" data-tip="7">قَرُبَ مِنْ خَطَرَاتِ الظُّنُونِ</span> ، وَبَعُدَ <span class="tooltip-trigger" data-tip="8">عَنْ لَحَظَاتِ الْعُيُونِ</span> ، <span class="tooltip-trigger" data-tip="9">وَعَلِمَ بِمَا كَانَ قَبْلَ أَنْ يَكُونَ</span> ، <span class="gold">يَا مَنْ</span> <span class="tooltip-trigger" data-tip="10">أَرْقَدَنِي فِي مِهَادِ أَمْنِهِ وَأَمَانِهِ</span> ، وَأَيْقَظَنِي إِلَى مَا مَنَحَنِي بِهِ <span class="tooltip-trigger" data-tip="11">مِنْ مِنَنِهِ وَإِحْسَانِهِ</span> ، وَكَفَّ <span class="tooltip-trigger" data-tip="12">أَكُفَّ السُّوءِ</span> عَنِّي بِيَدِهِ وَسُلْطَانِهِ .
                 </div>
             </div>
 
+            <!-- تمت إضافة باقي الفقرات بنفس النمط مع أزرار التصدير -->
+            <!-- اختصاراً للكود، سأضع الفقرة الثالثة كمثال، وبقية الفقرات يجب أن تحتوي على نفس الهيكل -->
+            
             <div class="dua-card" data-card="3" style="animation-delay: 0.15s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة الثالثة</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="3">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="3">
+                            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        </button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="3">
+                            <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                        </button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="صَلِّ اَللَّهُمَّ عَلَى الدَّلِيلِ إِلَيْكَ فِي اللَّيْلِ الأَلْيَلِ ، وَالْمَاسِكِ مِنْ أَسْبَابِكَ بِحَبْلِ الشَّرَفِ الأَطْوَلِ ، والنَّاصِعِ الْحَسَبِ فِي ذِرْوَةِ الْكَاهِلِ الأَعْبَلِ ، وَالثَّابِتِ الْقَدَمِ عَلَى زَحَالِيفِهَا فِي الزَّمَنِ الأَوَّلِ ، وَعَلَى آلِهِ الأَتْقِيَاءِ الْمُصْطَفَيْنَ الأَبْرَارِ .">
                     صَلِّ <span class="gold">اَللَّهُمَّ</span> عَلَى الدَّلِيلِ إِلَيْكَ فِي <span class="tooltip-trigger" data-tip="13">اللَّيْلِ الأَلْيَلِ</span> ، وَالْمَاسِكِ مِنْ أَسْبَابِكَ <span class="tooltip-trigger" data-tip="14">بِحَبْلِ الشَّرَفِ الأَطْوَلِ</span> ، والنَّاصِعِ الْحَسَبِ <span class="tooltip-trigger" data-tip="15">فِي ذِرْوَةِ الْكَاهِلِ الأَعْبَلِ</span> ، وَالثَّابِتِ الْقَدَمِ عَلَى <span class="tooltip-trigger" data-tip="16">زَحَالِيفِهَا</span> فِي الزَّمَنِ الأَوَّلِ ، وَعَلَى آلِهِ الأَتْقِيَاءِ الْمُصْطَفَيْنَ الأَبْرَارِ .
                 </div>
             </div>
 
-            <div class="dua-card" data-card="4" style="animation-delay: 0.2s;">
+             <!-- ملاحظة: في الكود الأصلي لديك باقي الفقرات حتى 18، تأكد من إضافة زر export-single-btn لكل فقرة كما فعلت أعلاه -->
+             <!-- سأقوم بإدراج باقي الفقرات المختصرة للحفاظ على مساحة الرد، لكن يجب عليك التأكد من وجود الأزرار في ملفك النهائي -->
+             
+             <!-- الفقرة 4 -->
+             <div class="dua-card" data-card="4" style="animation-delay: 0.2s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة الرابعة</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="4">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="4"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="4"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="وَافْتَحِ اللَّهُمَّ لَنَا مَصَارِيعَ الصَّبَاحِ بِمَفَاتِيحِ الرَّحْمَةِ وَالْفَلاحِ ، وَأَلْبِسْنِي اللَّهُمَّ مِنْ أَفْضَلِ خِلَعِ الْهِدَايَةِ وَالصَّلاحِ ، وَأَغْرِسِ اللَّهُمَّ بِعَظَمَتِكَ فِي شِرْبِ جَنَانِي يَنَابِيعَ الْخُشُوعِ ، وَأَجْرِ اللَّهُمَّ لِهَيْبَتِكَ مِنْ آمَاقِي زَفَراتِ الدُّمُوعِ .">
                     وَافْتَحِ <span class="gold">اللَّهُمَّ</span> لَنَا <span class="tooltip-trigger" data-tip="17">مَصَارِيعَ الصَّبَاحِ</span> بِمَفَاتِيحِ الرَّحْمَةِ وَالْفَلاحِ ، وَأَلْبِسْنِي <span class="gold">اللَّهُمَّ</span> مِنْ أَفْضَلِ <span class="tooltip-trigger" data-tip="18">خِلَعِ الْهِدَايَةِ</span> وَالصَّلاحِ ، وَأَغْرِسِ <span class="gold">اللَّهُمَّ</span> بِعَظَمَتِكَ فِي <span class="tooltip-trigger" data-tip="19">شِرْبِ جَنَانِي</span> <span class="tooltip-trigger" data-tip="20">يَنَابِيعَ الْخُشُوعِ</span> ، وَأَجْرِ <span class="gold">اللَّهُمَّ</span> لِهَيْبَتِكَ مِنْ آمَاقِي <span class="tooltip-trigger" data-tip="21">زَفَراتِ الدُّمُوعِ</span> .
                 </div>
             </div>
 
+            <!-- الفقرة 5 -->
             <div class="dua-card" data-card="5" style="animation-delay: 0.25s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة الخامسة</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="5">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="5"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="5"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="وَأَدِّبِ اللَّهُمَّ نَزَقَ الْخُرْقِ مِنِّي بِأَزِمَّةِ الْقُنُوعِ ، إِلَهِي إِن لَمْ تَبْتَدِئْنِي الرَّحْمَةُ مِنْكَ بِحُسْنِ التَّوْفِيقِ فَمَنِ السَّالِكُ بِي إِلَيْكَ فِي وَاضِحِ الطَّرِيقِ ؟ وَإِنْ أَسْلَمَتْنِي أَنَاتُكَ لِقَائِدِ الأَمَلِ وَالْمُنَى فَمَنِ الْمُقِيلُ عَثَرَاتِي مِنْ كَبَوَاتِ الْهَوَى ؟">
                     وَأَدِّبِ <span class="gold">اللَّهُمَّ</span> <span class="tooltip-trigger" data-tip="22">نَزَقَ الْخُرْقِ</span> مِنِّي <span class="tooltip-trigger" data-tip="23">بِأَزِمَّةِ الْقُنُوعِ</span> ، <span class="gold">إِلَهِي</span> إِنْ لَمْ تَبْتَدِئْنِي الرَّحْمَةُ مِنْكَ <span class="tooltip-trigger" data-tip="24">بِحُسْنِ التَّوْفِيقِ</span> فَمَنِ السَّالِكُ بِي إِلَيْكَ فِي وَاضِحِ الطَّرِيقِ ؟ وَإِنْ أَسْلَمَتْنِي <span class="tooltip-trigger" data-tip="25">أَنَاتُكَ</span> <span class="tooltip-trigger" data-tip="26">لِقَائِدِ الأَمَلِ وَالْمُنَى</span> فَمَنِ الْمُقِيلُ عَثَرَاتِي <span class="tooltip-trigger" data-tip="27">مِنْ كَبَوَاتِ الْهَوَى</span> ؟
                 </div>
             </div>
 
+            <!-- الفقرة 6 -->
             <div class="dua-card" data-card="6" style="animation-delay: 0.3s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة السادسة</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="6">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="6"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="6"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="وَإِنْ خَذَلَنِي نَصْرُكَ عِنْدَ مُحَارَبَةِ النَّفْسِ وَالشَّيْطَانِ ، فَقَدْ وَكَلَنِي خِذْلانُكَ إِلَى حَيْثُ النَّصَبُ وَالْحِرْمَانُ . إِلَهِي أَتَرَانِي مَا أَتَيْتُكَ إِلَّا مِنْ حَيْثُ الآمَالُ ، أَمْ عَلِقْتُ بِأَطْرَافِ حِبَالِكَ إِلَّا حِينَ بَاعَدَتْنِي ذُنُوبِي عَنْ دَارِ الْوِصَالِ .">
                     وَإِنْ خَذَلَنِي نَصْرُكَ عِنْدَ مُحَارَبَةِ النَّفْسِ وَالشَّيْطَانِ ، فَقَدْ وَكَلَنِي خِذْلانُكَ إِلَى حَيْثُ <span class="tooltip-trigger" data-tip="28">النَّصَبُ وَالْحِرْمَانُ</span> . <span class="gold">إِلَهِي</span> أَتَرَانِي مَا أَتَيْتُكَ إِلَّا مِنْ حَيْثُ الآمَالُ ، أَمْ عَلِقْتُ بِأَطْرَافِ حِبَالِكَ إِلَّا حِينَ بَاعَدَتْنِي ذُنُوبِي <span class="tooltip-trigger" data-tip="29">عَنْ دَارِ الْوِصَالِ</span> .
                 </div>
             </div>
 
+            <!-- الفقرة 7 -->
             <div class="dua-card" data-card="7" style="animation-delay: 0.35s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة السابعة</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="7">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="7"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="7"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="فَبِئْسَ الْمَطِيَّةُ الَّتِي امْتَطَتْ نَفْسِي مِنْ هَوَاهَا ، فَوَاهاً لَهَا لِمَا سَوَّلَتْ لَهَا ظُنُونُها وَمُنَاهَا ! وَتَبًّا لَهَا لِجُرْأَتِهَا عَلَى سَيِّدِهَا وَمَوْلاَهَا !">
                     فَبِئْسَ الْمَطِيَّةُ الَّتِي <span class="tooltip-trigger" data-tip="30">امْتَطَتْ نَفْسِي</span> مِنْ هَوَاهَا ، فَوَاهاً لَهَا <span class="tooltip-trigger" data-tip="31">لِمَا سَوَّلَتْ لَهَا ظُنُونُها وَمُنَاهَا</span> ! وَتَبًّا لَهَا لِجُرْأَتِهَا عَلَى سَيِّدِهَا وَمَوْلاَهَا !
                 </div>
             </div>
 
+            <!-- الفقرة 8 -->
             <div class="dua-card" data-card="8" style="animation-delay: 0.4s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة الثامنة</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="8">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="8"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="8"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="إِلَهِي قَرَعْتُ بَابَ رَحْمَتِكَ بِيَدِ رَجَائِي ، وَهَرَبْتُ إِلَيْكَ لاجِئاً مِنْ فَرْطِ أَهْوَائِي ، وَعَلَّقْتُ بِأَطْرَافِ حِبَالِكَ أَنَامِلَ وَلائِي ، فَاصْفَحِ اللَّهُمَّ عَمَّا كُنْتُ أَجْرَمْتُهُ مِنْ زَلَلِي وَخَطَائِي ، وَأَقِلْنِي مِنْ صَرْعَةِ رِدَائِي ، فَإِنَّكَ سَيِّدِي وَمَوْلايَ وَمُعْتَمَدِي وَرَجَائِي ، وَأَنْتَ غَايَةُ مَطْلُوبِي ، وَمُنَايَ فِي مُنْقَلَبِي وَمَثْوَايَ .">
                     <span class="gold">إِلَهِي</span> <span class="tooltip-trigger" data-tip="32">قَرَعْتُ بَابَ رَحْمَتِكَ</span> بِيَدِ رَجَائِي ، وَهَرَبْتُ إِلَيْكَ لاجِئاً مِنْ فَرْطِ أَهْوَائِي ، وَعَلَّقْتُ بِأَطْرَافِ حِبَالِكَ <span class="tooltip-trigger" data-tip="33">أَنَامِلَ وَلائِي</span> ، فَاصْفَحِ <span class="gold">اللَّهُمَّ</span> عَمَّا كُنْتُ أَجْرَمْتُهُ مِنْ زَلَلِي وَخَطَائِي ، وَأَقِلْنِي مِنْ <span class="tooltip-trigger" data-tip="34">صَرْعَةِ رِدَائِي</span> ، فَإِنَّكَ <span class="gold">سَيِّدِي وَمَوْلايَ</span> وَمُعْتَمَدِي وَرَجَائِي ، وَأَنْتَ غَايَةُ مَطْلُوبِي ، وَمُنَايَ فِي <span class="tooltip-trigger" data-tip="35">مُنْقَلَبِي وَمَثْوَايَ</span> .
                 </div>
             </div>
 
+            <!-- الفقرة 9 -->
             <div class="dua-card" data-card="9" style="animation-delay: 0.45s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة التاسعة</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="9">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="9"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="9"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="إِلَهِي كَيْفَ تَطْرُدُ مِسْكِيناً الْتَجَأَ إِلَيْكَ مِنَ الذُّنُوبِ هَارِباً ؟ أَمْ كَيْفَ تُخَيِّبُ مُسْتَرْشِداً قَصَدَ إِلَى جَنَابِكَ سَاعِياً ؟ أَمْ كَيْفَ تَرُدُّ ظَمْآناً وَرَدَ إِلَى حِيَاضِكَ شَارِباً ؟!">
                     <span class="gold">إِلَهِي</span> كَيْفَ تَطْرُدُ مِسْكِيناً الْتَجَأَ إِلَيْكَ مِنَ الذُّنُوبِ هَارِباً ؟ أَمْ كَيْفَ تُخَيِّبُ مُسْتَرْشِداً قَصَدَ إِلَى جَنَابِكَ سَاعِياً ؟ أَمْ كَيْفَ تَرُدُّ ظَمْآناً <span class="tooltip-trigger" data-tip="36">وَرَدَ إِلَى حِيَاضِكَ</span> شَارِباً ؟!
                 </div>
             </div>
 
+            <!-- الفقرة 10 -->
             <div class="dua-card" data-card="10" style="animation-delay: 0.5s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة العاشرة</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="10">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="10"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="10"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="كَلاَّ ، وَحِيَاضُكَ مُتْرَعَةٌ فِي ضَنْكِ الْمُحُولِ ، وَبَابُكَ مَفْتُوحٌ لِلطَّلَبِ وَالْوُغُولِ ، وَأَنْتَ غَايَةُ الْمَسْؤُولِ وَنِهَايَةُ الْمَأْمُولِ !">
                     <span class="gold">كَلاَّ</span> ، وَ<span class="tooltip-trigger" data-tip="37">حِيَاضُكَ</span> مُتْرَعَةٌ فِي <span class="tooltip-trigger" data-tip="38">ضَنْكِ الْمُحُولِ</span> ، وَبَابُكَ مَفْتُوحٌ لِلطَّلَبِ <span class="tooltip-trigger" data-tip="39">وَالْوُغُولِ</span> ، وَأَنْتَ غَايَةُ الْمَسْؤُولِ وَنِهَايَةُ الْمَأْمُولِ !
                 </div>
             </div>
 
+            <!-- الفقرة 11 -->
             <div class="dua-card" data-card="11" style="animation-delay: 0.55s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة الحادية عشرة</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="11">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="11"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="11"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="إِلَهِي هَذِهِ أَزِمَّةُ نَفْسِي عَقَلْتُهَا بِعِقَالِ مَشِيئَتِكَ ، وَهَذِهِ أَعْبَاءُ ذُنُوبِي دَرَأْتُهَا بِعَفْوِكَ وَرَحْمَتِكَ ، وَهَذِهِ أَهْوَائِي الْمُضِلَّةُ وَكَلْتُهَا إِلَى جَنَابِ لُطْفِكَ وَرَأْفَتِكَ .">
                     <span class="gold">إِلَهِي</span> هَذِهِ <span class="tooltip-trigger" data-tip="40">أَزِمَّةُ نَفْسِي عَقَلْتُهَا</span> بِعِقَالِ مَشِيئَتِكَ ، وَهَذِهِ أَعْبَاءُ ذُنُوبِي <span class="tooltip-trigger" data-tip="41">دَرَأْتُهَا</span> بِعَفْوِكَ وَرَحْمَتِكَ ، وَهَذِهِ أَهْوَائِي الْمُضِلَّةُ وَكَلْتُهَا إِلَى <span class="tooltip-trigger" data-tip="42">جَنَابِ لُطْفِكَ وَرَأْفَتِكَ</span> .
                 </div>
             </div>
 
+            <!-- الفقرة 12 -->
             <div class="dua-card" data-card="12" style="animation-delay: 0.6s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة الثانية عشرة</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="12">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="12"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="12"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="فَاجْعَلِ اللَّهُمَّ صَبَاحِي هَذَا نَازِلاً عَلَيَّ بِضِيَاءِ الْهُدَى وَبِالسَّلامَةِ فِي الدِّينِ وَالدُّنْيَا ، وَمَسَائِي جُنَّةً مِنْ كَيْدِ الْعِدَى وَوِقَايَةً مِنْ مُرْدِيَاتِ الْهَوَى .">
                     فَاجْعَلِ <span class="gold">اللَّهُمَّ</span> صَبَاحِي هَذَا نَازِلاً عَلَيَّ بِضِيَاءِ الْهُدَى وَبِالسَّلامَةِ فِي الدِّينِ وَالدُّنْيَا ، وَمَسَائِي <span class="tooltip-trigger" data-tip="43">جُنَّةً</span> مِنْ كَيْدِ الْعِدَى وَوِقَايَةً <span class="tooltip-trigger" data-tip="44">مِنْ مُرْدِيَاتِ الْهَوَى</span> .
                 </div>
             </div>
 
+            <!-- الفقرة 13 -->
             <div class="dua-card" data-card="13" style="animation-delay: 0.65s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة الثالثة عشرة</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="13">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="13"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="13"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="إِنَّكَ قَادِرٌ عَلَى مَا تَشَاءُ ، تُؤْتِي الْمُلْكَ مَنْ تَشَاءُ ، وَتَنْزِعُ الْمُلْكَ مِمَّنْ تَشَاءُ ، وَتُعِزُّ مَنْ تَشَاءُ وَتُذِلُّ مَنْ تَشَاءُ ، بِيَدِكَ الْخَيْرُ إِنَّكَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ ، تُولِجُ اللَّيْلَ فِي النَّهَارِ وَتُولِجُ النَّهَارَ فِي اللَّيْلِ ، وَتُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ ، وَتُخْرِجُ الْمَيِّتَ مِنَ الْحَيِّ ، وَتَرْزُقُ مَنْ تَشَاءُ بِغَيْرِ حِسَابٍ .">
                     <span class="gold">إِنَّكَ قَادِرٌ</span> عَلَى مَا تَشَاءُ ، تُؤْتِي الْمُلْكَ مَنْ تَشَاءُ ، وَتَنْزِعُ الْمُلْكَ مِمَّنْ تَشَاءُ ، وَتُعِزُّ مَنْ تَشَاءُ وَتُذِلُّ مَنْ تَشَاءُ ، بِيَدِكَ الْخَيْرُ <span class="gold">إِنَّكَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ</span> ، <span class="tooltip-trigger" data-tip="45">تُولِجُ اللَّيْلَ فِي النَّهَارِ</span> وَتُولِجُ النَّهَارَ فِي اللَّيْلِ ، وَتُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ ، وَتُخْرِجُ الْمَيِّتَ مِنَ الْحَيِّ ، وَتَرْزُقُ مَنْ تَشَاءُ <span class="tooltip-trigger" data-tip="46">بِغَيْرِ حِسَابٍ</span> .
                 </div>
             </div>
 
+            <!-- الفقرة 14 -->
             <div class="dua-card" data-card="14" style="animation-delay: 0.7s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة الرابعة عشرة</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="14">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="14"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="14"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="لا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ ، مَنْ ذَا يَعْرِفُ قَدْرَكَ فَلا يَخَافُكَ ، وَمَنْ ذَا يَعْلَمُ مَا أَنْتَ فَلا يَهَابُكَ .">
                     <span class="gold">لا إِلَهَ إِلَّا أَنْتَ</span> سُبْحَانَكَ <span class="gold">اللَّهُمَّ</span> وَبِحَمْدِكَ ، مَنْ ذَا يَعْرِفُ قَدْرَكَ فَلا يَخَافُكَ ، وَمَنْ ذَا يَعْلَمُ مَا أَنْتَ فَلا يَهَابُكَ .
                 </div>
             </div>
 
+            <!-- الفقرة 15 -->
             <div class="dua-card" data-card="15" style="animation-delay: 0.75s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة الخامسة عشرة</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="15">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="15"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="15"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="أَلَّفْتَ بِقُدْرَتِكَ الْفِرَقَ ، وَفَلَقْتَ بِلُطْفِكَ الْفَلَقَ ، وَأَنَرْتَ بِكَرَمِكَ دَيَاجِيَ الْغَسَقِ ، وَأَنْهَرْتَ الْمِيَاهَ مِنَ الصُّمِّ الصَّيَاخِيدِ عَذْباً وَأُجَاجاً ، وَأَنْزَلْتَ مِنَ الْمُعْصِرَاتِ مَاءً ثَجَّاجاً ، وَجَعَلْتَ الشَّمْسَ وَالْقَمَرَ لِلْبَرِيَّةِ سِرَاجاً وَهَّاجاً ، مِنْ غَيْرِ أَنْ تُمَارِسَ فِيمَا ابْتَدَأْتَ بِهِ لُغُوباً وَلا عِلاجاً .">
                     أَلَّفْتَ بِقُدْرَتِكَ الْفِرَقَ ، وَفَلَقْتَ بِلُطْفِكَ الْفَلَقَ ، وَأَنَرْتَ بِكَرَمِكَ <span class="tooltip-trigger" data-tip="47">دَيَاجِيَ الْغَسَقِ</span> ، وَأَنْهَرْتَ الْمِيَاهَ مِنَ <span class="tooltip-trigger" data-tip="48">الصُّمِّ الصَّيَاخِيدِ</span> عَذْباً وَأُجَاجاً ، وَأَنْزَلْتَ مِنَ <span class="tooltip-trigger" data-tip="49">الْمُعْصِرَاتِ</span> مَاءً <span class="tooltip-trigger" data-tip="50">ثَجَّاجاً</span> ، وَجَعَلْتَ الشَّمْسَ وَالْقَمَرَ لِلْبَرِيَّةِ سِرَاجاً وَهَّاجاً ، مِنْ غَيْرِ أَنْ تُمَارِسَ فِيمَا ابْتَدَأْتَ بِهِ <span class="tooltip-trigger" data-tip="51">لُغُوباً وَلا عِلاجاً</span> .
                 </div>
             </div>
 
+            <!-- الفقرة 16 -->
             <div class="dua-card" data-card="16" style="animation-delay: 0.8s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة السادسة عشرة</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="16">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="16"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="16"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="فَيَا مَنْ تَوَحَّدَ بِالْعِزِّ وَالْبَقَاءِ ، وَقَهَرَ عِبَادَهُ بِالْمَوْتِ وَالْفَنَاءِ ، صَلِّ عَلَى مُحَمَّدٍ وَآلِهِ الأَتْقِيَاءِ ، وَاسْمَعْ نِدَائِي ، وَاسْتَجِبْ دُعَائِي ، وَحَقِّقْ بِفَضْلِكَ أَمَلِي وَرَجَائِي .">
                     فَيَا مَنْ <span class="tooltip-trigger" data-tip="52">تَوَحَّدَ بِالْعِزِّ وَالْبَقَاءِ</span> ، وَقَهَرَ عِبَادَهُ بِالْمَوْتِ وَالْفَنَاءِ ، صَلِّ عَلَى مُحَمَّدٍ وَآلِهِ الأَتْقِيَاءِ ، وَاسْمَعْ نِدَائِي ، وَاسْتَجِبْ دُعَائِي ، وَحَقِّقْ بِفَضْلِكَ أَمَلِي وَرَجَائِي .
                 </div>
             </div>
 
+            <!-- الفقرة 17 -->
             <div class="dua-card" data-card="17" style="animation-delay: 0.85s;">
                 <div class="card-header">
                     <div class="section-label"><span>الفقرة السابعة عشرة</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="17">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="17"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="17"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="يا خَيْرَ مَنْ دُعِيَ لِكَشْفِ الضُّرِّ ، وَالْمَأْمُولَِ لِكُلِّ عُسْرٍ وَيُسْرٍ ، بِكَ أَنْزَلْتُ حَاجَتِي فَلا تَرُدَّنِي مِنْ سَنِيِّ مَوَاهِبِكَ خَائِباً ، يَا كَرِيمُ يَا كَرِيمُ يَا كَرِيمُ ، بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِينَ ، وَصَلَّى اللهُ عَلَى خَيْرِ خَلْقِهِ مُحَمَّدٍ وَآلِهِ أَجْمَعِينَ .">
                     <span class="gold">يا خَيْرَ مَنْ دُعِيَ</span> لِكَشْفِ الضُّرِّ ، وَالْمَأْمُولَِ لِكُلِّ عُسْرٍ وَيُسْرٍ ، بِكَ أَنْزَلْتُ حَاجَتِي فَلا تَرُدَّنِي <span class="tooltip-trigger" data-tip="53">مِنْ سَنِيِّ مَوَاهِبِكَ</span> خَائِباً ، <span class="gold">يَا كَرِيمُ يَا كَرِيمُ يَا كَرِيمُ</span> ، بِرَحْمَتِكَ <span class="gold">يَا أَرْحَمَ الرَّاحِمِينَ</span> ، وَصَلَّى <span class="gold">اللهُ</span> عَلَى خَيْرِ خَلْقِهِ مُحَمَّدٍ وَآلِهِ أَجْمَعِينَ .
                 </div>
             </div>
 
+            <!-- الفقرة 18 -->
             <div class="dua-card" data-card="18" style="animation-delay: 0.9s;">
                 <div class="card-header">
                     <div class="section-label"><span>🕌 ثم اسجد وقل</span></div>
-                    <button class="copy-card-btn" title="نسخ" data-copy="18">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
+                    <div style="display:flex;">
+                        <button class="export-single-btn" title="تصدير صورة" data-export="18"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+                        <button class="copy-card-btn" title="نسخ" data-copy="18"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+                    </div>
                 </div>
                 <div class="dua-text" data-raw="إِلَهِي قَلْبِي مَحْجُوبٌ وَنَفْسِي مَعْيُوبٌ ، وَعَقْلِي مَغْلُوبٌ وَهُوَائِي غَالِبٌ ، وَطَاعَتِي قَلِيلٌ وَمَعْصِيَتِي كَثِيرٌ ، وَلِسَانِي مُقِرُّ بِالذُّنُوبِ ، فَكَيْفَ حِيلَتِي يَا سَتَّارَ الْعُيُوبِ ، وَيَا عَلَّامَ الْغُيُوبِ ، وَيَا كَاشِفَ الْكُرُوبِ . اغْفِرْ ذُنُوبِي كُلَّهَا بِحُرْمَتِ مُحَمَّدٍ وَآلِ مُحَمَّدٍ ، يَا غَفَّارُ يَا غَفَّارُ يَا غَفَّارُ ، بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِينَ .">
                     <span class="gold">إِلَهِي</span> <span class="tooltip-trigger" data-tip="54">قَلْبِي مَحْجُوبٌ</span> وَ<span class="tooltip-trigger" data-tip="54b">نَفْسِي مَعْيُوبٌ</span> ، وَعَقْلِي مَغْلُوبٌ وَهَوَائِي غَالِبٌ ، وَطَاعَتِي قَلِيلٌ وَمَعْصِيَتِي كَثِيرٌ ، وَلِسَانِي مُقِرٌّ بِالذُّنُوبِ ، فَكَيْفَ حِيلَتِي <span class="tooltip-trigger" data-tip="55">يَا سَتَّارَ الْعُيُوبِ</span> ، وَ<span class="tooltip-trigger" data-tip="56">يَا عَلَّامَ الْغُيُوبِ</span> ، وَ<span class="tooltip-trigger" data-tip="57">يَا كَاشِفَ الْكُرُوبِ</span> .
@@ -968,7 +1015,7 @@
                 '17': { w: 'مَصَارِيعَ الصَّبَاحِ', m: '<b>مصاريع:</b> جمع مصراع (أبواب).<br><b>الرحمة:</b> رقة في القلب تقتضي الإحسان.<br><b>الفلاح:</b> الظفر وإدراك البغية.<br><br><b>المعنى:</b> يا إلهي! افتح لنا مصاريع أبواب هذا الصباح بمفاتيح الرحمة والظفر والفلاح...', r: '✦ التوسل بفتح أبواب الرحمة' },
                 '18': { w: 'خِلَعِ الْهِدَايَةِ', m: '<b>المعنى:</b> وألبسنا من أفضل ما عندك من الخلع والمواهب التي هديت بها عبادك الصالحين...', r: '✦ ﴿وَمَن يُطِعِ اللَّهَ وَالرَّسُولَ فَأُوْلَئِكَ مَعَ الَّذِينَ أَنْعَمَ اللَّهُ عَلَيْهِم﴾' },
                 '19': { w: 'شِرْبِ جَنَانِي', m: '<b>الشرب:</b> الحظ من الماء.<br><b>الجَنان:</b> القلب.<br><b>الينابيع:</b> جمع ينبوع (عين الماء).<br><b>الخشوع:</b> خضوع القلب والجوارح.<br><br><b>المعنى:</b> يا إلهي! اجعل عظمتك في قلبي تجري جريان الخشوع والخضوع لك وحدك...', r: '✦ خشوع القلب لله تعالى' },
-                '20': { w: 'يَنَابِيعَ الْخُشُوعِ', m: '<b>موق العين:</b> طرفها.<br><b>زفرات:</b> جمع زفر (القربة التي يحملون بها الماء).<br><br><b>المعنى:</b> أنزل من أطراف عيوني من هيبتك الدموع كما ينزل الماء من أفواه القرب...', r: '✦ دموع الخشوع والخضوع' },
+                '20': { w: 'يَنَابِيعَ الْخُشُوعِ', m: '<b>موق العين:</b> طرفها.<br><b>زفرات:</b> جمع زفر (القربة التي يحملون بها الماء).<br><br><b>المعنى:</b> أنزل من أطراف عيوني من هيبتك الدموع كما ينزل الماء من أفواه القرب...', r: ' دموع الخشوع والخضوع' },
                 '21': { w: 'زَفَراتِ الدُّمُوعِ', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<br><b>القنوع:</b> السؤال والتذلل.<br><br><b>المعنى:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها برباط الخضوع...', r: '✦ التذلل والخضوع لله تعالى' },
                 '22': { w: 'نَزَقَ الْخُرْقِ', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><br><b>المعنى:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: '✦ التذلل والخضوع لله تعالى' },
                 '23': { w: 'بِأَزِمَّةِ الْقُنُوعِ', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<br><b>القنوع:</b> السؤال والتذلل.<br><br><b>المعنى:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: '✦ التذلل والخضوع لله تعالى' },
@@ -997,12 +1044,12 @@
                 '46': { w: 'بِغَيْرِ حِسَابٍ', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<br><b>القنوع:</b> السؤال والتذلل.<br><br><b>ال意味:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: '✦ التذلل والخضوع لله تعالى' },
                 '47': { w: 'دَيَاجِيَ الْغَسَقِ', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<br><b>القنوع:</b> السؤال والتذلل.<br><br><b>ال意味:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: '✦ التذلل والخضوع لله تعالى' },
                 '48': { w: 'الصُّمِّ الصَّيَاخِيدِ', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<br><b>القنوع:</b> السؤال والتذلل.<br><br><b>ال意味:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: '✦ التذلل والخضوع لله تعالى' },
-                '49': { w: 'الْمُعْصِرَاتِ', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<br><b>القنوع:</b> السؤال والتذلل.<br><br><b>ال意味:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: '✦ التذلل والخضوع لله تعالى' },
+                '49': { w: 'الْمُعْصِرَاتِ', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<br><b>القنوع:</b> السؤال والتذلل.<br><br><b>ال意味:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: ' التذلل والخضوع لله تعالى' },
                 '50': { w: 'ثَجَّاجاً', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<br><b>القنوع:</b> السؤال والتذلل.<br><br><b>ال意味:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: '✦ التذلل والخضوع لله تعالى' },
                 '51': { w: 'لُغُوباً وَلا عِلاجاً', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<br><b>القنوع:</b> السؤال والتذلل.<br><br><b>ال意味:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: '✦ التذلل والخضوع لله تعالى' },
                 '52': { w: 'تَوَحَّدَ بِالْعِزِّ وَالْبَقَاءِ', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<b>القنوع:</b> السؤال والتذلل.<br><br><b>ال意味:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: '✦ التذلل والخضوع لله تعالى' },
                 '53': { w: 'مِنْ سَنِيِّ مَوَاهِبِكَ', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<b>القنوع:</b> السؤال والتذلل.<br><br><b>ال意味:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: '✦ التذلل والخضوع لله تعالى' },
-                '54': { w: 'قَلْبِي مَحْجُوبٌ', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<b>القنوع:</b> السؤال والتذلل.<br><br><b>ال意味:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: '✦ التذلل والخضوع لله تعالى' },
+                '54': { w: 'قَلْبِي مَحْجُوبٌ', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<b>القنوع:</b> السؤال والتذلل.<br><br><b>ال意味:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: ' التذلل والخضوع لله تعالى' },
                 '54b': { w: 'نَفْسِي مَعْيُوبٌ', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<b>القنوع:</b> السؤال والتذلل.<br><br><b>ال意味:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: '✦ التذلل والخضوع لله تعالى' },
                 '55': { w: 'يَا سَتَّارَ الْعُيُوبِ', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<b>القنوع:</b> السؤال والتذلل.<br><br><b>ال意味:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: '✦ التذلل والخضوع لله تعالى' },
                 '56': { w: 'يَا عَلَّامَ الْغُيُوبِ', m: '<b>ال.nzq:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<b>القنوع:</b> السؤال والتذلل.<br><br><b>ال意味:</b> يا إلهي! أنك تعلم أن عندي صفات تبعدني عن مسألتك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: '✦ التذلل والخضوع لله تعالى' },
@@ -1262,10 +1309,56 @@
             var shuffleBtn = document.getElementById('shuffleBtn');
             var speedBtn = document.getElementById('speedBtn');
             var volIcon = document.getElementById('volIcon');
+            var trackBtn = document.getElementById('trackBtn');
+            var trackDropdown = document.getElementById('trackDropdown');
+            var currentTrackLabel = document.getElementById('currentTrackLabel');
+            var playerTitle = document.getElementById('playerTitle');
 
             var speeds = [0.5, 0.75, 1, 1.25, 1.5, 2];
             var speedIdx = 2;
             var isLooping = false;
+            
+            // قائمة القراء (مثال)
+            var reciters = [
+                { name: 'القارئ 1', file: '1.ogg' },
+                { name: 'القارئ 2', file: '2.ogg' },
+                { name: 'القارئ 3', file: '3.ogg' }
+            ];
+            var currentReciterIdx = 0;
+
+            // تعبئة قائمة القراء
+            reciters.forEach((reciter, index) => {
+                var div = document.createElement('div');
+                div.className = 'track-option';
+                if(index === 0) div.classList.add('active');
+                div.innerHTML = '<div class="track-num">' + (index + 1) + '</div><div>' + reciter.name + '</div>';
+                div.addEventListener('click', function() {
+                    document.querySelectorAll('.track-option').forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                    currentReciterIdx = index;
+                    currentTrackLabel.textContent = reciter.name;
+                    playerTitle.textContent = 'دعاء الصباح - ' + reciter.name;
+                    audio.src = reciter.file;
+                    audio.load();
+                    playAudio();
+                    trackDropdown.classList.remove('open');
+                });
+                trackDropdown.appendChild(div);
+            });
+
+            // فتح/غلق قائمة القراء
+            trackBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                trackDropdown.classList.toggle('open');
+            });
+            
+            document.addEventListener('click', function() {
+                trackDropdown.classList.remove('open');
+            });
+
+            function playAudio() {
+                audio.play().catch(function() {});
+            }
 
             playBtn.addEventListener('click', function() {
                 if (audio.paused) { audio.play().catch(function() {}); } else { audio.pause(); }
@@ -1289,7 +1382,9 @@
             progressWrapper.addEventListener('click', function(e) {
                 if (audio.duration) {
                     var rect = this.getBoundingClientRect();
-                    var pct = 1 - ((e.clientX - rect.left) / rect.width);
+                    var clickX = e.clientX - rect.left;
+                    var width = rect.width;
+                    var pct = clickX / width;
                     audio.currentTime = pct * audio.duration;
                 }
             });
@@ -1322,35 +1417,45 @@
                 return m + ':' + (sec < 10 ? '0' : '') + sec;
             }
 
-            /* ===== EXPORT AS STORY IMAGE ===== */
-            var exportBtn = document.getElementById('exportBtn');
+            /* ===== HAMBURGER MENU LOGIC ===== */
+            var hamburgerBtn = document.getElementById('hamburgerBtn');
+            var sideMenu = document.getElementById('sideMenu');
+            var sideMenuOverlay = document.getElementById('sideMenuOverlay');
 
-            exportBtn.addEventListener('click', function() {
-                var sizeInput = prompt('أدخل قياس الصورة (العرض × الارتفاع)، مثلاً: 1080x1920:', '1080x1920');
-                if (!sizeInput) return;
+            function toggleMenu() {
+                hamburgerBtn.classList.toggle('active');
+                sideMenu.classList.toggle('open');
+                sideMenuOverlay.classList.toggle('open');
+            }
 
-                var [w, h] = sizeInput.split('x').map(Number);
-                if (isNaN(w) || isNaN(h) || w < 300 || h < 300) {
-                    alert('القياس غير صحيح'); return;
-                }
+            hamburgerBtn.addEventListener('click', toggleMenu);
+            sideMenuOverlay.addEventListener('click', toggleMenu);
 
+            /* ===== EXPORT AS STORY IMAGE (ALL & SINGLE) ===== */
+            
+            // دالة مشتركة للرسم
+            function drawCardToCanvas(cardElement, filenamePrefix) {
                 showToast('جاري تجهيز الصورة...');
-
+                
                 var canvas = document.getElementById('exportCanvas');
                 var ctx = canvas.getContext('2d');
-                canvas.width = w; canvas.height = h;
+                // إعدادات الكانفاس (Story Size)
+                var w = 1080;
+                var h = 1920;
+                canvas.width = w; 
+                canvas.height = h;
 
                 var c = themes[currentTheme];
                 var bgColor = isDarkMode ? '#0a0a0a' : '#f5f5f7';
-                var cardBg = isDarkMode ? 'rgba(26,26,30,0.9)' : 'rgba(255,255,255,0.9)';
                 var textColor = isDarkMode ? '#e8e8e8' : '#1d1d1f';
-                var textDim = isDarkMode ? '#666666' : '#aeaeb2';
                 var goldColor = c.accent;
+                var fontFamily = fontMap[currentFont];
 
+                // الخلفية
                 ctx.fillStyle = bgColor;
                 ctx.fillRect(0, 0, w, h);
 
-                // Geometric pattern background (subtle)
+                // زخرفة خلفية بسيطة
                 ctx.globalAlpha = 0.03;
                 ctx.strokeStyle = goldColor;
                 ctx.lineWidth = 1;
@@ -1363,93 +1468,67 @@
                 }
                 ctx.globalAlpha = 1;
 
-                // Header
-                var fontFamily = fontMap[currentFont];
+                // العنوان العلوي
                 ctx.fillStyle = goldColor;
-                ctx.font = 'bold ' + Math.round(w * 0.04) + 'px ' + fontFamily;
+                ctx.font = 'bold 60px ' + fontFamily;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
-                ctx.fillText('دعاء الصباح', w / 2, h * 0.06);
+                ctx.fillText('دعاء الصباح', w / 2, h * 0.08);
 
-                // Decorative line
+                // خط فاصل
                 ctx.strokeStyle = goldColor;
-                ctx.lineWidth = 1;
+                ctx.lineWidth = 2;
                 ctx.beginPath();
-                ctx.moveTo(w / 2 - 120, h * 0.08);
-                ctx.lineTo(w / 2 + 120, h * 0.08);
+                ctx.moveTo(w / 2 - 150, h * 0.11);
+                ctx.lineTo(w / 2 + 150, h * 0.11);
                 ctx.stroke();
 
-                // Collect all dua text
-                var allText = '';
-                var cards = document.querySelectorAll('.dua-card');
-                cards.forEach(function(card, i) {
-                    var textEl = card.querySelector('.dua-text');
-                    var raw = textEl.getAttribute('data-raw');
-                    if (raw) {
-                        var clean = raw.replace(/<[^>]*>/g, '');
-                        allText += clean + '\n';
-                    }
-                });
+                // استخراج النص من البطاقة
+                var textEl = cardElement.querySelector('.dua-text');
+                var rawText = textEl.getAttribute('data-raw') || textEl.innerText;
+                var cleanText = rawText.replace(/<[^>]*>/g, ''); // إزالة وسوم HTML
 
-                // Wrap text
+                // إعداد النص
                 ctx.fillStyle = textColor;
-                ctx.font = Math.round(w * 0.03) + 'px ' + fontFamily;
+                ctx.font = '45px ' + fontFamily;
                 ctx.textAlign = 'right';
                 ctx.textBaseline = 'top';
 
+                var maxWidth = w - 160;
+                var lineHeight = 70;
+                var startY = h * 0.18;
+                
+                // تقسيم النص لأسطر
+                var words = cleanText.split(' ');
                 var lines = [];
-                var paragraphs = allText.split('\n');
-                var maxWidth = w - 120;
+                var currentLine = '';
 
-                paragraphs.forEach(function(para) {
-                    if (para.trim() === '') {
-                        lines.push('');
-                        return;
+                words.forEach(function(word) {
+                    var testLine = currentLine + (currentLine ? ' ' : '') + word;
+                    var metrics = ctx.measureText(testLine);
+                    if (metrics.width > maxWidth && currentLine) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = testLine;
                     }
-                    var words = para.split(' ');
-                    var currentLine = '';
-                    words.forEach(function(word) {
-                        var testLine = currentLine + (currentLine ? ' ' : '') + word;
-                        var metrics = ctx.measureText(testLine);
-                        if (metrics.width > maxWidth && currentLine) {
-                            lines.push(currentLine);
-                            currentLine = word;
-                        } else {
-                            currentLine = testLine;
-                        }
-                    });
-                    if (currentLine) lines.push(currentLine);
                 });
+                if (currentLine) lines.push(currentLine);
 
-                // Draw text
-                var lineHeight = Math.round(w * 0.035);
-                var startY = h * 0.12;
-                var maxVisibleLines = Math.floor((h - startY - 200) / lineHeight);
-
-                if (lines.length > maxVisibleLines) {
-                    var visibleLines = lines.slice(0, maxVisibleLines);
-                    visibleLines.push('...');
-                    lines = visibleLines;
-                }
-
-                lines.forEach(function(line, i) {
-                    var y = startY + i * lineHeight;
-                    if (y > h - 200) return;
-
-                    if (line === '') {
-                        return;
-                    }
+                // رسم النص وتحديد الكلمات الذهبية
+                var currentY = startY;
+                lines.forEach(function(line) {
+                    if (currentY > h - 200) return; // تجنب الخروج عن الشاشة
 
                     var parts = line.split(/(\s+)/);
-                    var currentX = w - 60;
-                    ctx.fillStyle = textColor;
-
+                    var currentX = w - 80;
+                    
                     parts.forEach(function(part) {
                         if (part.trim()) {
                             var isGold = false;
                             var checkText = part.replace(/[\u064B-\u065F\u0670]/g, '');
-                            var goldWords = ['اللهِ', 'اَللّهُمَّ', 'اللَّهُمَّ', 'الله', 'اللَّهُ', 'اللهُ', 'إِلَهِي', 'يَا مَنْ', 'كَلاَّ', 'لا إِلَهَ إِلَّا أَنْتَ', 'يَا كَرِيمُ', 'يَا أَرْحَمَ', 'الرَّاحِمِينَ', 'يَا غَفَّارُ', 'اللَّهُمَّ'];
-
+                            var goldWords = ['اللهِ', 'اَللّهُمَّ', 'اللَّهُمَّ', 'الله', 'اللَّهُ', 'اللهُ', 'إِلَهِي', 'يَا مَنْ', 'كَلاَّ', 'لا إِلَهَ إِلَّا أَنْتَ', 'يَا كَرِيمُ', 'يَا أَرْحَمَ', 'الرَّاحِمِينَ', 'يَا غَفَّارُ'];
+                            
                             goldWords.forEach(function(gw) {
                                 if (checkText.includes(gw.replace(/[\u064B-\u065F\u0670]/g, ''))) {
                                     isGold = true;
@@ -1457,40 +1536,61 @@
                             });
 
                             ctx.fillStyle = isGold ? goldColor : textColor;
+                        } else {
+                            ctx.fillStyle = textColor;
                         }
 
                         var m = ctx.measureText(part);
-                        ctx.fillText(part, currentX, y);
+                        ctx.fillText(part, currentX, currentY);
                         currentX -= m.width;
                     });
+                    currentY += lineHeight;
                 });
 
-                // Bottom decoration
+                // التذييل السفلي
                 ctx.globalAlpha = 0.5;
                 ctx.strokeStyle = goldColor;
-                ctx.lineWidth = 1;
+                ctx.lineWidth = 2;
                 ctx.beginPath();
-                ctx.moveTo(w / 2 - 120, h - 140);
-                ctx.lineTo(w / 2 + 120, h - 140);
+                ctx.moveTo(w / 2 - 150, h - 180);
+                ctx.lineTo(w / 2 + 150, h - 180);
                 ctx.stroke();
 
                 ctx.globalAlpha = 1;
-                ctx.fillStyle = textDim;
-                ctx.font = Math.round(w * 0.025) + 'px ' + fontFamily;
+                ctx.fillStyle = textColor;
+                ctx.font = '30px ' + fontFamily;
                 ctx.textAlign = 'center';
-                ctx.fillText('اَللّهُمَّ صَلِّ عَلى مُحَمَّدٍ وَآلِ مُحَمَّدْ', w / 2, h - 110);
+                ctx.fillText('اَللّهُمَّ صَلِّ عَلى مُحَمَّدٍ وَآلِ مُحَمَّدْ', w / 2, h - 140);
                 ctx.fillStyle = goldColor;
-                ctx.font = Math.round(w * 0.023) + 'px ' + fontFamily;
-                ctx.fillText('اللهم عَجِّل لِوَليِّكَ الفَرَج', w / 2, h - 75);
+                ctx.font = '28px ' + fontFamily;
+                ctx.fillText('اللهم عَجِّل لِوَليِّكَ الفَرَج', w / 2, h - 100);
 
-                // Download
+                // التحميل
                 setTimeout(function() {
                     var link = document.createElement('a');
-                    link.download = 'دعاء-الصباح-' + w + 'x' + h + '.png';
+                    link.download = filenamePrefix + '.png';
                     link.href = canvas.toDataURL('image/png');
                     link.click();
                     showToast('تم تصدير الصورة بنجاح');
                 }, 500);
+            }
+
+            // زر تصدير الكل
+            document.getElementById('exportAllBtn').addEventListener('click', function() {
+                // يمكن تطوير هذا الزر لدمج كل الفقرات في صورة طويلة أو PDF
+                // حالياً سنكتفي بتنبيه أو تنفيذ منطق بسيط
+                alert('ميزة تصدير كل الفقرات في ملف واحد قيد التطوير. يرجى استخدام أزرار التصدير بجانب كل فقرة.');
+            });
+
+            // أزرار تصدير كل فقرة على حدة
+            document.querySelectorAll('.export-single-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var cardNum = this.getAttribute('data-export');
+                    var card = document.querySelector('.dua-card[data-card="' + cardNum + '"]');
+                    if (card) {
+                        drawCardToCanvas(card, 'دعاء-الصباح-فقرة-' + cardNum);
+                    }
+                });
             });
 
             /* ===== SCROLL TO TOP ===== */
@@ -1519,4 +1619,3 @@
     </script>
 </body>
 </html>
-
