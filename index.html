@@ -38,25 +38,16 @@
             font-size: 19px;
         }
 
-        /* ===== ISLAMIC GEOMETRIC BACKGROUND ===== */
         .islamic-bg {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            overflow: hidden;
+            position: fixed; inset: 0; z-index: -1; overflow: hidden;
         }
 
         .islamic-bg svg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0.035;
+            position: absolute; width: 100%; height: 100%; opacity: 0.035;
         }
 
         .islamic-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
+            content: ''; position: absolute; inset: 0;
             background: radial-gradient(ellipse at 50% 30%, rgba(212, 168, 67, 0.03) 0%, transparent 60%);
         }
 
@@ -67,8 +58,7 @@
             position: sticky; top: 0; z-index: 100;
             padding: 10px 16px;
             background: rgba(8, 8, 8, 0.9);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
+            backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
             border-bottom: 1px solid var(--glass-border);
             transform: translateZ(0);
         }
@@ -78,11 +68,9 @@
             display: flex; align-items: center; gap: 12px;
             padding: 12px 18px;
             background: var(--bg-card);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            box-shadow: var(--shadow);
+            border-radius: 16px; box-shadow: var(--shadow);
         }
 
         .play-btn {
@@ -95,8 +83,7 @@
         }
 
         .play-btn::before {
-            content: ''; position: absolute; inset: -2px;
-            border-radius: 50%;
+            content: ''; position: absolute; inset: -2px; border-radius: 50%;
             background: linear-gradient(135deg, var(--gold-light), var(--gold-dim));
             opacity: 0; transition: var(--transition); z-index: -1;
         }
@@ -110,7 +97,6 @@
         .play-btn.playing .pause-svg { display: block; }
 
         .player-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
-
         .player-top { display: flex; align-items: center; gap: 10px; }
 
         .player-title {
@@ -118,9 +104,7 @@
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
 
-        .player-controls-extra {
-            display: flex; gap: 4px; flex-shrink: 0;
-        }
+        .player-controls-extra { display: flex; gap: 4px; flex-shrink: 0; }
 
         .extra-btn {
             width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--glass-border);
@@ -146,21 +130,16 @@
             height: 100%;
             background: linear-gradient(90deg, var(--gold-dim), var(--gold));
             border-radius: 4px; width: 0%;
-            transition: width 0.1s linear; transform: translateZ(0);
-            position: relative;
+            transition: width 0.1s linear; transform: translateZ(0); position: relative;
         }
 
         .progress-bar::after {
             content: ''; position: absolute; left: 0; top: 0; bottom: 0; right: 0;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transform: translateX(-100%);
-            animation: shimmer 2s infinite;
+            transform: translateX(-100%); animation: shimmer 2s infinite;
         }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
+        @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
         .time-display {
             display: flex; justify-content: space-between;
@@ -169,16 +148,12 @@
             direction: ltr; min-width: 80px;
         }
 
-        .player-bottom {
-            display: flex; align-items: center; justify-content: space-between;
-            gap: 8px;
-        }
+        .player-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 
         .speed-btn {
             padding: 2px 8px; border-radius: 4px; border: 1px solid var(--glass-border);
             background: transparent; color: var(--text-dim); cursor: pointer;
-            font-size: 11px; font-family: 'SF Mono', monospace;
-            transition: var(--transition);
+            font-size: 11px; font-family: 'SF Mono', monospace; transition: var(--transition);
         }
 
         .speed-btn:hover { color: var(--gold); border-color: var(--gold); }
@@ -189,8 +164,7 @@
 
         .volume-slider {
             width: 50px; height: 3px; -webkit-appearance: none; appearance: none;
-            background: rgba(255,255,255,0.08); border-radius: 4px;
-            outline: none; cursor: pointer;
+            background: rgba(255,255,255,0.08); border-radius: 4px; outline: none; cursor: pointer;
         }
 
         .volume-slider::-webkit-slider-thumb {
@@ -202,19 +176,13 @@
         .header { text-align: center; padding: 30px 20px 24px; }
 
         .header-logo {
-            width: clamp(180px, 50vw, 320px);
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto 12px;
+            width: clamp(180px, 50vw, 320px); max-width: 100%; height: auto;
+            display: block; margin: 0 auto 12px;
             filter: drop-shadow(0 4px 20px rgba(212, 168, 67, 0.15));
             transition: var(--transition);
         }
 
-        .header-logo:hover {
-            filter: drop-shadow(0 6px 28px rgba(212, 168, 67, 0.3));
-            transform: scale(1.03);
-        }
+        .header-logo:hover { filter: drop-shadow(0 6px 28px rgba(212, 168, 67, 0.3)); transform: scale(1.03); }
 
         .header h1 { font-size: 32px; color: var(--gold); font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
         .header p { font-size: 15px; color: var(--text-secondary); }
@@ -224,8 +192,7 @@
 
         .control-btn {
             padding: 10px 22px; border: 1px solid var(--glass-border); border-radius: 50px;
-            background: var(--bg-card); backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            background: var(--bg-card); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
             color: var(--text-secondary); font-family: 'Amiri', serif; font-size: 14px;
             cursor: pointer; transition: var(--transition);
             display: flex; align-items: center; gap: 8px; transform: translateZ(0);
@@ -239,14 +206,11 @@
         .dua-section { margin-bottom: 16px; }
 
         .dua-card {
-            background: var(--bg-card); backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            background: var(--bg-card); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--glass-border); border-radius: var(--radius);
-            padding: 28px 24px; margin-bottom: 12px;
-            box-shadow: var(--shadow); transition: var(--transition);
-            transform: translateZ(0); opacity: 0;
-            animation: cardFadeIn 0.6s ease forwards;
-            position: relative;
+            padding: 28px 24px; margin-bottom: 12px; box-shadow: var(--shadow);
+            transition: var(--transition); transform: translateZ(0);
+            opacity: 0; animation: cardFadeIn 0.6s ease forwards; position: relative;
         }
 
         .dua-card:hover { border-color: var(--glass-border-hover); background: var(--bg-card-hover); }
@@ -256,19 +220,10 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .card-header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 14px;
-        }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
 
-        .section-label {
-            font-size: 12px; color: var(--gold-dim); display: flex; align-items: center; gap: 8px;
-        }
-
-        .section-label::after {
-            content: ''; flex: 1; height: 1px;
-            background: linear-gradient(to left, transparent, var(--glass-border));
-        }
+        .section-label { font-size: 12px; color: var(--gold-dim); display: flex; align-items: center; gap: 8px; }
+        .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to left, transparent, var(--glass-border)); }
 
         .copy-card-btn {
             width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--glass-border);
@@ -281,10 +236,7 @@
         .copy-card-btn.copied { color: #4caf50; border-color: #4caf50; background: rgba(76, 175, 80, 0.1); }
         .copy-card-btn svg { width: 15px; height: 15px; fill: currentColor; }
 
-        .dua-text {
-            font-size: 21px; line-height: 2.4; text-align: justify; text-align-last: right;
-        }
-
+        .dua-text { font-size: 21px; line-height: 2.4; text-align: justify; text-align-last: right; }
         .dua-text .gold { color: var(--gold); font-weight: 700; }
 
         .dua-text .tooltip-trigger {
@@ -295,22 +247,15 @@
         }
 
         .dua-text .tooltip-trigger:hover { color: #ddb8f0; border-bottom-color: #ddb8f0; background: rgba(201, 160, 220, 0.05); }
-
-        .dua-text .tooltip-trigger.clicked {
-            background: rgba(201, 160, 220, 0.12);
-            border-bottom-color: var(--purple-glow);
-        }
+        .dua-text .tooltip-trigger.clicked { background: rgba(201, 160, 220, 0.12); border-bottom-color: var(--purple-glow); }
 
         .tooltip-trigger .ripple {
             position: absolute; border-radius: 50%;
             background: rgba(201, 160, 220, 0.25);
-            transform: scale(0); animation: rippleAnim 0.6s ease-out;
-            pointer-events: none;
+            transform: scale(0); animation: rippleAnim 0.6s ease-out; pointer-events: none;
         }
 
-        @keyframes rippleAnim {
-            to { transform: scale(4); opacity: 0; }
-        }
+        @keyframes rippleAnim { to { transform: scale(4); opacity: 0; } }
 
         /* ===== TOOLTIP POPUP ===== */
         .tooltip-popup {
@@ -319,24 +264,23 @@
             backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
             border: 1px solid rgba(138, 107, 168, 0.3);
             border-radius: 16px; padding: 24px 20px;
-            max-width: 400px; width: 92%;
+            max-width: 420px; width: 92%;
             box-shadow: 0 12px 40px rgba(0,0,0,0.7), 0 0 30px rgba(138, 107, 168, 0.1);
             pointer-events: none; opacity: 0;
             transform: scale(0.85) translateY(15px);
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            transform-origin: center center;
-            will-change: transform, opacity;
+            transform-origin: center center; will-change: transform, opacity;
         }
 
         .tooltip-popup.visible { pointer-events: auto; opacity: 1; transform: scale(1) translateY(0); }
 
         .tooltip-popup .tooltip-word {
-            color: var(--gold); font-size: 20px; font-weight: 700;
+            color: var(--gold); font-size: 19px; font-weight: 700;
             margin-bottom: 12px; line-height: 1.8; padding-left: 30px;
         }
 
         .tooltip-popup .tooltip-meaning {
-            color: var(--text-secondary); font-size: 16px; line-height: 2;
+            color: var(--text-secondary); font-size: 15px; line-height: 2;
         }
 
         .tooltip-popup .tooltip-meaning .ref {
@@ -354,8 +298,7 @@
             padding: 5px 12px; border-radius: 8px; border: 1px solid var(--glass-border);
             background: transparent; color: var(--text-dim); cursor: pointer;
             font-family: 'Amiri', serif; font-size: 12px;
-            display: flex; align-items: center; gap: 5px;
-            transition: var(--transition);
+            display: flex; align-items: center; gap: 5px; transition: var(--transition);
         }
 
         .tooltip-copy-btn:hover { color: var(--gold); border-color: var(--gold); }
@@ -365,8 +308,7 @@
         .tooltip-close {
             position: absolute; top: 10px; left: 14px;
             background: none; border: none; color: var(--text-dim);
-            cursor: pointer; font-size: 18px; padding: 4px;
-            transition: var(--transition);
+            cursor: pointer; font-size: 18px; padding: 4px; transition: var(--transition);
         }
 
         .tooltip-close:hover { color: var(--purple-glow); transform: rotate(90deg); }
@@ -374,8 +316,7 @@
         /* ===== OVERLAY ===== */
         .overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.55);
-            z-index: 999; opacity: 0; pointer-events: none;
-            transition: opacity 0.3s ease;
+            z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
         }
 
         .overlay.visible { opacity: 1; pointer-events: auto; }
@@ -387,8 +328,7 @@
             border: 1px solid var(--glass-border); border-radius: 12px;
             padding: 10px 20px; color: var(--gold); font-size: 14px;
             z-index: 2000; opacity: 0; pointer-events: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            transition: all 0.3s ease; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
         }
 
         .toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -414,8 +354,7 @@
         .scroll-top {
             position: fixed; bottom: 24px; left: 24px; width: 44px; height: 44px;
             border-radius: 50%; border: 1px solid var(--glass-border);
-            background: var(--bg-card); backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            background: var(--bg-card); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
             color: var(--text-secondary); cursor: pointer;
             display: flex; align-items: center; justify-content: center;
             opacity: 0; transform: translateY(20px);
@@ -425,7 +364,6 @@
         .scroll-top.visible { opacity: 1; transform: translateY(0); }
         .scroll-top svg { width: 20px; height: 20px; fill: currentColor; }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 600px) {
             body { font-size: 17px; }
             .dua-text { font-size: 18px; line-height: 2.2; }
@@ -436,7 +374,7 @@
             .volume-wrap { display: none; }
             .controls-bar { gap: 8px; }
             .control-btn { padding: 8px 16px; font-size: 13px; }
-            .tooltip-popup { max-width: 320px; padding: 18px 16px; }
+            .tooltip-popup { max-width: 340px; padding: 18px 16px; }
             .footer-socials { flex-direction: column; gap: 10px; }
             .player-bottom { display: none; }
         }
@@ -449,7 +387,6 @@
 </head>
 <body>
 
-    <!-- ISLAMIC GEOMETRIC BACKGROUND -->
     <div class="islamic-bg">
         <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
             <defs>
@@ -482,10 +419,8 @@
         </svg>
     </div>
 
-    <!-- OVERLAY -->
     <div class="overlay" id="overlay"></div>
 
-    <!-- TOOLTIP POPUP -->
     <div class="tooltip-popup" id="tooltipPopup">
         <button class="tooltip-close" id="tooltipClose">✕</button>
         <div class="tooltip-word" id="tooltipWord"></div>
@@ -498,10 +433,8 @@
         </div>
     </div>
 
-    <!-- TOAST -->
     <div class="toast" id="toast">تم النسخ بنجاح ✓</div>
 
-    <!-- AUDIO PLAYER -->
     <div class="audio-player-wrapper">
         <div class="audio-player">
             <button class="play-btn" id="playBtn" aria-label="تشغيل">
@@ -542,14 +475,12 @@
 
     <div class="container">
 
-        <!-- HEADER WITH LOGO -->
         <header class="header">
             <img class="header-logo" src="logo.png" alt="دعاء الصباح" />
             <h1>دعاء الصباح</h1>
             <p>بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</p>
         </header>
 
-        <!-- CONTROLS -->
         <div class="controls-bar">
             <button class="control-btn" id="harakatToggle">
                 <svg viewBox="0 0 24 24"><path d="M3 17h2v2H3v-2zm4 0h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zM3 13h2v2H3v-2zm4 0h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zM3 9h2v2H3V9zm4 0h2v2H7V9zm4 0h2v2h-2V9zm4 0h2v2h-2V9zm4 0h2v2h-2V9zM3 5h2v2H3V5zm4 0h2v2H7V5zm4 0h2v2h-2V5zm4 0h2v2h-2V5zm4 0h2v2h-2V5z"/></svg>
@@ -561,7 +492,6 @@
             </button>
         </div>
 
-        <!-- DUA CONTENT -->
         <main class="dua-section" id="duaContent">
 
             <div class="dua-card" data-card="1" style="animation-delay: 0.05s;">
@@ -585,7 +515,7 @@
                     </button>
                 </div>
                 <div class="dua-text" data-raw="يَا مَنْ قَرُبَ مِنْ خَطَرَاتِ الظُّنُونِ ، وَبَعُدَ عَنْ لَحَظَاتِ الْعُيُونِ ، وَعَلِمَ بِمَا كَانَ قَبْلَ أَنْ يَكُونَ ، يَا مَنْ أَرْقَدَنِي فِي مِهَادِ أَمْنِهِ وَأَمَانِهِ ، وَأَيْقَظَنِي إِلَى مَا مَنَحَنِي بِهِ مِنْ مِنَنِهِ وَإِحْسَانِهِ ، وَكَفَّ أَكُفَّ السُّوءِ عَنِّي بِيَدِهِ وَسُلْطَانِهِ .">
-                    <span class="gold">يَا مَنْ</span> <span class="tooltip-trigger" data-tip="7">قَرُبَ مِنْ خَطَرَاتِ الظُّنُونِ</span> ، وَبَعُدَ <span class="tooltip-trigger" data-tip="8">عَنْ لَحَظَاتِ الْعُيُونِ</span> ، وَعَلِمَ بِمَا كَانَ قَبْلَ أَنْ يَكُونَ ، <span class="gold">يَا مَنْ</span> <span class="tooltip-trigger" data-tip="9">أَرْقَدَنِي فِي مِهَادِ أَمْنِهِ وَأَمَانِهِ</span> ، وَأَيْقَظَنِي إِلَى مَا مَنَحَنِي بِهِ <span class="tooltip-trigger" data-tip="10">مِنْ مِنَنِهِ وَإِحْسَانِهِ</span> ، وَكَفَّ <span class="tooltip-trigger" data-tip="11">أَكُفَّ السُّوءِ</span> عَنِّي بِيَدِهِ وَسُلْطَانِهِ .
+                    <span class="gold">يَا مَنْ</span> <span class="tooltip-trigger" data-tip="7">قَرُبَ مِنْ خَطَرَاتِ الظُّنُونِ</span> ، وَبَعُدَ <span class="tooltip-trigger" data-tip="8">عَنْ لَحَظَاتِ الْعُيُونِ</span> ، <span class="tooltip-trigger" data-tip="9">وَعَلِمَ بِمَا كَانَ قَبْلَ أَنْ يَكُونَ</span> ، <span class="gold">يَا مَنْ</span> <span class="tooltip-trigger" data-tip="10">أَرْقَدَنِي فِي مِهَادِ أَمْنِهِ وَأَمَانِهِ</span> ، وَأَيْقَظَنِي إِلَى مَا مَنَحَنِي بِهِ <span class="tooltip-trigger" data-tip="11">مِنْ مِنَنِهِ وَإِحْسَانِهِ</span> ، وَكَفَّ <span class="tooltip-trigger" data-tip="12">أَكُفَّ السُّوءِ</span> عَنِّي بِيَدِهِ وَسُلْطَانِهِ .
                 </div>
             </div>
 
@@ -597,7 +527,7 @@
                     </button>
                 </div>
                 <div class="dua-text" data-raw="صَلِّ اَللَّهُمَّ عَلَى الدَّلِيلِ إِلَيْكَ فِي اللَّيْلِ الأَلْيَلِ ، وَالْمَاسِكِ مِنْ أَسْبَابِكَ بِحَبْلِ الشَّرَفِ الأَطْوَلِ ، والنَّاصِعِ الْحَسَبِ فِي ذِرْوَةِ الْكَاهِلِ الأَعْبَلِ ، وَالثَّابِتِ الْقَدَمِ عَلَى زَحَالِيفِهَا فِي الزَّمَنِ الأَوَّلِ ، وَعَلَى آلِهِ الأَخْيَارِ الْمُصْطَفَيْنَ الأَبْرَارِ .">
-                    صَلِّ <span class="gold">اَللَّهُمَّ</span> عَلَى الدَّلِيلِ إِلَيْكَ فِي <span class="tooltip-trigger" data-tip="12">اللَّيْلِ الأَلْيَلِ</span> ، وَالْمَاسِكِ مِنْ أَسْبَابِكَ <span class="tooltip-trigger" data-tip="13">بِحَبْلِ الشَّرَفِ الأَطْوَلِ</span> ، والنَّاصِعِ الْحَسَبِ <span class="tooltip-trigger" data-tip="14">فِي ذِرْوَةِ الْكَاهِلِ الأَعْبَلِ</span> ، وَالثَّابِتِ الْقَدَمِ عَلَى <span class="tooltip-trigger" data-tip="15">زَحَالِيفِهَا</span> فِي الزَّمَنِ الأَوَّلِ ، وَعَلَى آلِهِ الأَخْيَارِ الْمُصْطَفَيْنَ الأَبْرَارِ .
+                    صَلِّ <span class="gold">اَللَّهُمَّ</span> عَلَى الدَّلِيلِ إِلَيْكَ فِي <span class="tooltip-trigger" data-tip="13">اللَّيْلِ الأَلْيَلِ</span> ، وَالْمَاسِكِ مِنْ أَسْبَابِكَ <span class="tooltip-trigger" data-tip="14">بِحَبْلِ الشَّرَفِ الأَطْوَلِ</span> ، والنَّاصِعِ الْحَسَبِ <span class="tooltip-trigger" data-tip="15">فِي ذِرْوَةِ الْكَاهِلِ الأَعْبَلِ</span> ، وَالثَّابِتِ الْقَدَمِ عَلَى <span class="tooltip-trigger" data-tip="16">زَحَالِيفِهَا</span> فِي الزَّمَنِ الأَوَّلِ ، وَعَلَى آلِهِ الأَخْيَارِ الْمُصْطَفَيْنَ الأَبْرَارِ .
                 </div>
             </div>
 
@@ -609,7 +539,7 @@
                     </button>
                 </div>
                 <div class="dua-text" data-raw="وَافْتَحِ اللَّهُمَّ لَنَا مَصَارِيعَ الصَّبَاحِ بِمَفَاتِيحِ الرَّحْمَةِ وَالْفَلاحِ ، وَأَلْبِسْنِي اللَّهُمَّ مِنْ أَفْضَلِ خِلَعِ الْهِدَايَةِ وَالصَّلاحِ ، وَأَغْرِسِ اللَّهُمَّ بِعَظَمَتِكَ فِي شِرْبِ جَنَانِي يَنَابِيعَ الْخُشُوعِ ، وَأَجْرِ اللَّهُمَّ لِهَيْبَتِكَ مِنْ آمَاقِي زَفَراتِ الدُّمُوعِ .">
-                    وَافْتَحِ <span class="gold">اللَّهُمَّ</span> لَنَا <span class="tooltip-trigger" data-tip="16">مَصَارِيعَ الصَّبَاحِ</span> بِمَفَاتِيحِ الرَّحْمَةِ وَالْفَلاحِ ، وَأَلْبِسْنِي <span class="gold">اللَّهُمَّ</span> مِنْ أَفْضَلِ <span class="tooltip-trigger" data-tip="17">خِلَعِ الْهِدَايَةِ</span> وَالصَّلاحِ ، وَأَغْرِسِ <span class="gold">اللَّهُمَّ</span> بِعَظَمَتِكَ فِي <span class="tooltip-trigger" data-tip="18">شِرْبِ جَنَانِي</span> <span class="tooltip-trigger" data-tip="19">يَنَابِيعَ الْخُشُوعِ</span> ، وَأَجْرِ <span class="gold">اللَّهُمَّ</span> لِهَيْبَتِكَ مِنْ آمَاقِي <span class="tooltip-trigger" data-tip="20">زَفَراتِ الدُّمُوعِ</span> .
+                    وَافْتَحِ <span class="gold">اللَّهُمَّ</span> لَنَا <span class="tooltip-trigger" data-tip="17">مَصَارِيعَ الصَّبَاحِ</span> بِمَفَاتِيحِ الرَّحْمَةِ وَالْفَلاحِ ، وَأَلْبِسْنِي <span class="gold">اللَّهُمَّ</span> مِنْ أَفْضَلِ <span class="tooltip-trigger" data-tip="18">خِلَعِ الْهِدَايَةِ</span> وَالصَّلاحِ ، وَأَغْرِسِ <span class="gold">اللَّهُمَّ</span> بِعَظَمَتِكَ فِي <span class="tooltip-trigger" data-tip="19">شِرْبِ جَنَانِي</span> <span class="tooltip-trigger" data-tip="20">يَنَابِيعَ الْخُشُوعِ</span> ، وَأَجْرِ <span class="gold">اللَّهُمَّ</span> لِهَيْبَتِكَ مِنْ آمَاقِي <span class="tooltip-trigger" data-tip="21">زَفَراتِ الدُّمُوعِ</span> .
                 </div>
             </div>
 
@@ -621,7 +551,7 @@
                     </button>
                 </div>
                 <div class="dua-text" data-raw="وَأَدِّبِ اللَّهُمَّ نَزَقَ الْخُرْقِ مِنِّي بِأَزِمَّةِ الْقُنُوعِ ، إِلَهِي إِن لَمْ تَبْتَدِئْنِي الرَّحْمَةُ مِنْكَ بِحُسْنِ التَّوْفِيقِ فَمَنِ السَّالِكُ بِي إِلَيْكَ فِي وَاضِحِ الطَّرِيقِ ؟ وَإِنْ أَسْلَمَتْنِي أَنَاتُكَ لِقَائِدِ الأَمَلِ وَالْمُنَى فَمَنِ الْمُقِيلُ عَثَرَاتِي مِنْ كَبَوَاتِ الْهَوَى ؟">
-                    وَأَدِّبِ <span class="gold">اللَّهُمَّ</span> <span class="tooltip-trigger" data-tip="21">نَزَقَ الْخُرْقِ</span> مِنِّي <span class="tooltip-trigger" data-tip="22">بِأَزِمَّةِ الْقُنُوعِ</span> ، <span class="gold">إِلَهِي</span> إِنْ لَمْ تَبْتَدِئْنِي الرَّحْمَةُ مِنْكَ <span class="tooltip-trigger" data-tip="23">بِحُسْنِ التَّوْفِيقِ</span> فَمَنِ السَّالِكُ بِي إِلَيْكَ فِي وَاضِحِ الطَّرِيقِ ؟ وَإِنْ أَسْلَمَتْنِي <span class="tooltip-trigger" data-tip="24">أَنَاتُكَ</span> <span class="tooltip-trigger" data-tip="25">لِقَائِدِ الأَمَلِ وَالْمُنَى</span> فَمَنِ الْمُقِيلُ عَثَرَاتِي <span class="tooltip-trigger" data-tip="26">مِنْ كَبَوَاتِ الْهَوَى</span> ؟
+                    وَأَدِّبِ <span class="gold">اللَّهُمَّ</span> <span class="tooltip-trigger" data-tip="22">نَزَقَ الْخُرْقِ</span> مِنِّي <span class="tooltip-trigger" data-tip="23">بِأَزِمَّةِ الْقُنُوعِ</span> ، <span class="gold">إِلَهِي</span> إِنْ لَمْ تَبْتَدِئْنِي الرَّحْمَةُ مِنْكَ <span class="tooltip-trigger" data-tip="24">بِحُسْنِ التَّوْفِيقِ</span> فَمَنِ السَّالِكُ بِي إِلَيْكَ فِي وَاضِحِ الطَّرِيقِ ؟ وَإِنْ أَسْلَمَتْنِي <span class="tooltip-trigger" data-tip="25">أَنَاتُكَ</span> <span class="tooltip-trigger" data-tip="26">لِقَائِدِ الأَمَلِ وَالْمُنَى</span> فَمَنِ الْمُقِيلُ عَثَرَاتِي <span class="tooltip-trigger" data-tip="27">مِنْ كَبَوَاتِ الْهَوَى</span> ؟
                 </div>
             </div>
 
@@ -633,7 +563,7 @@
                     </button>
                 </div>
                 <div class="dua-text" data-raw="وَإِنْ خَذَلَنِي نَصْرُكَ عِنْدَ مُحَارَبَةِ النَّفْسِ وَالشَّيْطَانِ ، فَقَدْ وَكَلَنِي خِذْلانُكَ إِلَى حَيْثُ النَّصَبُ وَالْحِرْمَانُ . إِلَهِي أَتَرَانِي مَا أَتَيْتُكَ إِلَّا مِنْ حَيْثُ الآمَالُ ، أَمْ عَلِقْتُ بِأَطْرَافِ حِبَالِكَ إِلَّا حِينَ بَاعَدَتْنِي ذُنُوبِي عَنْ دَارِ الْوِصَالِ .">
-                    وَإِنْ خَذَلَنِي نَصْرُكَ عِنْدَ مُحَارَبَةِ النَّفْسِ وَالشَّيْطَانِ ، فَقَدْ وَكَلَنِي خِذْلانُكَ إِلَى حَيْثُ <span class="tooltip-trigger" data-tip="27">النَّصَبُ وَالْحِرْمَانُ</span> . <span class="gold">إِلَهِي</span> أَتَرَانِي مَا أَتَيْتُكَ إِلَّا مِنْ حَيْثُ الآمَالُ ، أَمْ عَلِقْتُ بِأَطْرَافِ حِبَالِكَ إِلَّا حِينَ بَاعَدَتْنِي ذُنُوبِي <span class="tooltip-trigger" data-tip="28">عَنْ دَارِ الْوِصَالِ</span> .
+                    وَإِنْ خَذَلَنِي نَصْرُكَ عِنْدَ مُحَارَبَةِ النَّفْسِ وَالشَّيْطَانِ ، فَقَدْ وَكَلَنِي خِذْلانُكَ إِلَى حَيْثُ <span class="tooltip-trigger" data-tip="28">النَّصَبُ وَالْحِرْمَانُ</span> . <span class="gold">إِلَهِي</span> أَتَرَانِي مَا أَتَيْتُكَ إِلَّا مِنْ حَيْثُ الآمَالُ ، أَمْ عَلِقْتُ بِأَطْرَافِ حِبَالِكَ إِلَّا حِينَ بَاعَدَتْنِي ذُنُوبِي <span class="tooltip-trigger" data-tip="29">عَنْ دَارِ الْوِصَالِ</span> .
                 </div>
             </div>
 
@@ -645,7 +575,7 @@
                     </button>
                 </div>
                 <div class="dua-text" data-raw="فَبِئْسَ الْمَطِيَّةُ الَّتِي امْتَطَتْ نَفْسِي مِنْ هَوَاهَا ، فَوَاهاً لَهَا لِمَا سَوَّلَتْ لَهَا ظُنُونُها وَمُنَاهَا ! وَتَبًّا لَهَا لِجُرْأَتِهَا عَلَى سَيِّدِهَا وَمَوْلاَهَا !">
-                    فَبِئْسَ الْمَطِيَّةُ الَّتِي <span class="tooltip-trigger" data-tip="29">امْتَطَتْ نَفْسِي</span> مِنْ هَوَاهَا ، فَوَاهاً لَهَا <span class="tooltip-trigger" data-tip="30">لِمَا سَوَّلَتْ لَهَا ظُنُونُها وَمُنَاهَا</span> ! وَتَبًّا لَهَا لِجُرْأَتِهَا عَلَى سَيِّدِهَا وَمَوْلاهَا !
+                    فَبِئْسَ الْمَطِيَّةُ الَّتِي <span class="tooltip-trigger" data-tip="30">امْتَطَتْ نَفْسِي</span> مِنْ هَوَاهَا ، فَوَاهاً لَهَا <span class="tooltip-trigger" data-tip="31">لِمَا سَوَّلَتْ لَهَا ظُنُونُها وَمُنَاهَا</span> ! وَتَبًّا لَهَا لِجُرْأَتِهَا عَلَى سَيِّدِهَا وَمَوْلاهَا !
                 </div>
             </div>
 
@@ -657,7 +587,7 @@
                     </button>
                 </div>
                 <div class="dua-text" data-raw="إِلَهِي قَرَعْتُ بَابَ رَحْمَتِكَ بِيَدِ رَجَائِي ، وَهَرَبْتُ إِلَيْكَ لاجِئاً مِنْ فَرْطِ أَهْوَائِي ، وَعَلَّقْتُ بِأَطْرَافِ حِبَالِكَ أَنَامِلَ وَلائِي ، فَاصْفَحِ اللَّهُمَّ عَمَّا كُنْتُ أَجْرَمْتُهُ مِنْ زَلَلِي وَخَطَائِي ، وَأَقِلْنِي مِنْ صَرْعَةِ رِدَائِي ، فَإِنَّكَ سَيِّدِي وَمَوْلايَ وَمُعْتَمَدِي وَرَجَائِي ، وَأَنْتَ غَايَةُ مَطْلُوبِي ، وَمُنَايَ فِي مُنْقَلَبِي وَمَثْوَايَ .">
-                    <span class="gold">إِلَهِي</span> <span class="tooltip-trigger" data-tip="31">قَرَعْتُ بَابَ رَحْمَتِكَ</span> بِيَدِ رَجَائِي ، وَهَرَبْتُ إِلَيْكَ لاجِئاً مِنْ فَرْطِ أَهْوَائِي ، وَعَلَّقْتُ بِأَطْرَافِ حِبَالِكَ <span class="tooltip-trigger" data-tip="32">أَنَامِلَ وَلائِي</span> ، فَاصْفَحِ <span class="gold">اللَّهُمَّ</span> عَمَّا كُنْتُ أَجْرَمْتُهُ مِنْ زَلَلِي وَخَطَائِي ، وَأَقِلْنِي مِنْ <span class="tooltip-trigger" data-tip="33">صَرْعَةِ رِدَائِي</span> ، فَإِنَّكَ <span class="gold">سَيِّدِي وَمَوْلايَ</span> وَمُعْتَمَدِي وَرَجَائِي ، وَأَنْتَ غَايَةُ مَطْلُوبِي ، وَمُنَايَ فِي <span class="tooltip-trigger" data-tip="34">مُنْقَلَبِي وَمَثْوَايَ</span> .
+                    <span class="gold">إِلَهِي</span> <span class="tooltip-trigger" data-tip="32">قَرَعْتُ بَابَ رَحْمَتِكَ</span> بِيَدِ رَجَائِي ، وَهَرَبْتُ إِلَيْكَ لاجِئاً مِنْ فَرْطِ أَهْوَائِي ، وَعَلَّقْتُ بِأَطْرَافِ حِبَالِكَ <span class="tooltip-trigger" data-tip="33">أَنَامِلَ وَلائِي</span> ، فَاصْفَحِ <span class="gold">اللَّهُمَّ</span> عَمَّا كُنْتُ أَجْرَمْتُهُ مِنْ زَلَلِي وَخَطَائِي ، وَأَقِلْنِي مِنْ <span class="tooltip-trigger" data-tip="34">صَرْعَةِ رِدَائِي</span> ، فَإِنَّكَ <span class="gold">سَيِّدِي وَمَوْلايَ</span> وَمُعْتَمَدِي وَرَجَائِي ، وَأَنْتَ غَايَةُ مَطْلُوبِي ، وَمُنَايَ فِي <span class="tooltip-trigger" data-tip="35">مُنْقَلَبِي وَمَثْوَايَ</span> .
                 </div>
             </div>
 
@@ -669,7 +599,7 @@
                     </button>
                 </div>
                 <div class="dua-text" data-raw="إِلَهِي كَيْفَ تَطْرُدُ مِسْكِيناً الْتَجَأَ إِلَيْكَ مِنَ الذُّنُوبِ هَارِباً ؟ أَمْ كَيْفَ تُخَيِّبُ مُسْتَرْشِداً قَصَدَ إِلَى جَنَابِكَ سَاعِياً ؟ أَمْ كَيْفَ تَرُدُّ ظَمْآناً وَرَدَ إِلَى حِيَاضِكَ شَارِباً ؟!">
-                    <span class="gold">إِلَهِي</span> كَيْفَ تَطْرُدُ مِسْكِيناً الْتَجَأَ إِلَيْكَ مِنَ الذُّنُوبِ هَارِباً ؟ أَمْ كَيْفَ تُخَيِّبُ مُسْتَرْشِداً قَصَدَ إِلَى جَنَابِكَ سَاعِياً ؟ أَمْ كَيْفَ تَرُدُّ ظَمْآناً <span class="tooltip-trigger" data-tip="35">وَرَدَ إِلَى حِيَاضِكَ</span> شَارِباً ؟!
+                    <span class="gold">إِلَهِي</span> كَيْفَ تَطْرُدُ مِسْكِيناً الْتَجَأَ إِلَيْكَ مِنَ الذُّنُوبِ هَارِباً ؟ أَمْ كَيْفَ تُخَيِّبُ مُسْتَرْشِداً قَصَدَ إِلَى جَنَابِكَ سَاعِياً ؟ أَمْ كَيْفَ تَرُدُّ ظَمْآناً <span class="tooltip-trigger" data-tip="36">وَرَدَ إِلَى حِيَاضِكَ</span> شَارِباً ؟!
                 </div>
             </div>
 
@@ -681,7 +611,7 @@
                     </button>
                 </div>
                 <div class="dua-text" data-raw="كَلاَّ ، وَحِيَاضُكَ مُتْرَعَةٌ فِي ضَنْكِ الْمُحُولِ ، وَبَابُكَ مَفْتُوحٌ لِلطَّلَبِ وَالْوُغُولِ ، وَأَنْتَ غَايَةُ الْمَسْؤُولِ وَنِهَايَةُ الْمَأْمُولِ !">
-                    <span class="gold">كَلاَّ</span> ، وَ<span class="tooltip-trigger" data-tip="35">حِيَاضُكَ</span> مُتْرَعَةٌ فِي <span class="tooltip-trigger" data-tip="36">ضَنْكِ الْمُحُولِ</span> ، وَبَابُكَ مَفْتُوحٌ لِلطَّلَبِ <span class="tooltip-trigger" data-tip="37">وَالْوُغُولِ</span> ، وَأَنْتَ غَايَةُ الْمَسْؤُولِ وَنِهَايَةُ الْمَأْمُولِ !
+                    <span class="gold">كَلاَّ</span> ، وَ<span class="tooltip-trigger" data-tip="37">حِيَاضُكَ</span> مُتْرَعَةٌ فِي <span class="tooltip-trigger" data-tip="38">ضَنْكِ الْمُحُولِ</span> ، وَبَابُكَ مَفْتُوحٌ لِلطَّلَبِ <span class="tooltip-trigger" data-tip="39">وَالْوُغُولِ</span> ، وَأَنْتَ غَايَةُ الْمَسْؤُولِ وَنِهَايَةُ الْمَأْمُولِ !
                 </div>
             </div>
 
@@ -693,7 +623,7 @@
                     </button>
                 </div>
                 <div class="dua-text" data-raw="إِلَهِي هَذِهِ أَزِمَّةُ نَفْسِي عَقَلْتُهَا بِعِقَالِ مَشِيئَتِكَ ، وَهَذِهِ أَعْبَاءُ ذُنُوبِي دَرَأْتُهَا بِعَفْوِكَ وَرَحْمَتِكَ ، وَهَذِهِ أَهْوَائِي الْمُضِلَّةُ وَكَلْتُهَا إِلَى جَنَابِ لُطْفِكَ وَرَأْفَتِكَ .">
-                    <span class="gold">إِلَهِي</span> هَذِهِ <span class="tooltip-trigger" data-tip="38">أَزِمَّةُ نَفْسِي عَقَلْتُهَا</span> بِعِقَالِ مَشِيئَتِكَ ، وَهَذِهِ أَعْبَاءُ ذُنُوبِي <span class="tooltip-trigger" data-tip="39">دَرَأْتُهَا</span> بِعَفْوِكَ وَرَحْمَتِكَ ، وَهَذِهِ أَهْوَائِي الْمُضِلَّةُ وَكَلْتُهَا إِلَى <span class="tooltip-trigger" data-tip="40">جَنَابِ لُطْفِكَ وَرَأْفَتِكَ</span> .
+                    <span class="gold">إِلَهِي</span> هَذِهِ <span class="tooltip-trigger" data-tip="40">أَزِمَّةُ نَفْسِي عَقَلْتُهَا</span> بِعِقَالِ مَشِيئَتِكَ ، وَهَذِهِ أَعْبَاءُ ذُنُوبِي <span class="tooltip-trigger" data-tip="41">دَرَأْتُهَا</span> بِعَفْوِكَ وَرَحْمَتِكَ ، وَهَذِهِ أَهْوَائِي الْمُضِلَّةُ وَكَلْتُهَا إِلَى <span class="tooltip-trigger" data-tip="42">جَنَابِ لُطْفِكَ وَرَأْفَتِكَ</span> .
                 </div>
             </div>
 
@@ -705,7 +635,7 @@
                     </button>
                 </div>
                 <div class="dua-text" data-raw="فَاجْعَلِ اللَّهُمَّ صَبَاحِي هَذَا نَازِلاً عَلَيَّ بِضِيَاءِ الْهُدَى وَبِالسَّلامَةِ فِي الدِّينِ وَالدُّنْيَا ، وَمَسَائِي جُنَّةً مِنْ كَيْدِ الْعِدَى وَوِقَايَةً مِنْ مُرْدِيَاتِ الْهَوَى .">
-                    فَاجْعِلِ <span class="gold">اللَّهُمَّ</span> صَبَاحِي هَذَا نَازِلاً عَلَيَّ بِضِيَاءِ الْهُدَى وَبِالسَّلامَةِ فِي الدِّينِ وَالدُّنْيَا ، وَمَسَائِي <span class="tooltip-trigger" data-tip="41">جُنَّةً</span> مِنْ كَيْدِ الْعِدَى وَوِقَايَةً <span class="tooltip-trigger" data-tip="42">مِنْ مُرْدِيَاتِ الْهَوَى</span> .
+                    فَاجْعِلِ <span class="gold">اللَّهُمَّ</span> صَبَاحِي هَذَا نَازِلاً عَلَيَّ بِضِيَاءِ الْهُدَى وَبِالسَّلامَةِ فِي الدِّينِ وَالدُّنْيَا ، وَمَسَائِي <span class="tooltip-trigger" data-tip="43">جُنَّةً</span> مِنْ كَيْدِ الْعِدَى وَوِقَايَةً <span class="tooltip-trigger" data-tip="44">مِنْ مُرْدِيَاتِ الْهَوَى</span> .
                 </div>
             </div>
 
@@ -717,7 +647,7 @@
                     </button>
                 </div>
                 <div class="dua-text" data-raw="إِنَّكَ قَادِرٌ عَلَى مَا تَشَاءُ ، تُؤْتِي الْمُلْكَ مَنْ تَشَاءُ ، وَتَنْزِعُ الْمُلْكَ مِمَّنْ تَشَاءُ ، وَتُعِزُّ مَنْ تَشَاءُ وَتُذِلُّ مَنْ تَشَاءُ ، بِيَدِكَ الْخَيْرُ إِنَّكَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ ، تُولِجُ اللَّيْلَ فِي النَّهَارِ وَتُولِجُ النَّهَارَ فِي اللَّيْلِ ، وَتُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ ، وَتُخْرِجُ الْمَيِّتَ مِنَ الْحَيِّ ، وَتَرْزُقُ مَنْ تَشَاءُ بِغَيْرِ حِسَابٍ .">
-                    <span class="gold">إِنَّكَ قَادِرٌ</span> عَلَى مَا تَشَاءُ ، تُؤْتِي الْمُلْكَ مَنْ تَشَاءُ ، وَتَنْزِعُ الْمُلْكَ مِمَّنْ تَشَاءُ ، وَتُعِزُّ مَنْ تَشَاءُ وَتُذِلُّ مَنْ تَشَاءُ ، بِيَدِكَ الْخَيْرُ <span class="gold">إِنَّكَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ</span> ، <span class="tooltip-trigger" data-tip="43">تُولِجُ اللَّيْلَ فِي النَّهَارِ</span> وَتُولِجُ النَّهَارَ فِي اللَّيْلِ ، وَتُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ ، وَتُخْرِجُ الْمَيِّتَ مِنَ الْحَيِّ ، وَتَرْزُقُ مَنْ تَشَاءُ <span class="tooltip-trigger" data-tip="44">بِغَيْرِ حِسَابٍ</span> .
+                    <span class="gold">إِنَّكَ قَادِرٌ</span> عَلَى مَا تَشَاءُ ، تُؤْتِي الْمُلْكَ مَنْ تَشَاءُ ، وَتَنْزِعُ الْمُلْكَ مِمَّنْ تَشَاءُ ، وَتُعِزُّ مَنْ تَشَاءُ وَتُذِلُّ مَنْ تَشَاءُ ، بِيَدِكَ الْخَيْرُ <span class="gold">إِنَّكَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ</span> ، <span class="tooltip-trigger" data-tip="45">تُولِجُ اللَّيْلَ فِي النَّهَارِ</span> وَتُولِجُ النَّهَارَ فِي اللَّيْلِ ، وَتُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ ، وَتُخْرِجُ الْمَيِّتَ مِنَ الْحَيِّ ، وَتَرْزُقُ مَنْ تَشَاءُ <span class="tooltip-trigger" data-tip="46">بِغَيْرِ حِسَابٍ</span> .
                 </div>
             </div>
 
@@ -741,7 +671,7 @@
                     </button>
                 </div>
                 <div class="dua-text" data-raw="أَلَّفْتَ بِقُدْرَتِكَ الْفِرَقَ ، وَفَلَقْتَ بِلُطْفِكَ الْفَلَقَ ، وَأَنَرْتَ بِكَرَمِكَ دَيَاجِيَ الْغَسَقِ ، وَأَنْهَرْتَ الْمِيَاهَ مِنَ الصُّمِّ الصَّيَاخِيدِ عَذْباً وَأُجَاجاً ، وَأَنْزَلْتَ مِنَ الْمُعْصِرَاتِ مَاءً ثَجَّاجاً ، وَجَعَلْتَ الشَّمْسَ وَالْقَمَرَ لِلْبَرِيَّةِ سِرَاجاً وَهَّاجاً ، مِنْ غَيْرِ أَنْ تُمَارِسَ فِيمَا ابْتَدَأْتَ بِهِ لُغُوباً وَلا عِلاجاً .">
-                    أَلَّفْتَ بِقُدْرَتِكَ الْفِرَقَ ، وَفَلَقْتَ بِلُطْفِكَ الْفَلَقَ ، وَأَنَرْتَ بِكَرَمِكَ <span class="tooltip-trigger" data-tip="45">دَيَاجِيَ الْغَسَقِ</span> ، وَأَنْهَرْتَ الْمِيَاهَ مِنَ <span class="tooltip-trigger" data-tip="46">الصُّمِّ الصَّيَاخِيدِ</span> عَذْباً وَأُجَاجاً ، وَأَنْزَلْتَ مِنَ <span class="tooltip-trigger" data-tip="47">الْمُعْصِرَاتِ</span> مَاءً <span class="tooltip-trigger" data-tip="48">ثَجَّاجاً</span> ، وَجَعَلْتَ الشَّمْسَ وَالْقَمَرَ لِلْبَرِيَّةِ سِرَاجاً وَهَّاجاً ، مِنْ غَيْرِ أَنْ تُمَارِسَ فِيمَا ابْتَدَأْتَ بِهِ <span class="tooltip-trigger" data-tip="49">لُغُوباً وَلا عِلاجاً</span> .
+                    أَلَّفْتَ بِقُدْرَتِكَ الْفِرَقَ ، وَفَلَقْتَ بِلُطْفِكَ الْفَلَقَ ، وَأَنَرْتَ بِكَرَمِكَ <span class="tooltip-trigger" data-tip="47">دَيَاجِيَ الْغَسَقِ</span> ، وَأَنْهَرْتَ الْمِيَاهَ مِنَ <span class="tooltip-trigger" data-tip="48">الصُّمِّ الصَّيَاخِيدِ</span> عَذْباً وَأُجَاجاً ، وَأَنْزَلْتَ مِنَ <span class="tooltip-trigger" data-tip="49">الْمُعْصِرَاتِ</span> مَاءً <span class="tooltip-trigger" data-tip="50">ثَجَّاجاً</span> ، وَجَعَلْتَ الشَّمْسَ وَالْقَمَرَ لِلْبَرِيَّةِ سِرَاجاً وَهَّاجاً ، مِنْ غَيْرِ أَنْ تُمَارِسَ فِيمَا ابْتَدَأْتَ بِهِ <span class="tooltip-trigger" data-tip="51">لُغُوباً وَلا عِلاجاً</span> .
                 </div>
             </div>
 
@@ -753,7 +683,7 @@
                     </button>
                 </div>
                 <div class="dua-text" data-raw="فَيَا مَنْ تَوَحَّدَ بِالْعِزِّ وَالْبَقَاءِ ، وَقَهَرَ عِبَادَهُ بِالْمَوْتِ وَالْفَنَاءِ ، صَلِّ عَلَى مُحَمَّدٍ وَآلِهِ الأَتْقِيَاءِ ، وَاسْمَعْ نِدَائِي ، وَاسْتَجِبْ دُعَائِي ، وَحَقِّقْ بِفَضْلِكَ أَمَلِي وَرَجَائِي .">
-                    فَيَا مَنْ <span class="tooltip-trigger" data-tip="50">تَوَحَّدَ بِالْعِزِّ وَالْبَقَاءِ</span> ، وَقَهَرَ عِبَادَهُ بِالْمَوْتِ وَالْفَنَاءِ ، صَلِّ عَلَى مُحَمَّدٍ وَآلِهِ الأَتْقِيَاءِ ، وَاسْمَعْ نِدَائِي ، وَاسْتَجِبْ دُعَائِي ، وَحَقِّقْ بِفَضْلِكَ أَمَلِي وَرَجَائِي .
+                    فَيَا مَنْ <span class="tooltip-trigger" data-tip="52">تَوَحَّدَ بِالْعِزِّ وَالْبَقَاءِ</span> ، وَقَهَرَ عِبَادَهُ بِالْمَوْتِ وَالْفَنَاءِ ، صَلِّ عَلَى مُحَمَّدٍ وَآلِهِ الأَتْقِيَاءِ ، وَاسْمَعْ نِدَائِي ، وَاسْتَجِبْ دُعَائِي ، وَحَقِّقْ بِفَضْلِكَ أَمَلِي وَرَجَائِي .
                 </div>
             </div>
 
@@ -765,26 +695,25 @@
                     </button>
                 </div>
                 <div class="dua-text" data-raw="يا خَيْرَ مَنْ دُعِيَ لِكَشْفِ الضُّرِّ ، وَالْمَأْمُولَِ لِكُلِّ عُسْرٍ وَيُسْرٍ ، بِكَ أَنْزَلْتُ حَاجَتِي فَلا تَرُدَّنِي مِنْ سَنِيِّ مَوَاهِبِكَ خَائِباً ، يَا كَرِيمُ يَا كَرِيمُ يَا كَرِيمُ ، بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِينَ ، وَصَلَّى اللهُ عَلَى خَيْرِ خَلْقِهِ مُحَمَّدٍ وَآلِهِ أَجْمَعِينَ .">
-                    <span class="gold">يا خَيْرَ مَنْ دُعِيَ</span> لِكَشْفِ الضُّرِّ ، وَالْمَأْمُولَِ لِكُلِّ عُسْرٍ وَيُسْرٍ ، بِكَ أَنْزَلْتُ حَاجَتِي فَلا تَرُدَّنِي <span class="tooltip-trigger" data-tip="51">مِنْ سَنِيِّ مَوَاهِبِكَ</span> خَائِباً ، <span class="gold">يَا كَرِيمُ يَا كَرِيمُ يَا كَرِيمُ</span> ، بِرَحْمَتِكَ <span class="gold">يَا أَرْحَمَ الرَّاحِمِينَ</span> ، وَصَلَّى <span class="gold">اللهُ</span> عَلَى خَيْرِ خَلْقِهِ مُحَمَّدٍ وَآلِهِ أَجْمَعِينَ .
+                    <span class="gold">يا خَيْرَ مَنْ دُعِيَ</span> لِكَشْفِ الضُّرِّ ، وَالْمَأْمُولَِ لِكُلِّ عُسْرٍ وَيُسْرٍ ، بِكَ أَنْزَلْتُ حَاجَتِي فَلا تَرُدَّنِي <span class="tooltip-trigger" data-tip="53">مِنْ سَنِيِّ مَوَاهِبِكَ</span> خَائِباً ، <span class="gold">يَا كَرِيمُ يَا كَرِيمُ يَا كَرِيمُ</span> ، بِرَحْمَتِكَ <span class="gold">يَا أَرْحَمَ الرَّاحِمِينَ</span> ، وَصَلَّى <span class="gold">اللهُ</span> عَلَى خَيْرِ خَلْقِهِ مُحَمَّدٍ وَآلِهِ أَجْمَعِينَ .
                 </div>
             </div>
 
             <div class="dua-card" data-card="18" style="animation-delay: 0.9s;">
                 <div class="card-header">
-                    <div class="section-label"><span>🤲 ثم اسجد وقل</span></div>
+                    <div class="section-label"><span> ثم اسجد وقل</span></div>
                     <button class="copy-card-btn" title="نسخ" data-copy="18">
                         <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
                     </button>
                 </div>
                 <div class="dua-text" data-raw="إِلَهِي قَلْبِي مَحْجُوبٌ وَنَفْسِي مَعْيُوبٌ ، وَعَقْلِي مَغْلُوبٌ وَهُوَائِي غَالِبٌ ، وَطَاعَتِي قَلِيلٌ وَمَعْصِيَتِي كَثِيرٌ ، وَلِسَانِي مُقِرُّ بِالذُّنُوبِ ، فَكَيْفَ حِيلَتِي يَا سَتَّارَ الْعُيُوبِ ، وَيَا عَلَّامَ الْغُيُوبِ ، وَيَا كَاشِفَ الْكُرُوبِ . اغْفِرْ ذُنُوبِي كُلَّهَا بِحُرْمَةِ مُحَمَّدٍ وَآلِ مُحَمَّدٍ ، يَا غَفَّارُ يَا غَفَّارُ يَا غَفَّارُ ، بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِينَ .">
-                    <span class="gold">إِلَهِي</span> <span class="tooltip-trigger" data-tip="52">قَلْبِي مَحْجُوبٌ</span> وَ<span class="tooltip-trigger" data-tip="52b">نَفْسِي مَعْيُوبٌ</span> ، وَعَقْلِي مَغْلُوبٌ وَهَوَائِي غَالِبٌ ، وَطَاعَتِي قَلِيلٌ وَمَعْصِيَتِي كَثِيرٌ ، وَلِسَانِي مُقِرٌّ بِالذُّنُوبِ ، فَكَيْفَ حِيلَتِي <span class="tooltip-trigger" data-tip="53">يَا سَتَّارَ الْعُيُوبِ</span> ، وَ<span class="tooltip-trigger" data-tip="54">يَا عَلَّامَ الْغُيُوبِ</span> ، وَ<span class="tooltip-trigger" data-tip="55">يَا كَاشِفَ الْكُرُوبِ</span> .
+                    <span class="gold">إِلَهِي</span> <span class="tooltip-trigger" data-tip="54">قَلْبِي مَحْجُوبٌ</span> وَ<span class="tooltip-trigger" data-tip="54b">نَفْسِي مَعْيُوبٌ</span> ، وَعَقْلِي مَغْلُوبٌ وَهَوَائِي غَالِبٌ ، وَطَاعَتِي قَلِيلٌ وَمَعْصِيَتِي كَثِيرٌ ، وَلِسَانِي مُقِرٌّ بِالذُّنُوبِ ، فَكَيْفَ حِيلَتِي <span class="tooltip-trigger" data-tip="55">يَا سَتَّارَ الْعُيُوبِ</span> ، وَ<span class="tooltip-trigger" data-tip="56">يَا عَلَّامَ الْغُيُوبِ</span> ، وَ<span class="tooltip-trigger" data-tip="57">يَا كَاشِفَ الْكُرُوبِ</span> .
                     <br><br>اغْفِرْ ذُنُوبِي كُلَّهَا بِحُرْمَةِ مُحَمَّدٍ وَآلِ مُحَمَّدٍ ، <span class="gold">يَا غَفَّارُ يَا غَفَّارُ يَا غَفَّارُ</span> ، بِرَحْمَتِكَ <span class="gold">يَا أَرْحَمَ الرَّاحِمِينَ</span> .
                 </div>
             </div>
 
         </main>
 
-        <!-- FOOTER -->
         <footer class="footer">
             <div class="footer-salawat">اَللّهُمَّ صَلِّ عَلى مُحَمَّدٍ وَآلِ مُحَمَّدْ</div>
             <div class="footer-text">اللهم عَجِّل لِوَليِّكَ الفَرَج</div>
@@ -805,7 +734,6 @@
         </footer>
     </div>
 
-    <!-- SCROLL TO TOP -->
     <button class="scroll-top" id="scrollTop" aria-label="العودة للأعلى">
         <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
     </button>
@@ -818,65 +746,303 @@
         (function() {
             'use strict';
 
-            /* ===== TOOLTIPS DATA ===== */
+            /* ===== CORRECT TOOLTIPS DATA ===== */
             var tooltipsData = {
-                '0': { w: 'دَلَعَ لِسَانَ الصَّبَاحِ بِنُطْقِ تَبَلُّجِهِ', m: 'يا من أشرق نور الصباح بوضوحه المبهر، فكأنه لسانٌ يمتدّ بالبيان. وفي قلب المؤمن الشيعي، هذا التبلُّج يذكره بنور الإمام المهدي (عجّل الله فرجه) الذي سيملأ الأرض عدلاً كما مُلئت جوراً وظُلماً — فجرٌ آتٍ لا محالة.', r: '✦ من نور الإمام (عج) يُشرق الصباح' },
-                '1': { w: 'بِغَيَاهِبِ تَلَجْلُجِهِ', m: 'في ظلمات الليل المتراكمة التي تتراجع وتنجلي. وكذا ظلمة الغيبة الكبرى — تبدو قاسية، لكنها تمهّد لظهور شمس الحق. الظلام لا ينتصر أبداً أمام نور آل محمد (عليهم السلام).', r: '✦ الغيبة ظلمة تُعقِبها شمس الظهور' },
-                '2': { w: 'أَتْقَنَ صُنْعَ الْفَلَكِ الدَّوَّارِ', m: 'يا من أدار الأفلاك بحكمة بالغة، وكلّ شيء في هذا الكون يسير بنظامٍ لا يختلّ. فكيف يختلّ وعدُ الله بنصرة أهل البيت؟ إنّه الأتمّ والأحكم في تدبيره.', r: '✦ تدبير الكون أيسر من تدبير الخلائق' },
-                '3': { w: 'بِنُورِ تَأَجُّجِهِ', m: 'بتوهج الشمس واشتعال ضوئها. وهو رمز لنور أهل البيت (ع) الذي لا ينطفئ، كما قال النبي (ص): «إنّما مثلي ومثل أهل بيتي كسفينةٍ مَن ركبها نجا». نورهم يتأجّج في كل عصر.', r: '✦ نور أهل البيت لا يُطفأ' },
-                '4': { w: 'يَا مَنْ دَلَّ عَلَى ذَاتِهِ بِذَاتِهِ', m: 'الله لا يُعرف إلاّ بالله، ولا يُدرك إلاّ بعنايته. ومن أعظم دلائله على ذاته أن جعل في الأرض حجّةً من آل محمد (ع) — هم الوسيلة والباب إليه سبحانه.', r: '✦ «الله أكبر من أن يُعرف إلاّ به» — الإمام الصادق (ع)' },
-                '5': { w: 'عَنْ مُجَانَسَةِ مَخْلُوقَاتِهِ', m: 'الله منزّه عن أن يشبه أحداً من خلقه، ليس كمثله شيء. لكنّه جعل في آل محمد (ع) تجلّيًا لصفاته: رحمة، وعدل، وعلم، وصبر — ليكونوا أقرب الخلق إليه وأدلّ الخلق عليه.', r: '✦ لَيْسَ كَمِثْلِهِ شَيْءٌ وَهُوَ السَّمِيعُ البَصِيرُ' },
-                '6': { w: 'عَنْ مُلاءَمَةِ كَيْفِيَّاتِهِ', m: 'كيفيّة ذات الله وصفاته لا تُحدّ ولا تُوصف. وكذا عظمة أهل البيت (ع) — لا تُقاس بعقول البشر. قال الإمام علي (ع): «لا يوصف الله إلاّ بما وصف به نفسه».', r: '✦ معرفة الله بنور الولاية' },
-                '7': { w: 'قَرُبَ مِنْ خَطَرَاتِ الظُّنُونِ', m: 'الله أقرب إلى العبد من حبل الوريد، يعلم ما يخطر في القلب قبل أن ينطق به اللسان. يا من يعرف ما في صدر الحسين (ع) يوم عاشوراء حين نادى: «هل من ناصر ينصرنا؟» — كان سميعاً مجيباً.', r: '✦ وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ' },
-                '8': { w: 'عَنْ لَحَظَاتِ الْعُيُونِ', m: 'الله لا تدركه الأبصار ولا تحيط به النظرات. لكنّه يتجلّى في قلوب المحبّين لأهل بيته. فالذي لا تُبصره العين، يبصره القلب المؤمن بنور الولاية.', r: '✦ لا تُدْرِكُهُ الأَبْصَارُ وَهُوَ يُدْرِكُ الأَبْصَارَ' },
-                '9': { w: 'أَرْقَدَنِي فِي مِهَادِ أَمْنِهِ وَأَمَانِهِ', m: 'يا من أنمتني على فراش الأمان في ليلةٍ نام فيها الناس غافلين. وكم من ليلةٍ سهر فيها أئمة أهل البيت (ع) يدعون ويبكون من أجل أمتهم — أمير المؤمنين والسجّاد والباقر والصادق (عليهم السلام).', r: '✦ «أبات عيالي وأرقّصهم جيئاً وجيئاً» — الإمام الصادق (ع)' },
-                '10': { w: 'مِنْ مِنَنِهِ وَإِحْسَانِهِ', m: 'من أعظم نعم الله أن جعلنا من شيعة أهل البيت (ع)، وأنّار قلوبنا بحبّهم. هذه المِنَّة التي لا تُقدّر بثمن — ولاية علي والحسن والحسين ومن بين أظهرهم القائم (عج).', r: '✦ قُلْ لا أَسْأَلُكُمْ عَلَيْهِ أَجْراً إِلاَّ الْمَوَدَّةَ فِي الْقُرْبَى' },
-                '11': { w: 'أَكُفَّ السُّوءِ', m: 'أيدي وأذرع الشر والأذى التي تُمَدّ إليك. ويا لها من نعمة أن يحميك الله من أذى الظالمين كما حمى زينب (ع) بعد كربلاء لتكون الراوية التي حفظت رسالة الحسين (ع) للأبد.', r: '✦ حفظ الله لرسالته عبر أوليائه' },
-                '12': { w: 'اللَّيْلِ الأَلْيَلِ', m: 'الليل المظلم شديد الظلمة — رمز لعصر الغيبة حيث يشتدّ الظلام. لكنّ المؤمن ينتظر كما انتظر أصحاب الأئمة (ع) ظهور نور المهدي (عج) الذي يُخرج الدنيا من ظلامها.', r: '✦ في أعظم الظلمات يُنتظر أعظم النور' },
-                '13': { w: 'بِحَبْلِ الشَّرَفِ الأَطْوَلِ', m: 'أعلى أسباب الشرف والرفعة هو التمسّك بولاية أهل البيت (ع). قال الإمام الصادق (ع): «ولايتنا أهل البيت خير للناس من مطر أربعين صباحاً». هذا الحبل هو الذي ينجّيك من الغرق.', r: '✦ وَاعْتَصِمُوا بِحَبْلِ اللهِ جَمِيعًا وَلا تَفَرَّقُوا' },
-                '14': { w: 'فِي ذِرْوَةِ الْكَاهِلِ الأَعْبَلِ', m: 'في قمة النسب الشريف والأصل الكريم. النبي (ص) وآله الطاهرون هم أشرف الخلق نسباً وأرفعهم مقاماً. فخرُ الوجود كلّه هو محمد وآل محمد (صلّى الله عليهم أجمعين).', r: '✦ إنَّ اللهَ اصْطَفَى آدَمَ وَنُوحاً وَآلَ إِبْرَاهِيمَ وَآلَ عِمْرَانَ' },
-                '15': { w: 'زَحَالِيفِهَا', m: 'مزالق الدهر وانزلاقاته — لكنّ قدم الإمام علي (ع) ثبتت على الصراط المستقيم رغم كل المحن: يوم الغار، ويوم بدر، ويوم خيبر، ويوم الغدير، ويوم محرابه وهو في سجوده.', r: ' «أنا مدينة العلم وعليٌّ بابها»' },
-                '16': { w: 'مَصَارِيعَ الصَّبَاحِ', m: 'أبواب الصباح — كل فجرٍ جديد هو فرصة جديدة للتوبة والتقرّب إلى الله. وكلّ صباحٍ في عصر الغيبة هو وعدٌ بأنّ فجر الظهور آتٍ. «فأصبح صبحك يا مهديّنا».', r: '✦ «اللهم عجّل لوليك الفرج» — دعاء كل صباح' },
-                '17': { w: 'خِلَعِ الْهِدَايَةِ', m: 'أوسمة وألبسة الهداية — خلعة الولاية التي يُلْبِسها الله أولياءه. حين تتشبّع بحبّ أهل البيت (ع) كأنّ الله قد ألبسك أفخر حلّة من الإيمان.', r: '✦ ولاية أهل البيت (ع) هي أعظم خلعة' },
-                '18': { w: 'شِرْبِ جَنَانِي', m: 'ريّ قلبي ونفسي. ويا ليت قلبي يرتوي من نبع كربلاء — من عطش الحسين (ع) الذي سقانا بدمائه الطاهرة. كل قطرة دماءٍ من أهل البيت هي ينبوع حياةٍ لقلوبنا.', r: ' «يا ليلتي على الظلماء إذ ظلموا الحسين»' },
-                '19': { w: 'يَنَابِيعَ الْخُشُوعِ', m: 'ينابيع الخشوع في القلب — وأغزر هذه الينابيع هو البكاء على مصائب أهل البيت (ع). قال الإمام الصادق (ع): «مَن ذكرنا أو ذُكرنا فخرج من عينه مثل جناح الذباب غفر الله له».', r: '✦ دموع الخشوع على مصائب أهل البيت (ع)' },
-                '20': { w: 'زَفَراتِ الدُّمُوعِ', m: 'زفرات البكاء من شدة الوجد — كما بكت زينب (ع) على أخيها الحسين حتى خارت قواها، وكما بكى السجّاد (ع) أربعين سنة على مصاب كربلاء. الدموع الشيعية أرقى أنواع العبادة.', r: '✦ «فإنّ الدموع على الحسين تُحطّ الذنوب»' },
-                '21': { w: 'نَزَقَ الْخُرْقِ', m: 'طيشي وجهلي وضعف بصيرتي — يا من أدّبني كما أدّب الإمام الصادق (ع) أصحابه بالرفق والحكمة. اللهم أدّب نفسي بعلم آل محمد، لا بعلم غيرهم.', r: '✦ التواضع أمام علم أهل البيت (ع)' },
-                '22': { w: 'بِأَزِمَّةِ الْقُنُوعِ', m: 'بلجام الرضا والتسليم — كما سلّم الإمام الحسين (ع) أمره لله يوم عاشوراء حين قال: «رضاً بقضائك، تسليماً لأمرك». هذا هو القنوع الحقيقي.', r: '✦ «رضاً بقضائك» — آخر كلمات الحسين (ع)' },
-                '23': { w: 'بِحُسْنِ التَّوْفِيقِ', m: 'أجمل العون والسداد من الله — والتوفيق الأعظم أن يوفقك الله لزيارة قبر الحسين (ع)، ولخدمة آل بيته، ولانتظار فرج قائمهم (عج).', r: '✦ «زيارة الحسين (ع) أمانٌ من كل خوف»' },
-                '24': { w: 'أَنَاتُكَ', m: 'حلمك وصبرك وإمهالك يا ربّ — فلو عاقبتني بذنبي لهلكتُ. لكنّك تؤخّرني رحمةً، كما أخّرتَ فرج المهدي (عج) لحكمةٍ تعرفها.', r: '✦ «لولا صبره لهلكتُ» — المناجاة الشعبانية' },
-                '25': { w: 'لِقَائِدِ الأَمَلِ وَالْمُنَى', m: 'للقائد الذي يسوق أمانيّ وشهواتي. والأمل الحقيقي للشيعي هو لقاء الإمام المهدي (عج) — أن أكون من أنصاره، أن أسقي فرسه الماء، أن أكون بين يديه.', r: '✦ «اللهم اجعلني من أنصار المهدي»' },
-                '26': { w: 'مِنْ كَبَوَاتِ الْهَوَى', m: 'من زلات وسقطات الشهوة — التي أوقعَت الكثيرين في الضلال. لكنّ من تمسّك بولاية أهل البيت (ع) نجا. الإمام علي (ع) هو الذي قال: «أنا دار الحكمة».', r: '✦ الولاية نجاة من الهلاك' },
-                '27': { w: 'النَّصَبُ وَالْحِرْمَانُ', m: 'التعب الشديد والحرمان — وهذا ما لاقته فاطمة الزهراء (ع) بعد رسول الله: نصَبُ الجراح، وحرمانُ الإرث، وبكاءُ اليتيمتين. لكنها اختارت الرضا.', r: '✦ «فاطمة بضعة مني» — رسول الله (ص)' },
-                '28': { w: 'عَنْ دَارِ الْوِصَالِ', m: 'عن دار القرب والاتصال بالله — والوصول الحقيقي هو زيارة أهل البيت (ع). زيارة الحسين (ع) توازي حجة مع رسول الله (ص) كما في الروايات.', r: '✦ «زيارة الحسين تعدل حجة وعمرة»' },
-                '29': { w: 'امْتَطَتْ نَفْسِي', m: 'ركبت نفسي هواها كمن يركب دابّة — والنفس الأمّارة بالسوء كما حذّر منها الأئمة (ع). الإمام زين العابدين (ع) كان يدعو: «إلهي، نفسي التي ظلمتُها».', r: '✦ دعاء الإمام السجّاد (ع) في الصحيفة السجّادية' },
-                '30': { w: 'لِمَا سَوَّلَتْ لَهَا ظُنُونُها وَمُنَاهَا', m: 'ما زيّنت لها أوهامها وأمانيها الكاذبة — كما زيّنت الدنيا نفسها لابن زياد وعمر بن سعد فقتلوا الحسين. لكنّ الحسين اختار الآخرة.', r: ' خطبة الحسين (ع) يوم عاشوراء' },
-                '31': { w: 'قَرَعْتُ بَابَ رَحْمَتِكَ', m: 'طرقت باب رحمتك متوسّلاً — والتوسّل بأهل البيت (ع) هو أقرع الأبواب. قال الصادق (ع): «إنّ لله عباداً يتوسّلون بنا أهل البيت».', r: '✦ «وجعلناهم أئمة يهدون بأمرنا»' },
-                '32': { w: 'أَنَامِلَ وَلائِي', m: 'أنامل تعلّقي وولائي — كأنّي أمسك بأهداب آل محمد بأطراف أصابعي ولا أتركها. هذا هو الولاء الذي كان عند حبيب بن مظاهر الذي استُشهد دفاعاً عن الحسين.', r: '✦ الولاء لأهل البيت هو حبل النجاة' },
-                '33': { w: 'صَرْعَةِ رِدَائِي', m: 'سقطتي وزلتي — وكم من زلّةٍ أوقعت المؤمنين. لكنّ الله يقبل التوبة كما قبل توبة التوّابين. الحسين (ع) لم يكن يتبع غير الله.', r: '✦ «إنّ الله يحبّ التوابين»' },
-                '34': { w: 'مُنْقَلَبِي وَمَثْوَايَ', m: 'مرجعي ومقرّي النهائي يوم القيامة — وأرجو أن يكون مرجعي مع محمد وآل محمد. قال الإمام الصادق (ع): «شيعة علي هم الفائزون يوم القيامة».', r: '✦ «حشرنا مع محمد وآله الطاهرين»' },
-                '35': { w: 'وَرَدَ إِلَى حِيَاضِكَ', m: 'وصل إلى حوضك ليشرب — والحوض الأعظم هو حوض النبي (ص) يوم القيامة لا يرد منه أحد إلاّ محبّو أهل البيت. ومن أعظم الأحواض هو حوض الإمام الحسين (ع).', r: '✦ «حوضي كذا وكذا» — رسول الله (ص)' },
-                '36': { w: 'ضَنْكِ الْمُحُولِ', m: 'في شدة القحط والجدب — لكنّ رحمة الله لا تنقطع حتى في أصعب الظروف. كما لم تنقطع عن زينب (ع) في طريق السبي، ولم تنقطع عن السجّاد (ع) في السلاسل.', r: '✦ رحمة الله في أحلك الظروف' },
-                '37': { w: 'وَالْوُغُولِ', m: 'والدخول والولوج — باب الله مفتوح لكلّ من يريد أن يدخل. «باب الله مفتوح» كما قال الإمام الحسين (ع) حين رفض مبايعة يزيد.', r: '✦ «وبابك مفتوح للطالبين»' },
-                '38': { w: 'أَزِمَّةُ نَفْسِي عَقَلْتُهَا', m: 'لجمت نفسي وربطتها بمشيئتك — كما لجم الإمام علي (ع) نفسه عن الدنيا وهو أمير المؤمنين. كان يرقع ثوبه بيده ويقول: «إنّ نفسي لآمرة لي بالسوء».', r: '✦ زهد علي (ع) في نهج البلاغة' },
-                '39': { w: 'دَرَأْتُهَا', m: 'دفعتها ومنعتها بعفو الله ورحمته — وكما دفع الله عن الحسين (ع) أن يُنسى، ودفع عن أهل البيت أن يُطمس نورهم. عفو الله أكبر من كل ذنب.', r: '✦ «والعافين عن الناس»' },
-                '40': { w: 'جَنَابِ لُطْفِكَ وَرَأْفَتِكَ', m: 'إلى ساحة كرمك ورحمتك — وساحة آل محمد (ع) هي أوسع ساحات اللطف الإلهي. قال النبي (ص): «مثل أهل بيتي مثل سفينة نوح من ركبها نجا».', r: '✦ سفينة النجاة هي أهل البيت (ع)' },
-                '41': { w: 'جُنَّةً', m: 'اجعل مسائي وقاية وحماية — والجنّة الحقيقية هي أن تكون من شيعتهم، فالشيعة هم الذين يأمنون يوم القيامة كما قال الإمام الصادق (ع): «شيعة علي في الجنّة».', r: '✦ «شيعة علي هم الفائزون»' },
-                '42': { w: 'مِنْ مُرْدِيَاتِ الْهَوَى', m: 'من المهلكات التي توقعها الشهوات — وأعظمها حبّ الدنيا كما حذّر الإمام علي (ع): «حبّ الدنيا رأس كل خطيئة».', r: '✦ «الدنيا سجن المؤمن وجنة الكافر» — رسول الله (ص)' },
-                '43': { w: 'تُولِجُ اللَّيْلَ فِي النَّهَارِ', m: 'تُدخل الليل في النهار والنهار في الليل — قدرة الله المطلقة. وهي نفسها القدرة التي ستُخرج المهدي (عج) من الغيبة فجأةً وبأمرٍ لا يُرد.', r: '✦ «أصلحه الله في ليلة» — دعاء العهد' },
-                '44': { w: 'بِغَيْرِ حِسَابٍ', m: 'بلا تقدير ولا حدود — كرم الله لا يُحصى، ورحمته بعباده المتوسّلين بأهل البيت أكبر من أن تُحسب. «يا من لا يحصى كرمه».', r: '✦ «ورزقنا من حيث لا يحتسبون»' },
-                '45': { w: 'دَيَاجِيَ الْغَسَقِ', m: 'ظلمات وقت الغروب والعتمة — وكذا ظلمة الغيبة التي نعيشها. لكنّ الله سيُنيرها بظهور المهدي (عج) كما ينير الليل بالصبح.', r: ' «وجعلنا منكم سراجاً منيراً»' },
-                '46': { w: 'الصُّمِّ الصَّيَاخِيدِ', m: 'الصخور الصلبة التي لا مسام لها — لكنّ الله يُخرج منها الماء. وكذا من قلب القاسي يُخرج الله المحبّة لأهل البيت.', r: '✦ إحياء القلوب القاسية بنور الولاية' },
-                '47': { w: 'الْمُعْصِرَاتِ', m: 'السحب الحاملة للمطر — التي تمطر رحمةً على الأرض. وكما تمطر السماء، تمطر سماء الولاية بركاتٍ على الشيعة.', r: '✦ «ومنا تُصبّ الرحمة»' },
-                '48': { w: 'ثَجَّاجاً', m: 'متدفقاً بغزارة — كدموع الزهراء (ع) على أبيها، وكدموع السجّاد على الحسين. هذه الدموع ثجّاج — تتدفق ببركةٍ من عند الله لا تنضب.', r: '✦ «وأنزلنا من المعصرات ماءً ثجاجاً»' },
-                '49': { w: 'لُغُوباً وَلا عِلاجاً', m: 'تعباً ولا جهداً شاقاً — الله خلق كل شيء بلا عناء. لكنّ أئمة أهل البيت (ع) تحملوا أعظم التعب في سبيلنا: جوع، وسجن، وقتل.', r: '✦ «وما أرسلناك إلاّ رحمةً للعالمين»' },
-                '50': { w: 'تَوَحَّدَ بِالْعِزِّ وَالْبَقَاءِ', m: 'انفرد بالعزة والخلود — والله هو الباقي بعد فناء كل شيء. وآل محمد (ع) هم الذين يبقى ذكرهم إلى يوم القيامة. الحسين خالد.', r: '✦ «إنّ الحسين مصباح الهدى»' },
-                '51': { w: 'مِنْ سَنِيِّ مَوَاهِبِكَ', m: 'من عطاياك السامية الرفيعة — وأعظم هذه العطايا أن توفّق لخدمة أهل البيت (ع) ولو بخدمةٍ بسيطة. كما خدم العلماء شيعتهم.', r: '✦ خدمة آل محمد أعظم موهبة' },
-                '52': { w: 'قَلْبِي مَحْجُوبٌ وَنَفْسِي مَعْيُوبٌ', m: 'قلبي محجوب عن معرفتك ونفسي مليئة بالعيوب — هذا اعترافٌ صادقٌ يشبه اعتراف الإمام السجّاد (ع) في الصحيفة السجّادية حين كان يبكي ويقول: «إلهي، أنا الفقير في غناي».', r: '✦ من أدعية الصحيفة السجّادية' },
-                '52b': { w: 'نَفْسِي مَعْيُوبٌ', m: 'نفسي مليئة بالعيوب والنقائص — والإمام السجّاد (ع) علّمنا أن نعترف بعيوبنا أمام الله بكلّ صدق وتواضع. هذا هو أدب الدعاء عند أهل البيت.', r: '✦ أدب الدعاء في الصحيفة السجّادية' },
-                '53': { w: 'يَا سَتَّارَ الْعُيُوبِ', m: 'يا من يستر عيوبي ولا يفضحني — وستر الله أعظم من عبادتك كلها. قال الإمام الباقر (ع): «إنّ الله يحبّ الستر». اللهم استرني كما سترتَ فاطمة (ع).', r: '✦ «يا ستّار العيوب يا أرحم الراحمين»' },
-                '54': { w: 'يَا عَلَّامَ الْغُيُوبِ', m: 'يا من يعلم كل شيء خفي — يعلم ما في قلبي من حبّ لأهل البيت، ويعلم ما أخفيه من ألم على مصائبهم. الله يعلم أنني أبكي على الحسين في السرّ.', r: '✦ «عالم الغيب فلا يظهر على غيبه أحداً»' },
-                '55': { w: 'يَا كَاشِفَ الْكُرُوبِ', m: 'يا من يكشف الشدائد والمصائب — كما كشف الكرب عن يوسف (ع) في السجن، وكما كشف الكرب عن زينب (ع) في الشام. ويا من سينكشف الكرب بظهور قائم آل محمد (عج).', r: '✦ «ألا إنّ نصر الله قريب»' }
+                '0': {
+                    w: 'دَلَعَ لِسَانَ الصَّبَاحِ بِنُطْقِ تَبَلُّجِهِ',
+                    m: '<b>دَلَعَ:</b> أخرج وأظهر.<br><b>لسان الصباح:</b> شروق الشمس ووضوح النهار.<br><b>النطق:</b> هو ضد الصمت.<br><b>التبلج:</b> الإضاءة والإشراق.<br><br><b>المعنى:</b> يا إلهي! يا مَن أخرجتَ ضوء الصباح، وأظهرتَ إشراقة النهار وضوءه...',
+                    r: '✦ دعاء الصباح — الإمام زين العابدين (ع)'
+                },
+                '1': {
+                    w: 'بِغَيَاهِبِ تَلَجْلُجِهِ',
+                    m: '<b>التسريح:</b> الإرسال. قال عزّ وجلّ: ﴿أو تسريح بإحسان﴾ البقرة/229.<br><b>قطع الليل:</b> أي حركة الليل: درجة درجة، وقطعة قطعة.<br><b>الغياهب:</b> الظلمة الشديدة.<br><b>التلجلج:</b> التردد، مثل لقمة الطعام تتلجلج في الفم، وتتردد للمضغ.<br><br><b>المعنى:</b> يا إلهي! يا مَن أرسلتَ الليل المظلم الشديد الظلمة، متحركاً متردداً ذهاباً وإياباً...',
+                    r: ' دعاء الصباح — الإمام زين العابدين (ع)'
+                },
+                '2': {
+                    w: 'أَتْقَنَ صُنْعَ الْفَلَكِ الدَّوَّارِ',
+                    m: '<b>أتقن:</b> أحكم.<br><b>الفلك:</b> جمعها أفلاك، وهي الكواكب والنجوم.<br><b>الدوّار:</b> المتحرك بالاستدارة.<br><b>المقادير:</b> من المقدور والقدرة.<br><b>التبرج:</b> الزينة. وزينة الأفلاك هي انتقالها من برج إلى برج، أو هي التي زيّن بها الله السماء الدنيا ﴿ولقد زيّنا السماء الدنيا بمصابيح﴾ الملك/5.<br><br><b>المعنى:</b> إلهي! يا مَن أتقنتَ وأحكمتَ صنع كلّ شيء، وفي أجمل تصوير وتبرج وزينة...',
+                    r: '✦ ﴿صنع الله الذي أتقن كلّ شيء﴾ النمل/88'
+                },
+                '3': {
+                    w: 'بِنُورِ تَأَجُّجِهِ',
+                    m: '<b>الشعشعة:</b> المزج والخلط.<br><b>التأجج:</b> هو إضرام النار واشتعالها ولهبها.<br><br><b>المعنى:</b> يا إلهي! يا مَن مزجتَ ضياء الشمس بالأشعة التي تخرج منها حال تأججها واشتعالها، فيكون منها ضياء دائماً أبداً...',
+                    r: '✦ دعاء الصباح — الإمام زين العابدين (ع)'
+                },
+                '4': {
+                    w: 'يَا مَنْ دَلَّ عَلَى ذَاتِهِ بِذَاتِهِ',
+                    m: 'هذه فقرة موجزة قالها أمير المؤمنين (ع) فيها دلالات واسعة وكثيرة:<br><br><b>المعنى:</b> يا إلهي! يا مَن كان نور ذاته المقدسة، هو دليل موصل للطالبين والراغبين إلى التقرب إليه، والتعرف عليه، فبفضله وكرمه وفيوضاته عرّف عباده على ذاته وعبادته، ودلّهم على كيفية الوصول إلى القرب منه، والتعرف عليه، فهو الخير، ومنه الخير وإليه يعود الخير...',
+                    r: '✦ أمير المؤمنين علي بن أبي طالب (ع)'
+                },
+                '5': {
+                    w: 'عَنْ مُجَانَسَةِ مَخْلُوقَاتِهِ',
+                    m: '<b>التنزّه:</b> التباعد.<br><b>المجانسة:</b> المشاركة.<br><br><b>المعنى:</b> إنّ الله تبارك وتعالى نأى عن مشابهة مخلوقاته، لأنّه: ﴿ليس كمثله شيء وهو السميع البصير﴾ الشورى/11.',
+                    r: '✦ ﴿لَيْسَ كَمِثْلِهِ شَيْءٌ وَهُوَ السَّمِيعُ البَصِيرُ﴾ الشورى/11'
+                },
+                '6': {
+                    w: 'عَنْ مُلاءَمَةِ كَيْفِيَّاتِهِ',
+                    m: '<b>المعنى:</b> أنّه تبارك وتعالى جلّ وترفّع عن أن يكون ملائماً ومناسباً لخلق المخلوقين، أو مشابهاً لهم، بل هو القديم الأزلي، الذي ﴿لم يلد ولم يولد * ولم يكن له كفواً أحد﴾ الإخلاص/3-4.',
+                    r: '✦ سورة الإخلاص'
+                },
+                '7': {
+                    w: 'قَرُبَ مِنْ خَطَرَاتِ الظُّنُونِ',
+                    m: '<b>المعنى:</b> إلهي! يا مَن تعاليتَ وتباعدتَ عن جميع المخلوقات بأجسادهم ومادتهم، وكنتَ قريباً من خواطرهم ولمحاتهم النفسية، وخلجاتهم القلبية. ولكن العلم بك لا يصل إلى حد اليقين، بل هو خطرات ظنية.<br><br>قال رسول الله (ص): «يا عليّ! ما عرف الله تعالى إلاّ أنا وأنت، وما عرفني إلاّ الله وأنت، وما عرفك إلاّ الله وأنا».',
+                    r: ' حديث قدسي عن أمير المؤمنين (ع)'
+                },
+                '8': {
+                    w: 'عَنْ لَحَظَاتِ الْعُيُونِ',
+                    m: '<b>المعنى:</b> إلهي! يا مَن قربتَ من خطرات القلوب ولمحات العقول، وبعدتَ عن لحظات ونظرات العيون. إنّك لا تدركك الأبصار ولكنّك تدرك الأبصار وأنت اللطيف الخبير.<br><br>بتصرف عن الآية 103 من سورة الأنعام: ﴿لا تدركه الأبصار وهو يدرك الأبصار وهو اللطيف الخبير﴾.',
+                    r: '✦ ﴿لَّا تُدْرِكُهُ الْأَبْصَارُ وَهُوَ يُدْرِكُ الْأَبْصَارَ﴾ الأنعام/103'
+                },
+                '9': {
+                    w: 'وَعَلِمَ بِمَا كَانَ قَبْلَ أَنْ يَكُونَ',
+                    m: '<b>المعنى:</b> إنّ الموجودات كلّها لها وجودان: وجود صور أزلية في علم الله تعالى، ووجود آخر هو ما أخرجه سبحانه إلى عالم الشهادة العينية تدريجياً على حسب الاستعدادات والمقتضيات والظروف.<br><br>إنّ علم الله تعالى علم إحاطة في كلّ شيء، وقبل كلّ شيء، وبعد وجود كلّ شيء، ولا يغيب عنه أيّ شيء...',
+                    r: '✦ دعاء الصباح — الإمام زين العابدين (ع)'
+                },
+                '10': {
+                    w: 'أَرْقَدَنِي فِي مِهَادِ أَمْنِهِ وَأَمَانِهِ',
+                    m: '<b>المهد:</b> للطفل، جمعها مهاد. الفراش أو السرير.<br><b>الأمن:</b> طمأنينة النفس، وزوال الخوف.<br><br><b>المعنى:</b> إلهي! يا مَن خلقتني وخلقت جميع الناس ونحن في رعايتك وحفظك وأمانك، سواء في حالة النوم والرقاد، أو في حالة اليقظة والانتباه...',
+                    r: ' دعاء الصباح — الإمام زين العابدين (ع)'
+                },
+                '11': {
+                    w: 'مِنْ مِنَنِهِ وَإِحْسَانِهِ',
+                    m: '<b>أيقظني:</b> نبّهني من النوم.<br><b>منحني:</b> أعطاني ووهبني.<br><br><b>المعنى:</b> إلهي! يا مَن أيقظتني ونبّهتني من نوم الغافلين، ونبّهتني إلى ما أعطيتني من أعمال الصالحين التي توصلني إلى درجة المتقين، الذين أنعمت عليهم من الأنبياء والمرسلين والشهداء والصدّيقين، وذلك بفضلك وجودك وكرمك وإحسانك ورحمتك يا أرحم الراحمين.',
+                    r: '✦ دعاء الصباح — الإمام زين العابدين (ع)'
+                },
+                '12': {
+                    w: 'أَكُفَّ السُّوءِ',
+                    m: '<b>السوء:</b> هو كل ما يغمّ الإنسان.<br><b>اليد:</b> القدرة، يد الله تبارك وتعالى هي قدرته.<br><br><b>المعنى:</b> إلهي! يا مَن حرستَ عبادك المؤمنين، ودفعتَ عنهم كل سوء أو حزن أو غمّ أو همّ. إنّك قلتَ وقولك الحق: ﴿إنّ الله يدافع عن الذين آمنوا﴾ الحج/38.',
+                    r: '✦ ﴿إِنَّ اللَّهَ يُدَافِعُ عَنِ الَّذِينَ آمَنُوا﴾ الحج/38'
+                },
+                '13': {
+                    w: 'اللَّيْلِ الأَلْيَلِ',
+                    m: '<b>الصلاة من الله:</b> الرحمة.<br><b>الدليل:</b> الهادي والمرشد، والمراد به رسول الله (صلى الله عليه وآله).<br><b>الأليل:</b> الليل المظلم الحالك، البالغ من الظلمة.<br><br><b>المعنى:</b> يا إلهي! صلِّ وبارك وارحم وتحنّن وأكرم الذي كان دليلاً عليك، ومرشداً إلى طاعتك، وهادياً الخلق إلى عبادتك في الأوقات المظلمة بالجهل والظلم والعادات السيئة... «وهذه صفات للحبيب المصطفى (ص)».',
+                    r: '✦ الصلاة على النبي وآله'
+                },
+                '14': {
+                    w: 'بِحَبْلِ الشَّرَفِ الأَطْوَلِ',
+                    m: '<b>المعنى:</b> بعد أن وصف الرسول (ص) بأنّه الدليل والهادي إلى الله تعالى، عطف هنا صفات أخرى له وهو أنّه ماسك ومتعلق بكلّ شيء موصل بالشرف الرفيع العالي والكرامة العظمى.',
+                    r: '✦ وصف رسول الله (ص)'
+                },
+                '15': {
+                    w: 'فِي ذِرْوَةِ الْكَاهِلِ الأَعْبَلِ',
+                    m: '<b>الناصع:</b> الواضح.<br><b>الحسب:</b> هو ما يعده الرجل من مفاخر أجداده.<br><b>الذروة:</b> هي أعالي الشيء وسنّامه ورفعته.<br><b>الكاهل:</b> هو ما بين الكتفين.<br><b>الأعبل:</b> الضخم الغليظ.<br><br><b>المعنى:</b> يصف رسول الله (ص) بأنّه عالي النسب، شامخ الحسب، رفيع الشأن، مجيد المكارم.',
+                    r: '✦ وصف نسب رسول الله (ص)'
+                },
+                '16': {
+                    w: 'زَحَالِيفِهَا',
+                    m: '<b>الزحلفة:</b> بضم الزاي، هي آثار تزلج الصبيان من فوق التل إلى أسفله، والزحلفة كالدحرجة.<br><br><b>المعنى:</b> يصف رسول الله (ص) بأنّه ثابت القدم منذ أن خلقه الله تعالى، قبل النبوة وبعدها مهما مرّت عليه من منحدرات ومزالق، وهو باق على رفعته وشموخه وعظمته...',
+                    r: '✦ ثبات رسول الله (ص) على الحق'
+                },
+                '17': {
+                    w: 'مَصَارِيعَ الصَّبَاحِ',
+                    m: '<b>مصاريع:</b> جمع مصراع، والمصراعان من الأبواب.<br><b>مفاتيح:</b> جمع مفتاح.<br><b>الرحمة:</b> وهي رقّة في القلب تقتضي الإحسان.<br><b>الفلاح:</b> الظفر، وإدراك البغية.<br><br><b>المعنى:</b> يا إلهي! أدعوك وأتوسل إليك، بأن تفتح لنا مصاريع أبواب هذا الصباح وكل صباح بمفاتيح الرحمة والظفر والفلاح والنجاح والإنجاح...',
+                    r: '✦ التوسل بفتح أبواب الرحمة'
+                },
+                '18': {
+                    w: 'خِلَعِ الْهِدَايَةِ',
+                    m: '<b>المعنى:</b> يا إلهي! وألبسنا وزيّنا من أفضل ما عندك من الخلع والمواهب التي هديت بها عبادك الصالحين، وجعلتهم من أفضل عبادك المتقين المخلصين، ووفّقنا للسير على صراطك المستقيم، صراط الذين أنعمت عليهم من النبيين والصدّيقين والشهداء والصالحين وحسن أولئك رفيقاً.',
+                    r: '✦ ﴿وَمَن يُطِعِ اللَّهَ وَالرَّسُولَ فَأُوْلَئِكَ مَعَ الَّذِينَ أَنْعَمَ اللَّهُ عَلَيْهِم﴾ النساء/69'
+                },
+                '19': {
+                    w: 'شِرْبِ جَنَانِي',
+                    m: '<b>الشِّرب:</b> بكسر الشين، الحظ من الماء.<br><b>الجَنان:</b> بالفتح: القلب.<br><b>الينابيع:</b> جمع ينبوع، وهو عين الماء.<br><b>الخشوع:</b> خضوع القلب والجوارح.<br><br><b>المعنى:</b> يا إلهي! إنّ عظمتك وجلالك وكبرياءك عظيمة، فاجعل هذه العظمة والجلال في نفسي وقلبي تجري جريان الخشوع والخضوع لك وحدك، لأنّه إذا لم يخشع القلب لك ولا يخضع، فلا نفع من فعل الجوارح الأخرى...',
+                    r: '✦ خشوع القلب لله تعالى'
+                },
+                '20': {
+                    w: 'يَنَابِيعَ الْخُشُوعِ',
+                    m: '<b>موق العين:</b> طرفها ممّا يلي الأنف والأذن، والجمع أماق.<br><b>زفرات:</b> جمع زفر: وهي القربة التي كانوا يحملون بها الماء.<br><br><b>المعنى:</b> يا إلهي! بعد أن توفقني لخشيتك والخضوع إليك، أنزل من أطراف عيوني من هيبتك ومخافتك الدموع كما ينزل الماء من أفواه القرب...',
+                    r: '✦ دموع الخشوع والخضوع'
+                },
+                '21': {
+                    w: 'زَفَراتِ الدُّمُوعِ',
+                    m: '<b>النزق:</b> الخفة والطيش.<br><b>الخُرق:</b> بالضم: هو ضد الرفق، وقد قيل: الرفق يمنٌ والخرق شؤمٌ. هو الجهل والحمق.<br><b>الأزمّة:</b> جمع زمام، وهو المقود الذي تربط أو تجر به الدابة.<br><b>القنوع:</b> بالضم: السؤال والتذلل للمسألة والطلب.<br><br><b>المعنى:</b> يا إلهي! إنّك تعلم أنّ عندي صفات تبعدني عن مسألتك والتذلل إليك، فاربطها ياربّ برباط الخضوع والجمها بلجام التذلل والخشوع إنّك أرحم الراحمين.',
+                    r: '✦ التذلل والخضوع لله تعالى'
+                },
+                '22': {
+                    w: 'نَزَقَ الْخُرْقِ',
+                    m: '<b>النزق:</b> الخفة والطيش.<br><b>الخُرق:</b> بالضم: هو ضد الرفق، الجهل والحمق.<br><br><b>المعنى:</b> يا إلهي! إنّك تعلم أنّ عندي صفات تبعدني عن مسألتك والتذلل إليك، فاربطها ياربّ برباط الخضوع والجمها بلجام التذلل والخشوع.',
+                    r: '✦ أدب الدعاء والتذلل'
+                },
+                '23': {
+                    w: 'بِأَزِمَّةِ الْقُنُوعِ',
+                    m: '<b>الأزمّة:</b> جمع زمام، وهو المقود الذي تربط أو تجر به الدابة.<br><b>القنوع:</b> بالضم: السؤال والتذلل للمسألة والطلب.<br><br><b>المعنى:</b> يا إلهي! إنّك تعلم أنّ عندي صفات تبعدني عن مسألتك والتذلل إليك، فاربطها ياربّ برباط الخضوع والجمها بلجام التذلل والخشوع إنّك أرحم الراحمين.',
+                    r: '✦ التذلل والخضوع لله تعالى'
+                },
+                '24': {
+                    w: 'بِحُسْنِ التَّوْفِيقِ',
+                    m: '<b>المعنى:</b> يا إلهي! إن لم تبدأني الرحمة منك بحسن التوفيق، فمن الذي يسلك بي إليك في الطريق الواضح؟ فالتوفيق من عندك وحدك، ولا سبيل لي إليك إلاّ برحمتك وفضلك.',
+                    r: '✦ التوفيق من الله وحده'
+                },
+                '25': {
+                    w: 'أَنَاتُكَ',
+                    m: '<b>أناتك:</b> حلمك وصبرك وإمهالك.<br><br><b>المعنى:</b> يا إلهي! إن أسلمتني أناتك (صبرك وإمهالك) لقائد الأمل والمنى، فمن الذي يقيل عثراتي من كبوات الهوى؟ فأنت وحده القادر على إمساكي.',
+                    r: '✦ حلم الله وصبره على عباده'
+                },
+                '26': {
+                    w: 'لِقَائِدِ الأَمَلِ وَالْمُنَى',
+                    m: '<b>المعنى:</b> إن أسلمتني أناتك لقائد الأمل والمنى (أي للشهوة والهوى الذي يقود الأمل)، فمن الذي يقيل عثراتي من كبوات الهوى؟ فأنت وحده القادر على نجاتي من ضلال الهوى.',
+                    r: '✦ النجاة من الهوى بالله وحده'
+                },
+                '27': {
+                    w: 'مِنْ كَبَوَاتِ الْهَوَى',
+                    m: '<b>المعنى:</b> إن أسلمتني أناتك لقائد الأمل والمنى، فمن الذي يقيل عثراتي من كبوات الهوى (سقطاته وزلاته)؟ فأنت وحده القادر على إمساكي عن الضلال.',
+                    r: '✦ الله وحده يقي من الهوى'
+                },
+                '28': {
+                    w: 'النَّصَبُ وَالْحِرْمَانُ',
+                    m: '<b>المعنى:</b> وإن خذلني نصرك عند محاربة النفس والشيطان، فقد وكلني خذلانك إلى حيث النصب (التعب الشديد) والحرمان. فبدون نصرك يا إلهي، أهلك وأخسر.',
+                    r: '✦ الحاجة إلى نصر الله'
+                },
+                '29': {
+                    w: 'عَنْ دَارِ الْوِصَالِ',
+                    m: '<b>المعنى:</b> يا إلهي! أتراني ما أتيتك إلاّ من حيث الآمال، أم علقت بأطراف حبائك إلاّ حين باعدتني ذنوبي عن دار الوصال (دار القرب والاتصال بك)؟ فذنوبي هي التي أبعدتني عنك.',
+                    r: '✦ الذنوب تبعد عن الله'
+                },
+                '30': {
+                    w: 'امْتَطَتْ نَفْسِي',
+                    m: '<b>المعنى:</b> فبئس المطية (الدابّة) التي امتطتها نفسي من هواها. فالنفس الأمّارة بالسوء دابّة سوءٍ قادتها إلى المعاصي والذنوب.',
+                    r: '✦ النفس الأمّارة بالسوء'
+                },
+                '31': {
+                    w: 'لِمَا سَوَّلَتْ لَهَا ظُنُونُها وَمُنَاهَا',
+                    m: '<b>المعنى:</b> فواهاً لها (ويلٌ لها) لما سوّلت لها ظنونها ومناها! وتباً لها (هلاكاً) لجرأتها على سيّدها ومولاها! فالنفس التي جرأت على عصيان ربها تستحق اللوم والذم.',
+                    r: ' لوم النفس على المعصية'
+                },
+                '32': {
+                    w: 'قَرَعْتُ بَابَ رَحْمَتِكَ',
+                    m: '<b>المعنى:</b> يا إلهي! قرعتُ باب رحمتك بيد رجائي، وهربتُ إليك لاجئاً من فرط أهوائي، وعلّقتُ بأطراف حبائك أنامل ولائي (أطراف أصابع تعلّقي بك). فاصفح اللهم عمّا كنت أجرمتُه من زللي وخطائي.',
+                    r: '✦ الرجاء والالتجاء إلى الله'
+                },
+                '33': {
+                    w: 'أَنَامِلَ وَلائِي',
+                    m: '<b>أنامل:</b> أطراف الأصابع.<br><b>ولائي:</b> تعلّقي وولائي.<br><br><b>المعنى:</b> وعلّقتُ بأطراف حبائك أنامل ولائي — أي تعلّقتُ بك بأطراف أصابعي، متمسّكاً بحبائك متوسّلاً بولايتك.',
+                    r: '✦ التمسك بحبل الله'
+                },
+                '34': {
+                    w: 'صَرْعَةِ رِدَائِي',
+                    m: '<b>المعنى:</b> وأقلني من صرعة ردائي — أي من سقطتي وزلتي التي أوقعتني في المعاصي. فإنك سيّدي ومولاي ومعتمدي ورجائي، وأنت غاية مطلوبي.',
+                    r: '✦ طلب العفو من الله'
+                },
+                '35': {
+                    w: 'مُنْقَلَبِي وَمَثْوَايَ',
+                    m: '<b>منقلبي:</b> مرجعي ومآلي.<br><b>مثواي:</b> مقرّي ومستقرّي.<br><br><b>المعنى:</b> وإنك غاية مطلوبي، ومنايَ في منقلبي (مرجعي يوم القيامة) ومثوايَ (مقرّي الأخير). فأنت وحدك ملاذي ومصيري.',
+                    r: '✦ الله غاية كل مطلوب'
+                },
+                '36': {
+                    w: 'وَرَدَ إِلَى حِيَاضِكَ',
+                    m: '<b>المعنى:</b> أم كيف تردّ ظمآناً ورد إلى حياضك (أحواضك) شارِباً؟! فكلاّ، لا تردّ من أتى إليك طالباً. وحياضك مترعة (مليئة) حتى في ضنك المحول (في زمن الشدة والقحط).',
+                    r: '✦ الله لا يردّ سائلاً'
+                },
+                '37': {
+                    w: 'حِيَاضُكَ',
+                    m: '<b>حياضك:</b> جمع حوض، وهو مكان الشرب والمورد.<br><br><b>المعنى:</b> كلاّ، وحياضك مترعة (مليئة بالماء والرحمة) حتى في ضنك المحول (زمن الشدة والقحط). وبابك مفتوح للطلب والوُغول (للدخول والولوج).',
+                    r: '✦ كرم الله وسعة رحمته'
+                },
+                '38': {
+                    w: 'ضَنْكِ الْمُحُولِ',
+                    m: '<b>الضنك:</b> الشدة والضيق.<br><b>المحول:</b> القحط والجدب، وتحوّل الحال إلى الأسوأ.<br><br><b>المعنى:</b> وحياضك مترعة حتى في ضنك المحول — أي في أشدّ الأوقات صعوبة وقحطاً. فرحمتك لا تنقطع حتى في أحلك الظروف.',
+                    r: '✦ رحمة الله لا تنقطع'
+                },
+                '39': {
+                    w: 'وَالْوُغُولِ',
+                    m: '<b>الوُغول:</b> الدخول والولوج.<br><br><b>المعنى:</b> وبابك مفتوح للطلب والوُغول — أي للدخول والولوج إلى رحمتك. لا يحتاج الداخل إليك إلاّ أن يقصدك بصدق.',
+                    r: '✦ باب الله مفتوح'
+                },
+                '40': {
+                    w: 'أَزِمَّةُ نَفْسِي عَقَلْتُهَا',
+                    m: '<b>أزِمَّة:</b> جمع زمام (مقود).<br><b>عقلتها:</b> ربطتها وجمعتها.<br><br><b>المعنى:</b> يا إلهي! هذه أزِمَّة نفسي (مقائد نفسي وشهواتي) قد عقلتها (ربطتها) بعقال مشيئتك. وأعباء ذنوبي درأتها (دفعتها) بعفوك ورحمتك.',
+                    r: '✦ تسليم الأمر لله'
+                },
+                '41': {
+                    w: 'دَرَأْتُهَا',
+                    m: '<b>درأتها:</b> دفعتها ومنعتها وصدَدتها.<br><br><b>المعنى:</b> وهذه أعباء ذنوبي درأتها بعفوك ورحمتك — أي دفعتُ أوزار ذنوبي بتوسلي بعفوك ورحمتك الواسعة.',
+                    r: '✦ العفو الإلهي يدرأ الذنوب'
+                },
+                '42': {
+                    w: 'جَنَابِ لُطْفِكَ وَرَأْفَتِكَ',
+                    m: '<b>المعنى:</b> وهذه أهوائي المضللة وكلتُها إلى جناب لطفك ورأفتك — أي فوّضتُ أهوائي وشهواتي المضلّة إلى ساحة لطفك ورحمتك، فأصلحها بحلمك وكرمك.',
+                    r: '✦ التوكل على لطف الله'
+                },
+                '43': {
+                    w: 'جُنَّةً',
+                    m: '<b>جنّة:</b> وقاية وحماية وستر.<br><br><b>المعنى:</b> فاجعل اللهم صباحي هذا نازلاً عليّ بضياء الهدى وبسلامة في الدين والدنيا، ومسائي جنّة (وقاية وحماية) من كيد العدى ووقاية من مهلكات الهوى.',
+                    r: '✦ طلب الحماية من الله'
+                },
+                '44': {
+                    w: 'مِنْ مُرْدِيَاتِ الْهَوَى',
+                    m: '<b>مُرديات الهوى:</b> المهلكات التي توقعها الشهوات والأهواء.<br><br><b>المعنى:</b> ومسائي وقاية من مُرديات الهوى — أي من كل ما يهلك الإنسان بسبب اتباع هواه وشهواته.',
+                    r: '✦ الهوى مهلكة'
+                },
+                '45': {
+                    w: 'تُولِجُ اللَّيْلَ فِي النَّهَارِ',
+                    m: '<b>المعنى:</b> إنّك قادر على ما تشاء، تؤتي الملك من تشاء وتنزع الملك ممّن تشاء، وتعزّ من تشاء وتُذلّ من تشاء. بيدك الخير إنّك على كلّ شيء قدير. تُولج الليل في النهار وتُولج النهار في الليل — أي تُدخل الليل في النهار والنهار في الليل، فلا شيء يعجزك.',
+                    r: '✦ ﴿تُولِجُ اللَّيْلَ فِي النَّهَارِ وَتُولِجُ النَّهَارَ فِي اللَّيْلِ﴾ آل عمران/27'
+                },
+                '46': {
+                    w: 'بِغَيْرِ حِسَابٍ',
+                    m: '<b>المعنى:</b> وترزق من تشاء بغير حساب — أي ترزق من تشاء بغير تقدير محدد ولا حدود. فإنّ رزقك واسع لا يُحصى وكرَمك لا يُحدّ.',
+                    r: '✦ ﴿وَتَرْزُقُ مَن تَشَاءُ بِغَيْرِ حِسَابٍ﴾ البقرة/212'
+                },
+                '47': {
+                    w: 'دَيَاجِيَ الْغَسَقِ',
+                    m: '<b>دياجي:</b> جمع ديج، وهي الظلمة الشديدة.<br><b>الغسق:</b> ظلمة أول الليل عند الغروب.<br><br><b>المعنى:</b> وأنرتَ بكرمك دياجي الغسق — أي أضاءت بكرمك ظلمات أول الليل الشديدة.',
+                    r: '✦ إنارة الله للظلمات'
+                },
+                '48': {
+                    w: 'الصُّمِّ الصَّيَاخِيدِ',
+                    m: '<b>الصمّ:</b> الصلاب التي لا مسامّ لها.<br><b>الصياخيد:</b> جمع صيهود، وهي الصخور العظام الصلبة.<br><br><b>المعنى:</b> وأنهرتَ المياه من الصمّ الصياخيد عذباً وأُجاجاً — أي فجّرت المياه من الصخور الصلبة التي لا مسامّ لها، عذبة حلوة ومالحة.',
+                    r: '✦ ﴿وَأَنْزَلْنَا مِنَ السَّمَاءِ مَاءً بِقَدَرٍ فَأَسْكَنَّاهُ فِي الْأَرْضِ﴾ المؤمنون/18'
+                },
+                '49': {
+                    w: 'الْمُعْصِرَاتِ',
+                    m: '<b>المعصرات:</b> السحب الحاملة للمطر التي تعصر ما فيها من ماء.<br><br><b>المعنى:</b> وأنزلتَ من المعصرات ماءً ثجّاجاً — أي متدفقاً بغزارة.',
+                    r: '✦ ﴿وَأَنزَلْنَا مِنَ الْمُعْصِرَاتِ مَاءً ثَجَّاجاً﴾ النبأ/14'
+                },
+                '50': {
+                    w: 'ثَجَّاجاً',
+                    m: '<b>ثجّاجاً:</b> متدفقاً بغزارة، كثير التدفق.<br><br><b>المعنى:</b> وأنزلتَ من المعصرات (السحب) ماءً ثجّاجاً — أي متدفقاً بغزارة، يروي الأرض ويحييها بعد موتها.',
+                    r: '✦ ﴿مَاءً ثَجَّاجاً﴾ النبأ/14'
+                },
+                '51': {
+                    w: 'لُغُوباً وَلا عِلاجاً',
+                    m: '<b>لغوباً:</b> تعباً وإعياءً.<br><b>علاجاً:</b> كُلفةً ومشقّة.<br><br><b>المعنى:</b> من غير أن تمارس فيما ابتدأتَه لغوباً ولا علاجاً — أي من غير أن يصيبك تعب أو مشقّة فيما خلقتَه وابتدأتَه. فخلقك سبحانه بلا تعب ولا كلفة.',
+                    r: '✦ ﴿وَمَا مَسَّنَا مِن لُّغُوبٍ﴾ ق/38'
+                },
+                '52': {
+                    w: 'تَوَحَّدَ بِالْعِزِّ وَالْبَقَاءِ',
+                    m: '<b>المعنى:</b> فيا مَن توحّد بالعزّ والبقاء — أي انفرد بالعزّة والخلود، لا شريك له. وقهر عباده بالموت والفناء — أي جعل عباده كلهم تحت سلطة الموت والفناء، وهو وحده الباقي.',
+                    r: '✦ الله الواحد القهّار'
+                },
+                '53': {
+                    w: 'مِنْ سَنِيِّ مَوَاهِبِكَ',
+                    m: '<b>سنّي:</b> سامٍ رفيع.<br><b>مواهبك:</b> عطاياك وهباتك.<br><br><b>المعنى:</b> بك أنزلت حاجتي فلا تردّني من سنّي مواهبك خائباً — أي يا كريم، بك طلبتُ حاجتي فلا تردّني من عطاياك السامية الرفيعة خائباً.',
+                    r: '✦ طلب العطاء من الله'
+                },
+                '54': {
+                    w: 'قَلْبِي مَحْجُوبٌ',
+                    m: '<b>المحجوب:</b> الممنوع عن الرؤية والمعرفة.<br><br><b>المعنى:</b> يا إلهي! قلبي محجوب (عن معرفتك ورؤية جمالك)، ونفسي معيوب، وعقلي مغلوب، وهوائي غالب، وطاعتي قليل ومعصيتي كثير، ولساني مقرّ بالذنوب.',
+                    r: ' اعتراف بالعجز أمام الله'
+                },
+                '54b': {
+                    w: 'نَفْسِي مَعْيُوبٌ',
+                    m: '<b>المعنى:</b> ونفسي معيوب — أي مليئة بالعيوب والنقائص. وعقلي مغلوب على أمره، وهوائي (شهوتي) غالب عليّ، وطاعتي قليل ومعصيتي كثير، ولساني مقرّ بالذنوب.',
+                    r: '✦ اعتراف بالذنب والضعف'
+                },
+                '55': {
+                    w: 'يَا سَتَّارَ الْعُيُوبِ',
+                    m: '<b>ستّار العيوب:</b> يا مَن يستر العيوب ولا يفضح.<br><br><b>المعنى:</b> فكيف حيلتي يا ستّار العيوب؟ فقلبي محجوب ونفسي معيوب وعقلي مغلوب، فمن الذي ينقذني غيرك يا مَن يستر العيوب؟',
+                    r: '✦ «يا ستّار العيوب يا أرحم الراحمين»'
+                },
+                '56': {
+                    w: 'يَا عَلَّامَ الْغُيُوبِ',
+                    m: '<b>علّام الغيوب:</b> يا مَن يعلم كلّ شيء خفي.<br><br><b>المعنى:</b> فكيف حيلتي يا علّام الغيوب؟ فأنت وحدك تعلم ما في قلبي من عيوب وذنوب، وأنت وحدك القادر على إصلاحها.',
+                    r: '✦ ﴿عَالِمُ الْغَيْبِ وَالشَّهَادَةِ﴾ التوبة/94'
+                },
+                '57': {
+                    w: 'يَا كَاشِفَ الْكُرُوبِ',
+                    m: '<b>كاشف الكروب:</b> يا مَن يكشف الشدائد والمصائب.<br><br><b>المعنى:</b> فكيف حيلتي يا كاشف الكروب؟ فقلبي محجوب ونفسي معيوب وعقلي مغلوب، ولا يكشف كربي غيرك. اغفر ذنوبي كلّها بحرمة محمد وآل محمد، يا غفّار يا غفّار يا غفّار، برحمتك يا أرحم الراحمين.',
+                    r: '✦ دعاء كشف الكربة'
+                }
             };
 
             /* ===== HARAKAT TOGGLE ===== */
@@ -885,13 +1051,9 @@
             var allDuaTexts = document.querySelectorAll('.dua-text');
             var originalHTMLs = [];
 
-            allDuaTexts.forEach(function(el) {
-                originalHTMLs.push(el.innerHTML);
-            });
+            allDuaTexts.forEach(function(el) { originalHTMLs.push(el.innerHTML); });
 
-            function stripHarakat(text) {
-                return text.replace(/[\u064B-\u065F\u0670]/g, '');
-            }
+            function stripHarakat(text) { return text.replace(/[\u064B-\u065F\u0670]/g, ''); }
 
             harakatToggle.addEventListener('click', function() {
                 harakatVisible = !harakatVisible;
@@ -901,11 +1063,7 @@
                 allDuaTexts.forEach(function(el, i) {
                     if (!harakatVisible) {
                         var raw = el.getAttribute('data-raw');
-                        if (raw) {
-                            el.innerHTML = stripHarakat(raw);
-                        } else {
-                            el.innerHTML = stripHarakat(el.innerHTML);
-                        }
+                        el.innerHTML = raw ? stripHarakat(raw) : stripHarakat(el.innerHTML);
                     } else {
                         el.innerHTML = originalHTMLs[i];
                     }
@@ -923,25 +1081,15 @@
 
             function copyText(text) {
                 if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(text).then(function() {
-                        showToast('تم النسخ بنجاح ✓');
-                    }).catch(function() {
-                        fallbackCopy(text);
-                    });
-                } else {
-                    fallbackCopy(text);
-                }
+                    navigator.clipboard.writeText(text).then(function() { showToast('تم النسخ بنجاح ✓'); }).catch(function() { fallbackCopy(text); });
+                } else { fallbackCopy(text); }
             }
 
             function fallbackCopy(text) {
                 var ta = document.createElement('textarea');
-                ta.value = text;
-                ta.style.position = 'fixed';
-                ta.style.left = '-9999px';
-                document.body.appendChild(ta);
-                ta.select();
-                try { document.execCommand('copy'); showToast('تم النسخ بنجاح ✓'); }
-                catch(e) { showToast('فشل النسخ'); }
+                ta.value = text; ta.style.position = 'fixed'; ta.style.left = '-9999px';
+                document.body.appendChild(ta); ta.select();
+                try { document.execCommand('copy'); showToast('تم النسخ بنجاح ✓'); } catch(e) { showToast('فشل النسخ'); }
                 document.body.removeChild(ta);
             }
 
@@ -950,10 +1098,7 @@
                     e.stopPropagation();
                     var card = this.closest('.dua-card');
                     var textEl = card.querySelector('.dua-text');
-                    var rawText = textEl.getAttribute('data-raw');
-                    if (!rawText) {
-                        rawText = textEl.textContent.trim();
-                    }
+                    var rawText = textEl.getAttribute('data-raw') || textEl.textContent.trim();
                     copyText(rawText);
                     this.classList.add('copied');
                     var self = this;
@@ -976,8 +1121,7 @@
             document.getElementById('tooltipCopyBtn').addEventListener('click', function() {
                 var word = document.getElementById('tooltipWord').textContent;
                 var meaning = document.getElementById('tooltipMeaning').textContent;
-                var fullText = word + '\n' + meaning;
-                copyText(fullText);
+                copyText(word + '\n' + meaning);
                 this.classList.add('copied');
                 var self = this;
                 setTimeout(function() { self.classList.remove('copied'); }, 1500);
@@ -993,8 +1137,7 @@
 
             document.querySelectorAll('.tooltip-trigger').forEach(function(trigger) {
                 trigger.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
+                    e.preventDefault(); e.stopPropagation();
 
                     var ripple = document.createElement('span');
                     ripple.className = 'ripple';
@@ -1019,7 +1162,7 @@
 
                     requestAnimationFrame(function() {
                         var tRect = trigger.getBoundingClientRect();
-                        var popupW = Math.min(400, window.innerWidth * 0.92);
+                        var popupW = Math.min(420, window.innerWidth * 0.92);
                         var left = tRect.left + (tRect.width / 2) - (popupW / 2);
                         var top = tRect.bottom + 12;
 
@@ -1033,7 +1176,6 @@
                         tooltipPopup.classList.add('visible');
 
                         var popupH = tooltipPopup.offsetHeight;
-
                         if (top + popupH > window.innerHeight - 20) {
                             top = tRect.top - popupH - 12;
                             if (top < 10) top = 10;
@@ -1042,7 +1184,6 @@
                         tooltipPopup.style.top = top + 'px';
                         tooltipPopup.style.visibility = '';
                         tooltipPopup.style.pointerEvents = '';
-
                         overlay.classList.add('visible');
                     });
                 });
@@ -1076,106 +1217,63 @@
             var isLooping = false;
 
             playBtn.addEventListener('click', function() {
-                if (audio.paused) {
-                    audio.play().catch(function() {});
-                } else {
-                    audio.pause();
-                }
+                if (audio.paused) { audio.play().catch(function() {}); } else { audio.pause(); }
             });
 
             audio.addEventListener('play', function() { playBtn.classList.add('playing'); });
             audio.addEventListener('pause', function() { playBtn.classList.remove('playing'); });
-
             audio.addEventListener('timeupdate', function() {
                 if (audio.duration) {
-                    var pct = (audio.currentTime / audio.duration) * 100;
-                    progressBar.style.width = pct + '%';
+                    progressBar.style.width = (audio.currentTime / audio.duration) * 100 + '%';
                     currentTimeEl.textContent = formatTime(audio.currentTime);
                 }
             });
-
-            audio.addEventListener('loadedmetadata', function() {
-                totalTimeEl.textContent = formatTime(audio.duration);
-            });
-
+            audio.addEventListener('loadedmetadata', function() { totalTimeEl.textContent = formatTime(audio.duration); });
             audio.addEventListener('ended', function() {
-                if (isLooping) {
-                    audio.currentTime = 0;
-                    audio.play();
-                } else {
-                    playBtn.classList.remove('playing');
-                    progressBar.style.width = '0%';
-                    currentTimeEl.textContent = '0:00';
-                }
+                if (isLooping) { audio.currentTime = 0; audio.play(); }
+                else { playBtn.classList.remove('playing'); progressBar.style.width = '0%'; currentTimeEl.textContent = '0:00'; }
             });
 
             progressWrapper.addEventListener('click', function(e) {
                 if (audio.duration) {
                     var rect = this.getBoundingClientRect();
-                    var clickX = e.clientX - rect.left;
-                    var pct = 1 - (clickX / rect.width);
+                    var pct = 1 - ((e.clientX - rect.left) / rect.width);
                     audio.currentTime = pct * audio.duration;
                 }
             });
 
-            volumeSlider.addEventListener('input', function() {
-                audio.volume = parseFloat(this.value);
-                updateVolIcon();
-            });
-
+            volumeSlider.addEventListener('input', function() { audio.volume = parseFloat(this.value); updateVolIcon(); });
             volIcon.addEventListener('click', function() {
-                if (audio.volume > 0) {
-                    audio.volume = 0;
-                    volumeSlider.value = 0;
-                } else {
-                    audio.volume = 0.8;
-                    volumeSlider.value = 0.8;
-                }
+                if (audio.volume > 0) { audio.volume = 0; volumeSlider.value = 0; }
+                else { audio.volume = 0.8; volumeSlider.value = 0.8; }
                 updateVolIcon();
             });
 
             function updateVolIcon() {
-                if (audio.volume === 0) {
-                    volIcon.innerHTML = '<path d="M16.5 12A4.5 4.5 0 0 0 14 8.5v2.09l2.41 2.41c.06-.31.09-.63.09-.97zM19 12c0 .82-.15 1.61-.41 2.34l1.53 1.53c.56-1.17.88-2.48.88-3.87 0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
-                } else if (audio.volume < 0.5) {
-                    volIcon.innerHTML = '<path d="M18.5 12A4.5 4.5 0 0 0 16 8.5v7a4.47 4.47 0 0 0 2.5-3.5zM3 9v6h4l5 5V4L7 9H3z"/>';
-                } else {
-                    volIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8.5v7a4.47 4.47 0 0 0 2.5-3.5zM14 3.23v2.06a6.51 6.51 0 0 1 0 13.42v2.06A8.51 8.51 0 0 0 14 3.23z"/>';
-                }
+                if (audio.volume === 0) volIcon.innerHTML = '<path d="M16.5 12A4.5 4.5 0 0 0 14 8.5v2.09l2.41 2.41c.06-.31.09-.63.09-.97zM19 12c0 .82-.15 1.61-.41 2.34l1.53 1.53c.56-1.17.88-2.48.88-3.87 0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
+                else if (audio.volume < 0.5) volIcon.innerHTML = '<path d="M18.5 12A4.5 4.5 0 0 0 16 8.5v7a4.47 4.47 0 0 0 2.5-3.5zM3 9v6h4l5 5V4L7 9H3z"/>';
+                else volIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8.5v7a4.47 4.47 0 0 0 2.5-3.5zM14 3.23v2.06a6.51 6.51 0 0 1 0 13.42v2.06A8.51 8.51 0 0 0 14 3.23z"/>';
             }
 
-            loopBtn.addEventListener('click', function() {
-                isLooping = !isLooping;
-                this.classList.toggle('active', isLooping);
-            });
-
+            loopBtn.addEventListener('click', function() { isLooping = !isLooping; this.classList.toggle('active', isLooping); });
             speedBtn.addEventListener('click', function() {
                 speedIdx = (speedIdx + 1) % speeds.length;
                 audio.playbackRate = speeds[speedIdx];
                 this.textContent = speeds[speedIdx] + 'x';
             });
-
-            shuffleBtn.addEventListener('click', function() {
-                this.classList.toggle('active');
-            });
-
+            shuffleBtn.addEventListener('click', function() { this.classList.toggle('active'); });
             audio.volume = 0.8;
 
-            function formatTime(seconds) {
-                if (isNaN(seconds)) return '0:00';
-                var mins = Math.floor(seconds / 60);
-                var secs = Math.floor(seconds % 60);
-                return mins + ':' + (secs < 10 ? '0' : '') + secs;
+            function formatTime(s) {
+                if (isNaN(s)) return '0:00';
+                var m = Math.floor(s / 60), sec = Math.floor(s % 60);
+                return m + ':' + (sec < 10 ? '0' : '') + sec;
             }
 
             /* ===== SCROLL TO TOP ===== */
             var scrollTopBtn = document.getElementById('scrollTop');
-            window.addEventListener('scroll', function() {
-                scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
-            }, { passive: true });
-            scrollTopBtn.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
+            window.addEventListener('scroll', function() { scrollTopBtn.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
+            scrollTopBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
             /* ===== LAZY ANIMATION ===== */
             if ('IntersectionObserver' in window) {
