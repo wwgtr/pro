@@ -199,9 +199,22 @@
         }
 
         /* ===== HEADER ===== */
-        .header { text-align: center; padding: 40px 20px 30px; }
+        .header { text-align: center; padding: 30px 20px 24px; }
 
-        .header-icon { width: 60px; height: 60px; margin: 0 auto 16px; fill: var(--gold); opacity: 0.85; }
+        .header-logo {
+            width: clamp(180px, 50vw, 320px);
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 12px;
+            filter: drop-shadow(0 4px 20px rgba(212, 168, 67, 0.15));
+            transition: var(--transition);
+        }
+
+        .header-logo:hover {
+            filter: drop-shadow(0 6px 28px rgba(212, 168, 67, 0.3));
+            transform: scale(1.03);
+        }
 
         .header h1 { font-size: 32px; color: var(--gold); font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
         .header p { font-size: 15px; color: var(--text-secondary); }
@@ -288,7 +301,6 @@
             border-bottom-color: var(--purple-glow);
         }
 
-        /* Ripple effect */
         .tooltip-trigger .ripple {
             position: absolute; border-radius: 50%;
             background: rgba(201, 160, 220, 0.25);
@@ -317,7 +329,6 @@
         }
 
         .tooltip-popup.visible { pointer-events: auto; opacity: 1; transform: scale(1) translateY(0); }
-        .tooltip-popup.hidden { opacity: 0; transform: scale(0.85) translateY(15px); }
 
         .tooltip-popup .tooltip-word {
             color: var(--gold); font-size: 20px; font-weight: 700;
@@ -443,21 +454,16 @@
         <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
             <defs>
                 <pattern id="islamicPattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-                    <!-- 8-pointed star -->
                     <polygon points="100,10 115,50 155,35 135,70 175,85 140,100 175,115 135,130 155,165 115,150 100,190 85,150 45,165 65,130 25,115 60,100 25,85 65,70 45,35 85,50" fill="none" stroke="#d4a843" stroke-width="0.8"/>
-                    <!-- Inner circle -->
                     <circle cx="100" cy="100" r="35" fill="none" stroke="#d4a843" stroke-width="0.5"/>
-                    <!-- Connecting lines -->
                     <line x1="100" y1="10" x2="100" y2="65" stroke="#d4a843" stroke-width="0.3"/>
                     <line x1="100" y1="135" x2="100" y2="190" stroke="#d4a843" stroke-width="0.3"/>
                     <line x1="10" y1="100" x2="65" y2="100" stroke="#d4a843" stroke-width="0.3"/>
                     <line x1="135" y1="100" x2="190" y2="100" stroke="#d4a843" stroke-width="0.3"/>
-                    <!-- Diagonal connections -->
                     <line x1="25" y1="25" x2="65" y2="65" stroke="#d4a843" stroke-width="0.3"/>
                     <line x1="135" y1="65" x2="175" y2="25" stroke="#d4a843" stroke-width="0.3"/>
                     <line x1="175" y1="175" x2="135" y2="135" stroke="#d4a843" stroke-width="0.3"/>
                     <line x1="65" y1="135" x2="25" y2="175" stroke="#d4a843" stroke-width="0.3"/>
-                    <!-- Corner squares -->
                     <rect x="85" y="85" width="30" height="30" fill="none" stroke="#d4a843" stroke-width="0.4" transform="rotate(45, 100, 100)"/>
                 </pattern>
                 <pattern id="hexPattern" x="0" y="0" width="120" height="208" patternUnits="userSpaceOnUse">
@@ -468,7 +474,6 @@
             </defs>
             <rect width="1200" height="800" fill="url(#islamicPattern)"/>
             <rect x="600" y="0" width="600" height="800" fill="url(#hexPattern)" opacity="0.5"/>
-            <!-- Large central star -->
             <g transform="translate(600,400) scale(1.5)">
                 <polygon points="0,-80 12,-30 60,-40 30,-5 65,20 25,15 20,65 0,30 -20,65 -25,15 -65,20 -30,-5 -60,-40 -12,-30" fill="none" stroke="#d4a843" stroke-width="0.6"/>
                 <circle cx="0" cy="0" r="25" fill="none" stroke="#d4a843" stroke-width="0.4"/>
@@ -537,12 +542,9 @@
 
     <div class="container">
 
-        <!-- HEADER -->
+        <!-- HEADER WITH LOGO -->
         <header class="header">
-            <svg class="header-icon" viewBox="0 0 64 64">
-                <path d="M32 4C22.06 4 14 12.06 14 22c0 6.5 3.5 12.2 8.7 15.3-.4 1.5-.7 3-.7 4.7 0 8.3 6.7 15 15 15s15-6.7 15-15c0-1.7-.3-3.2-.7-4.7C56.5 34.2 60 28.5 60 22 60 12.06 51.94 4 32 4zm0 4c7.73 0 14 6.27 14 14 0 5.5-3.2 10.3-7.8 12.6-.7.3-1.1 1-1.1 1.8.1 1.4.2 2.8.2 4.2 0 5.5-4.5 10-10 10s-10-4.5-10-10c0-1.4.1-2.8.2-4.2 0-.8-.4-1.5-1.1-1.8C17.8 36.3 14.6 31.5 14.6 26c0-7.73 6.27-14 14-14h3.4z" fill="var(--gold)" opacity="0.9"/>
-                <circle cx="32" cy="24" r="6" fill="var(--gold)" opacity="0.6"/>
-            </svg>
+            <img class="header-logo" src="logo.png" alt="دعاء الصباح" />
             <h1>دعاء الصباح</h1>
             <p>بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</p>
         </header>
@@ -833,10 +835,10 @@
                 '12': { w: 'اللَّيْلِ الأَلْيَلِ', m: 'الليل المظلم شديد الظلمة — رمز لعصر الغيبة حيث يشتدّ الظلام. لكنّ المؤمن ينتظر كما انتظر أصحاب الأئمة (ع) ظهور نور المهدي (عج) الذي يُخرج الدنيا من ظلامها.', r: '✦ في أعظم الظلمات يُنتظر أعظم النور' },
                 '13': { w: 'بِحَبْلِ الشَّرَفِ الأَطْوَلِ', m: 'أعلى أسباب الشرف والرفعة هو التمسّك بولاية أهل البيت (ع). قال الإمام الصادق (ع): «ولايتنا أهل البيت خير للناس من مطر أربعين صباحاً». هذا الحبل هو الذي ينجّيك من الغرق.', r: '✦ وَاعْتَصِمُوا بِحَبْلِ اللهِ جَمِيعًا وَلا تَفَرَّقُوا' },
                 '14': { w: 'فِي ذِرْوَةِ الْكَاهِلِ الأَعْبَلِ', m: 'في قمة النسب الشريف والأصل الكريم. النبي (ص) وآله الطاهرون هم أشرف الخلق نسباً وأرفعهم مقاماً. فخرُ الوجود كلّه هو محمد وآل محمد (صلّى الله عليهم أجمعين).', r: '✦ إنَّ اللهَ اصْطَفَى آدَمَ وَنُوحاً وَآلَ إِبْرَاهِيمَ وَآلَ عِمْرَانَ' },
-                '15': { w: 'زَحَالِيفِهَا', m: 'مزالق الدهر وانزلاقاته — لكنّ قدم الإمام علي (ع) ثبتت على الصراط المستقيم رغم كل المحن: يوم الغار، ويوم بدر، ويوم خيبر، ويوم الغدير، ويوم محرابه وهو في سجوده.', r: '✦ «أنا مدينة العلم وعليٌّ بابها»' },
+                '15': { w: 'زَحَالِيفِهَا', m: 'مزالق الدهر وانزلاقاته — لكنّ قدم الإمام علي (ع) ثبتت على الصراط المستقيم رغم كل المحن: يوم الغار، ويوم بدر، ويوم خيبر، ويوم الغدير، ويوم محرابه وهو في سجوده.', r: ' «أنا مدينة العلم وعليٌّ بابها»' },
                 '16': { w: 'مَصَارِيعَ الصَّبَاحِ', m: 'أبواب الصباح — كل فجرٍ جديد هو فرصة جديدة للتوبة والتقرّب إلى الله. وكلّ صباحٍ في عصر الغيبة هو وعدٌ بأنّ فجر الظهور آتٍ. «فأصبح صبحك يا مهديّنا».', r: '✦ «اللهم عجّل لوليك الفرج» — دعاء كل صباح' },
                 '17': { w: 'خِلَعِ الْهِدَايَةِ', m: 'أوسمة وألبسة الهداية — خلعة الولاية التي يُلْبِسها الله أولياءه. حين تتشبّع بحبّ أهل البيت (ع) كأنّ الله قد ألبسك أفخر حلّة من الإيمان.', r: '✦ ولاية أهل البيت (ع) هي أعظم خلعة' },
-                '18': { w: 'شِرْبِ جَنَانِي', m: 'ريّ قلبي ونفسي. ويا ليت قلبي يرتوي من نبع كربلاء — من عطش الحسين (ع) الذي سقانا بدمائه الطاهرة. كل قطرة دماءٍ من أهل البيت هي ينبوع حياةٍ لقلوبنا.', r: '✦ «يا ليلتي على الظلماء إذ ظلموا الحسين»' },
+                '18': { w: 'شِرْبِ جَنَانِي', m: 'ريّ قلبي ونفسي. ويا ليت قلبي يرتوي من نبع كربلاء — من عطش الحسين (ع) الذي سقانا بدمائه الطاهرة. كل قطرة دماءٍ من أهل البيت هي ينبوع حياةٍ لقلوبنا.', r: ' «يا ليلتي على الظلماء إذ ظلموا الحسين»' },
                 '19': { w: 'يَنَابِيعَ الْخُشُوعِ', m: 'ينابيع الخشوع في القلب — وأغزر هذه الينابيع هو البكاء على مصائب أهل البيت (ع). قال الإمام الصادق (ع): «مَن ذكرنا أو ذُكرنا فخرج من عينه مثل جناح الذباب غفر الله له».', r: '✦ دموع الخشوع على مصائب أهل البيت (ع)' },
                 '20': { w: 'زَفَراتِ الدُّمُوعِ', m: 'زفرات البكاء من شدة الوجد — كما بكت زينب (ع) على أخيها الحسين حتى خارت قواها، وكما بكى السجّاد (ع) أربعين سنة على مصاب كربلاء. الدموع الشيعية أرقى أنواع العبادة.', r: '✦ «فإنّ الدموع على الحسين تُحطّ الذنوب»' },
                 '21': { w: 'نَزَقَ الْخُرْقِ', m: 'طيشي وجهلي وضعف بصيرتي — يا من أدّبني كما أدّب الإمام الصادق (ع) أصحابه بالرفق والحكمة. اللهم أدّب نفسي بعلم آل محمد، لا بعلم غيرهم.', r: '✦ التواضع أمام علم أهل البيت (ع)' },
@@ -848,7 +850,7 @@
                 '27': { w: 'النَّصَبُ وَالْحِرْمَانُ', m: 'التعب الشديد والحرمان — وهذا ما لاقته فاطمة الزهراء (ع) بعد رسول الله: نصَبُ الجراح، وحرمانُ الإرث، وبكاءُ اليتيمتين. لكنها اختارت الرضا.', r: '✦ «فاطمة بضعة مني» — رسول الله (ص)' },
                 '28': { w: 'عَنْ دَارِ الْوِصَالِ', m: 'عن دار القرب والاتصال بالله — والوصول الحقيقي هو زيارة أهل البيت (ع). زيارة الحسين (ع) توازي حجة مع رسول الله (ص) كما في الروايات.', r: '✦ «زيارة الحسين تعدل حجة وعمرة»' },
                 '29': { w: 'امْتَطَتْ نَفْسِي', m: 'ركبت نفسي هواها كمن يركب دابّة — والنفس الأمّارة بالسوء كما حذّر منها الأئمة (ع). الإمام زين العابدين (ع) كان يدعو: «إلهي، نفسي التي ظلمتُها».', r: '✦ دعاء الإمام السجّاد (ع) في الصحيفة السجّادية' },
-                '30': { w: 'لِمَا سَوَّلَتْ لَهَا ظُنُونُها وَمُنَاهَا', m: 'ما زيّنت لها أوهامها وأمانيها الكاذبة — كما زيّنت الدنيا نفسها لابن زياد وعمر بن سعد فقتلوا الحسين. لكنّ الحسين اختار الآخرة.', r: '✦ خطبة الحسين (ع) يوم عاشوراء' },
+                '30': { w: 'لِمَا سَوَّلَتْ لَهَا ظُنُونُها وَمُنَاهَا', m: 'ما زيّنت لها أوهامها وأمانيها الكاذبة — كما زيّنت الدنيا نفسها لابن زياد وعمر بن سعد فقتلوا الحسين. لكنّ الحسين اختار الآخرة.', r: ' خطبة الحسين (ع) يوم عاشوراء' },
                 '31': { w: 'قَرَعْتُ بَابَ رَحْمَتِكَ', m: 'طرقت باب رحمتك متوسّلاً — والتوسّل بأهل البيت (ع) هو أقرع الأبواب. قال الصادق (ع): «إنّ لله عباداً يتوسّلون بنا أهل البيت».', r: '✦ «وجعلناهم أئمة يهدون بأمرنا»' },
                 '32': { w: 'أَنَامِلَ وَلائِي', m: 'أنامل تعلّقي وولائي — كأنّي أمسك بأهداب آل محمد بأطراف أصابعي ولا أتركها. هذا هو الولاء الذي كان عند حبيب بن مظاهر الذي استُشهد دفاعاً عن الحسين.', r: '✦ الولاء لأهل البيت هو حبل النجاة' },
                 '33': { w: 'صَرْعَةِ رِدَائِي', m: 'سقطتي وزلتي — وكم من زلّةٍ أوقعت المؤمنين. لكنّ الله يقبل التوبة كما قبل توبة التوّابين. الحسين (ع) لم يكن يتبع غير الله.', r: '✦ «إنّ الله يحبّ التوابين»' },
@@ -863,7 +865,7 @@
                 '42': { w: 'مِنْ مُرْدِيَاتِ الْهَوَى', m: 'من المهلكات التي توقعها الشهوات — وأعظمها حبّ الدنيا كما حذّر الإمام علي (ع): «حبّ الدنيا رأس كل خطيئة».', r: '✦ «الدنيا سجن المؤمن وجنة الكافر» — رسول الله (ص)' },
                 '43': { w: 'تُولِجُ اللَّيْلَ فِي النَّهَارِ', m: 'تُدخل الليل في النهار والنهار في الليل — قدرة الله المطلقة. وهي نفسها القدرة التي ستُخرج المهدي (عج) من الغيبة فجأةً وبأمرٍ لا يُرد.', r: '✦ «أصلحه الله في ليلة» — دعاء العهد' },
                 '44': { w: 'بِغَيْرِ حِسَابٍ', m: 'بلا تقدير ولا حدود — كرم الله لا يُحصى، ورحمته بعباده المتوسّلين بأهل البيت أكبر من أن تُحسب. «يا من لا يحصى كرمه».', r: '✦ «ورزقنا من حيث لا يحتسبون»' },
-                '45': { w: 'دَيَاجِيَ الْغَسَقِ', m: 'ظلمات وقت الغروب والعتمة — وكذا ظلمة الغيبة التي نعيشها. لكنّ الله سيُنيرها بظهور المهدي (عج) كما ينير الليل بالصبح.', r: '✦ «وجعلنا منكم سراجاً منيراً»' },
+                '45': { w: 'دَيَاجِيَ الْغَسَقِ', m: 'ظلمات وقت الغروب والعتمة — وكذا ظلمة الغيبة التي نعيشها. لكنّ الله سيُنيرها بظهور المهدي (عج) كما ينير الليل بالصبح.', r: ' «وجعلنا منكم سراجاً منيراً»' },
                 '46': { w: 'الصُّمِّ الصَّيَاخِيدِ', m: 'الصخور الصلبة التي لا مسام لها — لكنّ الله يُخرج منها الماء. وكذا من قلب القاسي يُخرج الله المحبّة لأهل البيت.', r: '✦ إحياء القلوب القاسية بنور الولاية' },
                 '47': { w: 'الْمُعْصِرَاتِ', m: 'السحب الحاملة للمطر — التي تمطر رحمةً على الأرض. وكما تمطر السماء، تمطر سماء الولاية بركاتٍ على الشيعة.', r: '✦ «ومنا تُصبّ الرحمة»' },
                 '48': { w: 'ثَجَّاجاً', m: 'متدفقاً بغزارة — كدموع الزهراء (ع) على أبيها، وكدموع السجّاد على الحسين. هذه الدموع ثجّاج — تتدفق ببركةٍ من عند الله لا تنضب.', r: '✦ «وأنزلنا من المعصرات ماءً ثجاجاً»' },
@@ -883,7 +885,6 @@
             var allDuaTexts = document.querySelectorAll('.dua-text');
             var originalHTMLs = [];
 
-            // Store original HTML
             allDuaTexts.forEach(function(el) {
                 originalHTMLs.push(el.innerHTML);
             });
@@ -899,14 +900,12 @@
 
                 allDuaTexts.forEach(function(el, i) {
                     if (!harakatVisible) {
-                        // Remove harakat from the innerHTML but preserve spans
                         var raw = el.getAttribute('data-raw');
-                        var stripped = stripHarakat(raw);
-                        // We need to rebuild with spans
-                        var triggers = el.querySelectorAll('.tooltip-trigger');
-                        var goldSpans = el.querySelectorAll('.gold');
-                        // Simple approach: strip harakat from the entire innerHTML
-                        el.innerHTML = stripHarakat(el.innerHTML);
+                        if (raw) {
+                            el.innerHTML = stripHarakat(raw);
+                        } else {
+                            el.innerHTML = stripHarakat(el.innerHTML);
+                        }
                     } else {
                         el.innerHTML = originalHTMLs[i];
                     }
@@ -946,7 +945,6 @@
                 document.body.removeChild(ta);
             }
 
-            // Copy individual card
             document.querySelectorAll('.copy-card-btn').forEach(function(btn) {
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -963,7 +961,6 @@
                 });
             });
 
-            // Copy all dua
             document.getElementById('copyAllBtn').addEventListener('click', function() {
                 var allText = '';
                 document.querySelectorAll('.dua-text').forEach(function(el) {
@@ -976,7 +973,6 @@
                 setTimeout(function() { self.classList.remove('active'); }, 1500);
             });
 
-            // Copy tooltip
             document.getElementById('tooltipCopyBtn').addEventListener('click', function() {
                 var word = document.getElementById('tooltipWord').textContent;
                 var meaning = document.getElementById('tooltipMeaning').textContent;
@@ -1000,7 +996,6 @@
                     e.preventDefault();
                     e.stopPropagation();
 
-                    // Ripple effect
                     var ripple = document.createElement('span');
                     ripple.className = 'ripple';
                     var rect = this.getBoundingClientRect();
@@ -1011,7 +1006,6 @@
                     this.appendChild(ripple);
                     setTimeout(function() { ripple.remove(); }, 600);
 
-                    // Highlight
                     if (activeTrigger) activeTrigger.classList.remove('clicked');
                     this.classList.add('clicked');
                     activeTrigger = this;
@@ -1023,7 +1017,6 @@
                     tooltipWord.textContent = data.w;
                     tooltipMeaning.innerHTML = data.m + (data.r ? '<span class="ref">' + data.r + '</span>' : '');
 
-                    // Position
                     requestAnimationFrame(function() {
                         var tRect = trigger.getBoundingClientRect();
                         var popupW = Math.min(400, window.innerWidth * 0.92);
@@ -1033,7 +1026,6 @@
                         if (left < 8) left = 8;
                         if (left + popupW > window.innerWidth - 8) left = window.innerWidth - popupW - 8;
 
-                        // Temporarily show to get height
                         tooltipPopup.style.left = left + 'px';
                         tooltipPopup.style.top = top + 'px';
                         tooltipPopup.style.visibility = 'hidden';
@@ -1121,7 +1113,7 @@
                 if (audio.duration) {
                     var rect = this.getBoundingClientRect();
                     var clickX = e.clientX - rect.left;
-                    var pct = 1 - (clickX / rect.width); // RTL
+                    var pct = 1 - (clickX / rect.width);
                     audio.currentTime = pct * audio.duration;
                 }
             });
