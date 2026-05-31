@@ -5,31 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دعاء الصباح</title>
     <link href="https://cdn.jsdelivr.net/npm/fontsource-amiri@5.1.2/all.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fontsource-lateef@5.1.2/all.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fontsource-noto-naskh-arabic@5.1.2/all.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fontsource-cairo@5.1.2/all.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fontsource-tajawal@5.1.2/all.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fontsource-almarai@5.1.2/all.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fontsource-scheherazade-new@5.1.2/all.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fontsource-changa@5.1.2/all.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fontsource-el-messiri@5.1.2/all.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fontsource-rakkas@5.1.2/all.css" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #080808;
-            --bg-card: rgba(28, 28, 32, 0.7);
-            --bg-card-hover: rgba(42, 42, 48, 0.8);
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-card: rgba(26, 26, 30, 0.7);
+            --bg-card-hover: rgba(36, 36, 42, 0.8);
             --gold: #d4a843;
             --gold-dim: #b8922e;
             --gold-light: #e8c56d;
             --text-primary: #e8e8e8;
-            --text-secondary: #999999;
-            --text-dim: #555555;
-            --glass-border: rgba(255, 255, 255, 0.06);
+            --text-secondary: #a0a0a0;
+            --text-dim: #666666;
+            --glass-border: rgba(255, 255, 255, 0.07);
             --glass-border-hover: rgba(212, 168, 67, 0.3);
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            --radius: 20px;
-            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             --purple-glow: #c9a0dc;
             --purple-dim: #8a6ba8;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --radius: 20px;
+            --btn-radius: 980px;
+            --transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+            --font-family: 'Amiri', serif;
+            --accent: #d4a843;
+            --accent-dim: #b8922e;
+            --accent-light: #e8c56d;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Amiri', serif;
+            font-family: var(--font-family), serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
@@ -42,9 +57,7 @@
             position: fixed; inset: 0; z-index: -1; overflow: hidden;
         }
 
-        .islamic-bg svg {
-            position: absolute; width: 100%; height: 100%; opacity: 0.035;
-        }
+        .islamic-bg svg { position: absolute; width: 100%; height: 100%; opacity: 0.035; }
 
         .islamic-bg::after {
             content: ''; position: absolute; inset: 0;
@@ -53,133 +66,182 @@
 
         .container { max-width: 800px; margin: 0 auto; padding: 20px 16px 40px; position: relative; z-index: 1; }
 
+        /* ===== IOS-LIKE BUTTONS ===== */
+        .ios-btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            padding: 10px 20px;
+            border-radius: var(--btn-radius);
+            border: none;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            color: var(--text-primary);
+            font-family: var(--font-family); font-size: 15px; font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            -webkit-user-select: none; user-select: none;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: -0.2px;
+        }
+
+        .ios-btn::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: rgba(255,255,255,0.04);
+            border-radius: inherit;
+            transition: var(--transition);
+        }
+
+        .ios-btn:hover::before { background: rgba(255,255,255,0.08); }
+        .ios-btn:active { transform: scale(0.96); background: rgba(255,255,255,0.1); }
+
+        .ios-btn svg { width: 16px; height: 16px; fill: currentColor; position: relative; z-index: 1; }
+        .ios-btn span { position: relative; z-index: 1; }
+
+        .ios-btn-accent {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .ios-btn-accent::before { display: none; }
+        .ios-btn-accent:hover { filter: brightness(1.1); }
+        .ios-btn-accent:active { filter: brightness(0.9); }
+
+        .ios-btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--glass-border);
+            color: var(--text-secondary);
+        }
+
+        .ios-btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .ios-btn-outline:active {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .ios-btn.active {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
         /* ===== AUDIO PLAYER ===== */
         .audio-player-wrapper {
             position: sticky; top: 0; z-index: 100;
-            padding: 10px 16px;
-            background: rgba(8, 8, 8, 0.9);
+            padding: 8px 12px;
+            background: rgba(10, 10, 10, 0.85);
             backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
             border-bottom: 1px solid var(--glass-border);
-            transform: translateZ(0);
         }
 
         .audio-player {
             max-width: 800px; margin: 0 auto;
-            display: flex; align-items: center; gap: 12px;
-            padding: 12px 18px;
+            display: flex; align-items: center; gap: 10px;
+            padding: 8px 14px;
             background: var(--bg-card);
             backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--glass-border);
-            border-radius: 16px; box-shadow: var(--shadow);
+            border-radius: 14px;
         }
 
         .play-btn {
-            width: 48px; height: 48px; border-radius: 50%; border: none;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dim));
-            color: var(--bg-primary); cursor: pointer;
+            width: 40px; height: 40px; border-radius: 50%; border: none;
+            background: var(--accent);
+            color: #000; cursor: pointer;
             display: flex; align-items: center; justify-content: center;
-            transition: var(--transition); flex-shrink: 0;
-            transform: translateZ(0); position: relative; overflow: hidden;
+            transition: all 0.15s ease; flex-shrink: 0;
         }
 
-        .play-btn::before {
-            content: ''; position: absolute; inset: -2px; border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold-light), var(--gold-dim));
-            opacity: 0; transition: var(--transition); z-index: -1;
-        }
-
-        .play-btn:hover::before { opacity: 1; }
-        .play-btn:hover { transform: scale(1.1); box-shadow: 0 0 25px rgba(212, 168, 67, 0.35); }
-        .play-btn:active { transform: scale(0.95); }
-        .play-btn svg { width: 20px; height: 20px; fill: var(--bg-primary); position: relative; z-index: 1; }
+        .play-btn:hover { transform: scale(1.05); }
+        .play-btn:active { transform: scale(0.93); }
+        .play-btn svg { width: 16px; height: 16px; fill: #000; }
         .play-btn .pause-svg { display: none; }
         .play-btn.playing .play-svg { display: none; }
         .play-btn.playing .pause-svg { display: block; }
 
-        .player-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
-        .player-top { display: flex; align-items: center; gap: 10px; }
+        .player-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+        .player-top { display: flex; align-items: center; gap: 8px; }
 
         .player-title {
-            font-size: 14px; color: var(--text-primary); font-weight: 600;
+            font-size: 13px; color: var(--text-primary); font-weight: 600;
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            flex: 1; min-width: 0;
         }
 
-        .player-controls-extra { display: flex; gap: 4px; flex-shrink: 0; }
+        .player-controls-extra { display: flex; gap: 4px; }
 
         .extra-btn {
-            width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--glass-border);
-            background: transparent; color: var(--text-dim); cursor: pointer;
+            width: 28px; height: 28px; border-radius: 50%; border: none;
+            background: rgba(255,255,255,0.06); color: var(--text-dim); cursor: pointer;
             display: flex; align-items: center; justify-content: center;
-            transition: var(--transition); font-size: 13px;
+            transition: all 0.15s ease;
         }
 
-        .extra-btn:hover { color: var(--gold); border-color: var(--glass-border-hover); }
-        .extra-btn.active { color: var(--gold); border-color: var(--gold); background: rgba(212, 168, 67, 0.1); }
-        .extra-btn svg { width: 14px; height: 14px; fill: currentColor; }
+        .extra-btn:hover { color: var(--accent); background: rgba(255,255,255,0.1); }
+        .extra-btn.active { color: var(--accent); background: rgba(212, 168, 67, 0.15); }
+        .extra-btn svg { width: 13px; height: 13px; fill: currentColor; }
 
-        .track-selector-wrap {
-            position: relative; flex-shrink: 0;
-        }
+        .track-selector-wrap { position: relative; }
 
         .track-btn {
-            padding: 4px 12px; border-radius: 20px; border: 1px solid var(--glass-border);
-            background: transparent; color: var(--text-secondary); cursor: pointer;
-            font-family: 'Amiri', serif; font-size: 12px;
-            display: flex; align-items: center; gap: 5px;
-            transition: var(--transition);
+            padding: 4px 10px; border-radius: 16px; border: none;
+            background: rgba(255,255,255,0.06); color: var(--text-secondary); cursor: pointer;
+            font-family: var(--font-family); font-size: 11px; font-weight: 600;
+            display: flex; align-items: center; gap: 4px;
+            transition: all 0.15s ease;
         }
 
-        .track-btn:hover { color: var(--gold); border-color: var(--glass-border-hover); }
-        .track-btn svg { width: 14px; height: 14px; fill: currentColor; }
+        .track-btn:hover { background: rgba(255,255,255,0.1); color: var(--accent); }
+        .track-btn svg { width: 12px; height: 12px; fill: currentColor; }
 
         .track-dropdown {
-            position: absolute; top: 100%; left: 0; margin-top: 6px;
-            background: rgba(18, 16, 20, 0.97);
+            position: absolute; top: calc(100% + 6px); left: 0;
+            background: rgba(20, 18, 22, 0.98);
             backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(138, 107, 168, 0.25);
-            border-radius: 12px; padding: 8px;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px; padding: 6px;
             box-shadow: 0 12px 40px rgba(0,0,0,0.7);
             z-index: 200; display: none;
-            max-height: 280px; overflow-y: auto;
-            min-width: 180px;
+            max-height: 260px; overflow-y: auto;
+            min-width: 160px;
         }
 
         .track-dropdown.open { display: block; }
 
         .track-option {
-            padding: 8px 12px; border-radius: 8px; cursor: pointer;
-            font-size: 13px; color: var(--text-secondary);
-            transition: var(--transition); display: flex; align-items: center; gap: 8px;
+            padding: 8px 10px; border-radius: 8px; cursor: pointer;
+            font-size: 12px; color: var(--text-secondary); font-weight: 500;
+            transition: all 0.12s ease; display: flex; align-items: center; gap: 6px;
         }
 
-        .track-option:hover { background: rgba(212, 168, 67, 0.1); color: var(--gold); }
-        .track-option.active { background: rgba(212, 168, 67, 0.15); color: var(--gold); }
+        .track-option:hover { background: rgba(255,255,255,0.08); color: var(--accent); }
+        .track-option.active { background: var(--accent); color: #000; }
 
         .track-option .track-num {
-            width: 22px; height: 22px; border-radius: 50%;
-            background: rgba(255,255,255,0.05); display: flex;
+            width: 20px; height: 20px; border-radius: 50%;
+            background: rgba(255,255,255,0.06); display: flex;
             align-items: center; justify-content: center;
-            font-size: 11px; flex-shrink: 0;
+            font-size: 10px; flex-shrink: 0;
         }
 
-        .track-option.active .track-num {
-            background: var(--gold); color: var(--bg-primary);
-        }
+        .track-option.active .track-num { background: rgba(0,0,0,0.2); }
 
-        .progress-row { display: flex; align-items: center; gap: 8px; }
+        .progress-row { display: flex; align-items: center; gap: 6px; }
 
         .progress-bar-wrapper {
-            flex: 1; height: 5px; background: rgba(255, 255, 255, 0.07);
+            flex: 1; height: 4px; background: rgba(255,255,255,0.08);
             border-radius: 4px; cursor: pointer; position: relative; overflow: hidden;
+            transition: height 0.2s ease;
         }
 
-        .progress-bar-wrapper:hover { height: 7px; }
+        .progress-bar-wrapper:hover { height: 6px; }
 
         .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+            height: 100%; background: var(--accent);
             border-radius: 4px; width: 0%;
-            transition: width 0.1s linear; transform: translateZ(0); position: relative;
+            transition: width 0.1s linear; position: relative;
         }
 
         .progress-bar::after {
@@ -192,40 +254,41 @@
 
         .time-display {
             display: flex; justify-content: space-between;
-            font-size: 11px; color: var(--text-dim);
+            font-size: 10px; color: var(--text-dim);
             font-family: 'SF Mono', 'Courier New', monospace;
-            direction: ltr; min-width: 80px;
+            direction: ltr; min-width: 70px;
         }
 
-        .player-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+        .player-bottom { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
 
         .speed-btn {
-            padding: 2px 8px; border-radius: 4px; border: 1px solid var(--glass-border);
-            background: transparent; color: var(--text-dim); cursor: pointer;
-            font-size: 11px; font-family: 'SF Mono', monospace; transition: var(--transition);
+            padding: 3px 8px; border-radius: 6px; border: none;
+            background: rgba(255,255,255,0.06); color: var(--text-dim); cursor: pointer;
+            font-size: 10px; font-family: 'SF Mono', monospace; font-weight: 600;
+            transition: all 0.15s ease;
         }
 
-        .speed-btn:hover { color: var(--gold); border-color: var(--gold); }
+        .speed-btn:hover { color: var(--accent); background: rgba(255,255,255,0.1); }
 
-        .volume-wrap { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-        .volume-wrap svg { width: 16px; height: 16px; fill: var(--text-dim); cursor: pointer; transition: var(--transition); }
-        .volume-wrap svg:hover { fill: var(--gold); }
+        .volume-wrap { display: flex; align-items: center; gap: 4px; }
+        .volume-wrap svg { width: 14px; height: 14px; fill: var(--text-dim); cursor: pointer; transition: 0.15s; }
+        .volume-wrap svg:hover { fill: var(--accent); }
 
         .volume-slider {
-            width: 50px; height: 3px; -webkit-appearance: none; appearance: none;
+            width: 40px; height: 3px; -webkit-appearance: none; appearance: none;
             background: rgba(255,255,255,0.08); border-radius: 4px; outline: none; cursor: pointer;
         }
 
         .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none; width: 12px; height: 12px;
-            border-radius: 50%; background: var(--gold); cursor: pointer;
+            -webkit-appearance: none; width: 10px; height: 10px;
+            border-radius: 50%; background: var(--accent); cursor: pointer;
         }
 
         /* ===== HEADER ===== */
-        .header { text-align: center; padding: 30px 20px 24px; }
+        .header { text-align: center; padding: 30px 20px 20px; }
 
         .header-logo {
-            width: clamp(180px, 50vw, 320px); max-width: 100%; height: auto;
+            width: clamp(180px, 50vw, 300px); max-width: 100%; height: auto;
             display: block; margin: 0 auto 12px;
             filter: drop-shadow(0 4px 20px rgba(212, 168, 67, 0.15));
             transition: var(--transition);
@@ -233,27 +296,46 @@
 
         .header-logo:hover { filter: drop-shadow(0 6px 28px rgba(212, 168, 67, 0.3)); transform: scale(1.03); }
 
-        .header h1 { font-size: 28px; color: var(--gold); font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
-        .header .dua-author {
-            font-size: 16px; color: var(--gold-dim); margin-bottom: 4px;
-            font-style: italic;
-        }
+        .header h1 { font-size: 28px; color: var(--accent); font-weight: 700; letter-spacing: 1px; margin-bottom: 4px; }
         .header p { font-size: 15px; color: var(--text-secondary); }
 
-        /* ===== CONTROLS ===== */
-        .controls-bar { display: flex; justify-content: center; gap: 12px; padding: 0 16px 24px; flex-wrap: wrap; }
-
-        .control-btn {
-            padding: 10px 22px; border: 1px solid var(--glass-border); border-radius: 50px;
-            background: var(--bg-card); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            color: var(--text-secondary); font-family: 'Amiri', serif; font-size: 14px;
-            cursor: pointer; transition: var(--transition);
-            display: flex; align-items: center; gap: 8px; transform: translateZ(0);
+        /* ===== SETTINGS PANEL ===== */
+        .settings-panel {
+            max-width: 800px; margin: 0 auto 20px;
+            padding: 16px;
+            background: var(--bg-card);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
         }
 
-        .control-btn:hover { border-color: var(--glass-border-hover); color: var(--gold); background: var(--bg-card-hover); }
-        .control-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(212, 168, 67, 0.12); }
-        .control-btn svg { width: 16px; height: 16px; fill: currentColor; }
+        .settings-row {
+            display: flex; align-items: center; gap: 12px;
+            margin-bottom: 14px; flex-wrap: wrap;
+        }
+
+        .settings-row:last-child { margin-bottom: 0; }
+
+        .settings-label {
+            font-size: 12px; color: var(--text-dim); min-width: 80px;
+            font-weight: 600;
+        }
+
+        .font-options, .theme-options {
+            display: flex; gap: 6px; flex-wrap: wrap; flex: 1;
+        }
+
+        .font-opt, .theme-opt {
+            padding: 6px 14px; border-radius: 14px; border: 1.5px solid var(--glass-border);
+            background: transparent; color: var(--text-secondary); cursor: pointer;
+            font-size: 13px; transition: all 0.15s ease; white-space: nowrap;
+        }
+
+        .font-opt:hover, .theme-opt:hover { border-color: var(--accent); color: var(--accent); }
+        .font-opt.active, .theme-opt.active { border-color: var(--accent); color: var(--accent); background: rgba(212, 168, 67, 0.1); }
+
+        /* ===== CONTROLS ===== */
+        .controls-bar { display: flex; justify-content: center; gap: 10px; padding: 0 16px 20px; flex-wrap: wrap; }
 
         /* ===== DUA CARDS ===== */
         .dua-section { margin-bottom: 16px; }
@@ -261,36 +343,33 @@
         .dua-card {
             background: var(--bg-card); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--glass-border); border-radius: var(--radius);
-            padding: 28px 24px; margin-bottom: 12px; box-shadow: var(--shadow);
-            transition: var(--transition); transform: translateZ(0);
+            padding: 24px 20px; margin-bottom: 10px;
+            box-shadow: var(--shadow); transition: var(--transition);
             opacity: 0; animation: cardFadeIn 0.6s ease forwards; position: relative;
         }
 
         .dua-card:hover { border-color: var(--glass-border-hover); background: var(--bg-card-hover); }
 
-        @keyframes cardFadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes cardFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
 
-        .section-label { font-size: 12px; color: var(--gold-dim); display: flex; align-items: center; gap: 8px; }
+        .section-label { font-size: 12px; color: var(--accent-dim); display: flex; align-items: center; gap: 6px; }
         .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to left, transparent, var(--glass-border)); }
 
         .copy-card-btn {
-            width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--glass-border);
-            background: transparent; color: var(--text-dim); cursor: pointer;
+            width: 28px; height: 28px; border-radius: 10px; border: none;
+            background: rgba(255,255,255,0.05); color: var(--text-dim); cursor: pointer;
             display: flex; align-items: center; justify-content: center;
-            transition: var(--transition); flex-shrink: 0;
+            transition: all 0.15s ease;
         }
 
-        .copy-card-btn:hover { color: var(--gold); border-color: var(--gold); }
-        .copy-card-btn.copied { color: #4caf50; border-color: #4caf50; background: rgba(76, 175, 80, 0.1); }
-        .copy-card-btn svg { width: 15px; height: 15px; fill: currentColor; }
+        .copy-card-btn:hover { color: var(--accent); background: rgba(255,255,255,0.1); }
+        .copy-card-btn.copied { color: #4caf50; background: rgba(76, 175, 80, 0.15); }
+        .copy-card-btn svg { width: 13px; height: 13px; fill: currentColor; }
 
-        .dua-text { font-size: 21px; line-height: 2.4; text-align: justify; text-align-last: right; }
-        .dua-text .gold { color: var(--gold); font-weight: 700; }
+        .dua-text { font-size: 20px; line-height: 2.4; text-align: justify; text-align-last: right; }
+        .dua-text .gold { color: var(--accent); font-weight: 700; }
 
         .dua-text .tooltip-trigger {
             color: var(--purple-glow); cursor: pointer;
@@ -316,13 +395,13 @@
             background: rgba(16, 12, 20, 0.97);
             backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
             border: 1px solid rgba(138, 107, 168, 0.3);
-            border-radius: 16px; padding: 24px 20px;
-            max-width: 420px; width: 92%;
+            border-radius: 16px; padding: 20px 18px;
+            max-width: 400px; width: 92%;
             box-shadow: 0 12px 40px rgba(0,0,0,0.7), 0 0 30px rgba(138, 107, 168, 0.1);
             pointer-events: none; opacity: 0;
             transform: scale(0.85) translateY(15px);
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            transform-origin: center center; will-change: transform, opacity;
+            transform-origin: center center;
         }
 
         .tooltip-popup.visible { pointer-events: auto; opacity: 1; transform: scale(1) translateY(0); }
@@ -353,40 +432,41 @@
         }
 
         .tooltip-popup .tooltip-word {
-            color: var(--gold); font-size: 19px; font-weight: 700;
-            margin-bottom: 12px; line-height: 1.8; padding-left: 30px;
+            color: var(--accent); font-size: 18px; font-weight: 700;
+            margin-bottom: 10px; line-height: 1.8; padding-left: 28px;
         }
 
         .tooltip-popup .tooltip-meaning {
-            color: var(--text-secondary); font-size: 15px; line-height: 2;
+            color: var(--text-secondary); font-size: 14px; line-height: 2;
         }
 
         .tooltip-popup .tooltip-meaning .ref {
-            display: block; margin-top: 12px; padding-top: 12px;
+            display: block; margin-top: 10px; padding-top: 10px;
             border-top: 1px solid rgba(255,255,255,0.06);
-            color: var(--purple-dim); font-size: 13px; font-style: italic;
+            color: var(--purple-dim); font-size: 12px; font-style: italic;
         }
 
         .tooltip-popup .tooltip-actions {
-            display: flex; gap: 8px; margin-top: 14px; padding-top: 10px;
+            display: flex; gap: 8px; margin-top: 12px; padding-top: 8px;
             border-top: 1px solid rgba(255,255,255,0.04);
         }
 
         .tooltip-copy-btn {
-            padding: 5px 12px; border-radius: 8px; border: 1px solid var(--glass-border);
-            background: transparent; color: var(--text-dim); cursor: pointer;
-            font-family: 'Amiri', serif; font-size: 12px;
-            display: flex; align-items: center; gap: 5px; transition: var(--transition);
+            padding: 5px 10px; border-radius: 12px; border: none;
+            background: rgba(255,255,255,0.06); color: var(--text-dim); cursor: pointer;
+            font-family: var(--font-family); font-size: 11px; font-weight: 600;
+            display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;
         }
 
-        .tooltip-copy-btn:hover { color: var(--gold); border-color: var(--gold); }
-        .tooltip-copy-btn.copied { color: #4caf50; border-color: #4caf50; }
-        .tooltip-copy-btn svg { width: 13px; height: 13px; fill: currentColor; }
+        .tooltip-copy-btn:hover { color: var(--accent); background: rgba(255,255,255,0.1); }
+        .tooltip-copy-btn.copied { color: #4caf50; background: rgba(76, 175, 80, 0.15); }
+        .tooltip-copy-btn svg { width: 12px; height: 12px; fill: currentColor; }
 
         .tooltip-close {
-            position: absolute; top: 10px; left: 14px;
+            position: absolute; top: 8px; left: 12px;
             background: none; border: none; color: var(--text-dim);
-            cursor: pointer; font-size: 18px; padding: 4px; transition: var(--transition);
+            cursor: pointer; font-size: 18px; padding: 4px; transition: 0.2s;
+            line-height: 1;
         }
 
         .tooltip-close:hover { color: var(--purple-glow); transform: rotate(90deg); }
@@ -403,8 +483,8 @@
         .toast {
             position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px);
             background: rgba(30, 30, 30, 0.95); backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border); border-radius: 12px;
-            padding: 10px 20px; color: var(--gold); font-size: 14px;
+            border: 1px solid var(--glass-border); border-radius: 14px;
+            padding: 10px 20px; color: var(--accent); font-size: 14px; font-weight: 600;
             z-index: 2000; opacity: 0; pointer-events: none;
             transition: all 0.3s ease; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
         }
@@ -413,54 +493,102 @@
 
         /* ===== FOOTER ===== */
         .footer { text-align: center; padding: 40px 20px 30px; border-top: 1px solid var(--glass-border); margin-top: 40px; }
-        .footer-salawat { color: var(--gold-dim); font-size: 16px; margin-bottom: 8px; }
-        .footer-text { font-size: 14px; color: var(--text-dim); margin-bottom: 20px; }
+        .footer-salawat { color: var(--accent-dim); font-size: 15px; margin-bottom: 8px; }
+        .footer-text { font-size: 13px; color: var(--text-dim); margin-bottom: 20px; }
 
-        .footer-socials { display: flex; justify-content: center; gap: 24px; align-items: center; flex-wrap: wrap; }
+        .footer-socials { display: flex; justify-content: center; gap: 20px; align-items: center; flex-wrap: wrap; }
 
         .footer-socials a {
-            display: flex; align-items: center; gap: 8px; color: var(--text-secondary);
-            text-decoration: none; font-size: 14px; transition: var(--transition);
-            padding: 8px 16px; border-radius: 50px; border: 1px solid var(--glass-border);
-            background: var(--bg-card);
+            display: flex; align-items: center; gap: 6px; color: var(--text-secondary);
+            text-decoration: none; font-size: 13px; transition: all 0.15s ease;
+            padding: 8px 14px; border-radius: 14px; border: 1px solid var(--glass-border);
+            background: var(--bg-card); font-weight: 500;
         }
 
-        .footer-socials a:hover { color: var(--gold); border-color: var(--glass-border-hover); }
-        .footer-socials svg { width: 22px; height: 22px; fill: currentColor; }
+        .footer-socials a:hover { color: var(--accent); border-color: var(--glass-border-hover); }
+        .footer-socials svg { width: 18px; height: 18px; fill: currentColor; }
 
         /* ===== SCROLL TO TOP ===== */
         .scroll-top {
-            position: fixed; bottom: 24px; left: 24px; width: 44px; height: 44px;
-            border-radius: 50%; border: 1px solid var(--glass-border);
+            position: fixed; bottom: 24px; left: 24px; width: 40px; height: 40px;
+            border-radius: 50%; border: none;
             background: var(--bg-card); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
             color: var(--text-secondary); cursor: pointer;
             display: flex; align-items: center; justify-content: center;
             opacity: 0; transform: translateY(20px);
-            transition: var(--transition); z-index: 50;
+            transition: all 0.2s ease; z-index: 50;
         }
 
         .scroll-top.visible { opacity: 1; transform: translateY(0); }
-        .scroll-top svg { width: 20px; height: 20px; fill: currentColor; }
+        .scroll-top:hover { color: var(--accent); background: var(--bg-card-hover); }
+        .scroll-top:active { transform: scale(0.9); }
+        .scroll-top svg { width: 18px; height: 18px; fill: currentColor; }
 
+        /* ===== EXPORT CANVAS (hidden) ===== */
+        .export-canvas-container {
+            position: fixed; left: -9999px; top: -9999px;
+            width: 1080px; height: 1920px;
+            background: var(--bg-primary);
+            z-index: -100;
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 600px) {
             body { font-size: 17px; }
             .dua-text { font-size: 18px; line-height: 2.2; }
-            .dua-card { padding: 22px 18px; border-radius: 16px; }
+            .dua-card { padding: 20px 16px; border-radius: 16px; }
             .header h1 { font-size: 24px; }
-            .audio-player { padding: 10px 14px; gap: 8px; flex-wrap: wrap; }
-            .play-btn { width: 42px; height: 42px; }
+            .audio-player { padding: 6px 10px; gap: 8px; }
+            .play-btn { width: 36px; height: 36px; }
             .volume-wrap { display: none; }
-            .controls-bar { gap: 8px; }
-            .control-btn { padding: 8px 16px; font-size: 13px; }
-            .tooltip-popup { max-width: 340px; padding: 18px 16px; }
-            .footer-socials { flex-direction: column; gap: 10px; }
             .player-bottom { display: none; }
+            .settings-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .settings-label { min-width: auto; }
+            .font-options, .theme-options { width: 100%; }
+            .ios-btn { padding: 8px 16px; font-size: 13px; }
         }
 
         @media (max-width: 380px) {
             .dua-text { font-size: 16px; line-height: 2; }
             .player-title { font-size: 12px; }
         }
+
+        /* ===== DARK/LIGHT MODE BASE ===== */
+        body.light-mode {
+            --bg-primary: #f5f5f7;
+            --bg-secondary: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.8);
+            --bg-card-hover: rgba(245, 245, 247, 0.9);
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --text-dim: #aeaeb2;
+            --glass-border: rgba(0, 0, 0, 0.08);
+            --glass-border-hover: rgba(180, 140, 60, 0.3);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        body.light-mode .audio-player-wrapper {
+            background: rgba(245, 245, 247, 0.85);
+        }
+
+        body.light-mode .overlay {
+            background: rgba(0,0,0,0.3);
+        }
+
+        body.light-mode .islamic-bg svg { opacity: 0.05; }
+
+        body.light-mode .islamic-bg::after {
+            background: radial-gradient(ellipse at 50% 30%, rgba(212, 168, 67, 0.04) 0%, transparent 60%);
+        }
+
+        /* ===== THEME VARIATIONS ===== */
+        body.theme-green { --accent: #4caf50; --accent-dim: #388e3c; --accent-light: #66bb6a; }
+        body.theme-blue { --accent: #2196f3; --accent-dim: #1976d2; --accent-light: #42a5f5; }
+        body.theme-teal { --accent: #009688; --accent-dim: #00796b; --accent-light: #26a69a; }
+        body.theme-purple { --accent: #9c27b0; --accent-dim: #7b1fa2; --accent-light: #ab47bc; }
+        body.theme-red { --accent: #f44336; --accent-dim: #d32f2f; --accent-light: #ef5350; }
+        body.theme-orange { --accent: #ff9800; --accent-dim: #f57c00; --accent-light: #ffa726; }
+        body.theme-pink { --accent: #e91e63; --accent-dim: #c2185b; --accent-light: #ec407a; }
     </style>
 </head>
 <body>
@@ -506,12 +634,12 @@
         <div class="tooltip-actions">
             <button class="tooltip-copy-btn" id="tooltipCopyBtn">
                 <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                نسخ التفسير
+                نسخ
             </button>
         </div>
     </div>
 
-    <div class="toast" id="toast">تم النسخ بنجاح ✓</div>
+    <div class="toast" id="toast">تم النسخ بنجاح</div>
 
     <div class="audio-player-wrapper">
         <div class="audio-player">
@@ -521,7 +649,7 @@
             </button>
             <div class="player-main">
                 <div class="player-top">
-                    <span class="player-title" id="playerTitle">دعاء الصباح — القارئ 1</span>
+                    <span class="player-title" id="playerTitle">دعاء الصباح - القارئ 1</span>
                     <div class="player-controls-extra">
                         <button class="extra-btn" id="loopBtn" title="تكرار">
                             <svg viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
@@ -533,7 +661,7 @@
                     <div class="track-selector-wrap">
                         <button class="track-btn" id="trackBtn">
                             <svg viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
-                            <span id="currentTrackLabel">المسار 1</span>
+                            <span id="currentTrackLabel">القارئ 1</span>
                         </button>
                         <div class="track-dropdown" id="trackDropdown"></div>
                     </div>
@@ -562,18 +690,54 @@
 
         <header class="header">
             <img class="header-logo" src="logo.png" alt="دعاء الصباح" />
-            <div class="dua-author">للإمام علي بن أبي طالب عليه السلام</div>
+            <h1>دعاء الصباح</h1>
             <p>بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</p>
         </header>
 
+        <!-- SETTINGS PANEL -->
+        <div class="settings-panel">
+            <div class="settings-row">
+                <span class="settings-label">الخط:</span>
+                <div class="font-options" id="fontOptions">
+                    <button class="font-opt active" data-font="Amiri">أميري</button>
+                    <button class="font-opt" data-font="Lateef">لطيف</button>
+                    <button class="font-opt" data-font="Noto Naskh Arabic">نسخ</button>
+                    <button class="font-opt" data-font="Cairo">القاهرة</button>
+                    <button class="font-opt" data-font="Tajawal">تجوال</button>
+                    <button class="font-opt" data-font="Almarai">المراعي</button>
+                    <button class="font-opt" data-font="Scheherazade New">شهرزاد</button>
+                    <button class="font-opt" data-font="Changa">شانغا</button>
+                    <button class="font-opt" data-font="El Messiri">المسيري</button>
+                    <button class="font-opt" data-font="Rakkas">رقاص</button>
+                </div>
+            </div>
+            <div class="settings-row">
+                <span class="settings-label">الثيم:</span>
+                <div class="theme-options" id="themeOptions">
+                    <button class="theme-opt active" data-theme="gold">ذهبي</button>
+                    <button class="theme-opt" data-theme="green">اخضر</button>
+                    <button class="theme-opt" data-theme="blue">ازرق</button>
+                    <button class="theme-opt" data-theme="teal">فيروزي</button>
+                    <button class="theme-opt" data-theme="purple">بنفسجي</button>
+                    <button class="theme-opt" data-theme="red">احمر</button>
+                    <button class="theme-opt" data-theme="orange">برتقالي</button>
+                    <button class="theme-opt" data-theme="pink">وردي</button>
+                </div>
+            </div>
+        </div>
+
         <div class="controls-bar">
-            <button class="control-btn" id="harakatToggle">
-                <svg viewBox="0 0 24 24"><path d="M3 17h2v2H3v-2zm4 0h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zM3 13h2v2H3v-2zm4 0h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zM3 9h2v2H3V9zm4 0h2v2H7V9zm4 0h2v2h-2V9zm4 0h2v2h-2V9zm4 0h2v2h-2V9zM3 5h2v2H3V5zm4 0h2v2H7V5zm4 0h2v2h-2V5zm4 0h2v2h-2V5zm4 0h2v2h-2V5z"/></svg>
-                إخفاء التشكيل
+            <button class="ios-btn" id="darkModeToggle">
+                <svg viewBox="0 0 24 24" id="darkModeIcon"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
+                <span>الوضع الداكن</span>
             </button>
-            <button class="control-btn" id="copyAllBtn">
+            <button class="ios-btn" id="exportBtn">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                <span>تصدير صورة ستوري</span>
+            </button>
+            <button class="ios-btn" id="copyAllBtn">
                 <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                نسخ الدعاء
+                <span>نسخ الدعاء</span>
             </button>
         </div>
 
@@ -581,7 +745,7 @@
 
             <div class="dua-card" data-card="1" style="animation-delay: 0.05s;">
                 <div class="card-header">
-                    <div class="section-label"><span>الفقرة الأولى</span></div>
+                    <div class="section-label"><span>الفقرة الاولى</span></div>
                     <button class="copy-card-btn" title="نسخ" data-copy="1">
                         <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
                     </button>
@@ -786,7 +950,7 @@
 
             <div class="dua-card" data-card="18" style="animation-delay: 0.9s;">
                 <div class="card-header">
-                    <div class="section-label"><span> ثم اسجد وقل</span></div>
+                    <div class="section-label"><span>ثم اسجد وقل</span></div>
                     <button class="copy-card-btn" title="نسخ" data-copy="18">
                         <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
                     </button>
@@ -800,8 +964,8 @@
         </main>
 
         <footer class="footer">
-            <div class="footer-salawat">اَللّهُمَّ صَلِّ عَلى مُحَمَّدٍ وَآلِ مُحَمَّدْ</div>
-            <div class="footer-text">اللهم عَجِّل لِوَليِّكَ الفَرَج</div>
+            <div class="footer-salawat">اللهم صل على محمد وآل محمد</div>
+            <div class="footer-text">اللهم عجل لوليك الفرج</div>
             <div class="footer-socials">
                 <a href="https://instagram.com/ne_7u" target="_blank" rel="noopener noreferrer">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -819,9 +983,12 @@
         </footer>
     </div>
 
-    <button class="scroll-top" id="scrollTop" aria-label="العودة للأعلى">
+    <button class="scroll-top" id="scrollTop" aria-label="العودة للاعلى">
         <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
     </button>
+
+    <!-- Hidden canvas for export -->
+    <canvas id="exportCanvas" width="1080" height="1920" style="display:none;"></canvas>
 
     <audio id="audioPlayer" preload="metadata">
         <source src="1.ogg" type="audio/ogg">
@@ -832,12 +999,10 @@
             'use strict';
 
             /* ===== 16 AUDIO TRACKS ===== */
-            var trackNames = [
-                'القارئ 1', 'القارئ 2', 'القارئ 3', 'القارئ 4',
-                'القارئ 5', 'القارئ 6', 'القارئ 7', 'القارئ 8',
-                'القارئ 9', 'القارئ 10', 'القارئ 11', 'القارئ 12',
-                'القارئ 13', 'القارئ 14', 'القارئ 15', 'القارئ 16'
-            ];
+            var trackNames = [];
+            for (var i = 1; i <= 16; i++) {
+                trackNames.push('القارئ ' + i);
+            }
 
             var currentTrack = 1;
             var audio = document.getElementById('audioPlayer');
@@ -870,8 +1035,8 @@
 
             function selectTrack(num) {
                 currentTrack = num;
-                currentTrackLabel.textContent = 'المسار ' + num;
-                playerTitle.textContent = 'دعاء الصباح — ' + trackNames[num - 1];
+                currentTrackLabel.textContent = 'القارئ ' + num;
+                playerTitle.textContent = 'دعاء الصباح - القارئ ' + num;
 
                 trackDropdown.querySelectorAll('.track-option').forEach(function(opt) {
                     opt.classList.toggle('active', parseInt(opt.getAttribute('data-track')) === num);
@@ -890,134 +1055,163 @@
                 trackDropdown.classList.remove('open');
             }
 
-            /* ===== HARAKAT TOGGLE — preserves HTML tags, only strips diacritical marks ===== */
-            var harakatToggle = document.getElementById('harakatToggle');
-            var harakatVisible = true;
-            var allDuaTexts = document.querySelectorAll('.dua-text');
+            /* ===== TOOLTIPS DATA ===== */
+            var tooltipsData = {
+                '0': { w: 'دَلَعَ لِسَانَ الصَّبَاحِ بِنُطْقِ تَبَلُّجِهِ', m: '<b>دَلَعَ:</b> اخرج واظهر.<br><b>لسان الصباح:</b> شروق الشمس ووضوح النهار.<br><b>النطق:</b> هو ضد الصمت.<br><b>التبلج:</b> الاضاءة والاشراق.<br><br><b>المعنى:</b> يا الهي! يا من اخرجت ضوء الصباح، واظهرت اشراقة النهار وضوءه...', r: 'دعاء الصباح - الامام زين العابدين (ع)' },
+                '1': { w: 'بِغَيَاهِبِ تَلَجْلُجِهِ', m: '<b>التسريح:</b> الارسال. قال عز وجل: ﴿او تسريح باحسان﴾ البقرة/229.<br><b>قطع الليل:</b> اي حركة الليل: درجة درجة، وقطعة قطعة.<br><b>الغياهب:</b> الظلمة الشديدة.<br><b>التلجلج:</b> التردد.<br><br><b>المعنى:</b> يا الهي! يا من ارسلت الليل المظلم الشديد الظلمة، متحركا مترددا ذهابا وايابا...', r: 'دعاء الصباح' },
+                '2': { w: 'أَتْقَنَ صُنْعَ الْفَلَكِ الدَّوَّارِ', m: '<b>اتقن:</b> احكم.<br><b>الفلك:</b> جمعها افلاك، وهي الكواكب والنجوم.<br><b>الدوار:</b> المتحرك بالاستدارة.<br><b>التبرج:</b> الزينة.<br><br><b>المعنى:</b> الهي! يا من اتقنت واحكمت صنع كل شيء، وفي اجمل تصوير وتبرج وزينة...', r: '﴿صنع الله الذي اتقن كل شيء﴾ النمل/88' },
+                '3': { w: 'بِنُورِ تَأَجُّجِهِ', m: '<b>الشعشعة:</b> المزج والخلط.<br><b>التأجج:</b> هو اضرام النار واشتعالها ولهبها.<br><br><b>المعنى:</b> يا الهي! يا من مزجت ضياء الشمس بالاشعة التي تخرج منها حال تأججها واشتعالها، فيكون منها ضياء دائما ابدا...', r: 'دعاء الصباح' },
+                '4': { w: 'يَا مَنْ دَلَّ عَلَى ذَاتِهِ بِذَاتِهِ', m: 'هذه فقرة موجزة قالها امير المؤمنين (ع) فيها دلالات واسعة:<br><br><b>المعنى:</b> يا الهي! يا من كان نور ذاته المقدسة، هو دليل موصل للطالبين والراغبين الى التقرب اليه...', r: 'امير المؤمنين علي بن ابي طالب (ع)' },
+                '5': { w: 'عَنْ مُجَانَسَةِ مَخْلُوقَاتِهِ', m: '<b>التنزه:</b> التباعد.<br><b>المجانسة:</b> المشاركة.<br><br><b>المعنى:</b> ان الله تبارك وتعالى نأى عن مشابهة مخلوقاته، لأنه: ﴿ليس كمثله شيء﴾.', r: '﴿لَيْسَ كَمِثْلِهِ شَيْءٌ﴾ الشورى/11' },
+                '6': { w: 'عَنْ مُلاءَمَةِ كَيْفِيَّاتِهِ', m: '<b>المعنى:</b> انه تبارك وتعالى جل وترفع عن ان يكون ملائما ومناسبا لخلق المخلوقين، بل هو القديم الازلي، الذي ﴿لم يلد ولم يولد﴾.', r: 'سورة الاخلاص' },
+                '7': { w: 'قَرُبَ مِنْ خَطَرَاتِ الظُّنُونِ', m: '<b>المعنى:</b> الهي! يا من تعاليت عن جميع المخلوقات، وكنت قريبا من خواطرهم ولمحاتهم النفسية. ولكن العلم بك لا يصل الى حد اليقين، بل هو خطرات ظنية.<br><br>قال رسول الله (ص): «يا علي! ما عرف الله تعالى الا انا وانت».', r: 'حديث قدسي' },
+                '8': { w: 'عَنْ لَحَظَاتِ الْعُيُونِ', m: '<b>المعنى:</b> الهي! يا من قربت من خطرات القلوب، وبعدت عن لحظات ونظرات العيون. انك لا تدركك الابصار ولكنك تدرك الابصار.', r: '﴿لَّا تُدْرِكُهُ الْأَبْصَارُ﴾ الأنعام/103' },
+                '9': { w: 'وَعَلِمَ بِمَا كَانَ قَبْلَ أَنْ يَكُونَ', m: '<b>المعنى:</b> ان الموجودات كلها لها وجودان: وجود صور ازلية في علم الله تعالى، ووجود آخر هو ما اخرجه سبحانه الى عالم الشهادة. ان علم الله تعالى علم احاطة في كل شيء.', r: 'دعاء الصباح' },
+                '10': { w: 'أَرْقَدَنِي فِي مِهَادِ أَمْنِهِ وَأَمَانِهِ', m: '<b>المهد:</b> الفراش او السرير.<br><b>الامن:</b> طمأنينة النفس، وزوال الخوف.<br><br><b>المعنى:</b> الهي! يا من خلقتني ونحن في رعايتك وحفظك وامانك، سواء في حالة النوم او اليقظة...', r: 'دعاء الصباح' },
+                '11': { w: 'مِنْ مِنَنِهِ وَإِحْسَانِهِ', m: '<b>أيقظني:</b> نبهني من النوم.<br><b>منحني:</b> اعطاني ووهبني.<br><br><b>المعنى:</b> الهي! يا من ايقظتني ونبهتني من نوم الغافلين، الى ما اعطيتني من اعمال الصالحين...', r: 'دعاء الصباح' },
+                '12': { w: 'أَكُفَّ السُّوءِ', m: '<b>السوء:</b> كل ما يغم الانسان.<br><b>اليد:</b> القدرة.<br><br><b>المعنى:</b> الهي! يا من حرست عبادك المؤمنين، ودفعت عنهم كل سوء. انك قلت: ﴿ان الله يدافع عن الذين امنوا﴾.', r: '﴿إِنَّ اللَّهَ يُدَافِعُ عَنِ الَّذِينَ آمَنُوا﴾ الحج/38' },
+                '13': { w: 'اللَّيْلِ الأَلْيَلِ', m: '<b>الدليل:</b> الهادي والمرشد، والمراد به رسول الله (ص).<br><b>الاليل:</b> الليل المظلم الحالك.<br><br><b>المعنى:</b> صل على الذي كان دليلا عليك في الاوقات المظلمة بالجهل والظلم...', r: 'الصلاة على النبي واله' },
+                '14': { w: 'بِحَبْلِ الشَّرَفِ الأَطْوَلِ', m: '<b>المعنى:</b> وصف الرسول (ص) بأنه ماسك ومتعلق بكل شيء موصل بالشرف الرفيع العالي والكرامة العظمى.', r: 'وصف رسول الله (ص)' },
+                '15': { w: 'فِي ذِرْوَةِ الْكَاهِلِ الأَعْبَلِ', m: '<b>الناصع:</b> الواضح.<br><b>الحسب:</b> مفاخر الاجداد.<br><b>الذروة:</b> اعالي الشيء.<br><b>الكاهل:</b> ما بين الكتفين.<br><br><b>المعنى:</b> يصف رسول الله (ص) بأنه عالي النسب، شامخ الحسب، رفيع الشأن.', r: 'وصف نسب رسول الله (ص)' },
+                '16': { w: 'زَحَالِيفِهَا', m: '<b>الزحلفة:</b> آثار تزلج الصبيان، كالدحرجة.<br><br><b>المعنى:</b> يصف رسول الله (ص) بأنه ثابت القدم منذ ان خلقه الله، مهما مرت عليه من منحدرات ومزالق.', r: 'ثبات رسول الله (ص) على الحق' },
+                '17': { w: 'مَصَارِيعَ الصَّبَاحِ', m: '<b>مصاريع:</b> جمع مصراع (ابواب).<br><b>الرحمة:</b> رقة في القلب تقتضي الاحسان.<br><b>الفلاح:</b> الظفر وادراك البغية.<br><br><b>المعنى:</b> يا الهي! افتح لنا مصاريع ابواب هذا الصباح بمفاتيح الرحمة والظفر والفلاح...', r: 'التوسل بفتح ابواب الرحمة' },
+                '18': { w: 'خِلَعِ الْهِدَايَةِ', m: '<b>المعنى:</b> والبسنا من افضل ما عندك من الخلع والمواهب التي هديت بها عبادك الصالحين...', r: '﴿وَمَن يُطِعِ اللَّهَ وَالرَّسُولَ فَأُوْلَئِكَ مَعَ الَّذِينَ أَنْعَمَ اللَّهُ عَلَيْهِم﴾' },
+                '19': { w: 'شِرْبِ جَنَانِي', m: '<b>الشرب:</b> الحظ من الماء.<br><b>الجَنان:</b> القلب.<br><b>الينابيع:</b> جمع ينبوع (عين الماء).<br><b>الخشوع:</b> خضوع القلب والجوارح.<br><br><b>المعنى:</b> يا الهي! اجعل عظمتك في قلبي تجري جريان الخشوع والخضوع لك وحدك...', r: 'خشوع القلب لله تعالى' },
+                '20': { w: 'يَنَابِيعَ الْخُشُوعِ', m: '<b>موق العين:</b> طرفها.<br><b>زفرات:</b> جمع زفر (القربة التي يحملون بها الماء).<br><br><b>المعنى:</b> انزل من اطراف عيوني من هيبتك الدموع كما ينزل الماء من افواه القرب...', r: 'دموع الخشوع والخضوع' },
+                '21': { w: 'زَفَراتِ الدُّمُوعِ', m: '<b>النزق:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمة:</b> جمع زمام (المقود).<br><b>القنوع:</b> السؤال والتذلل.<br><br><b>المعنى:</b> يا الهي! انك تعلم ان عندي صفات تبعدني عن مسألتك، فاربطها برباط الخضوع...', r: 'التذلل والخضوع لله تعالى' },
+                '22': { w: 'نَزَقَ الْخُرْقِ', m: '<b>المعنى:</b> يا الهي! انك تعلم ان عندي صفات تبعدني عن مسألتك والتذلل اليك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل.', r: 'أدب الدعاء والتذلل' },
+                '23': { w: 'بِأَزِمَّةِ الْقُنُوعِ', m: '<b>المعنى:</b> يا الهي! انك تعلم ان عندي صفات تبعدني عن مسألتك والتذلل اليك، فاربطها يارب برباط الخضوع والجمها بلجام التذلل والخشوع.', r: 'التذلل والخضوع لله تعالى' },
+                '24': { w: 'بِحُسْنِ التَّوْفِيقِ', m: '<b>المعنى:</b> يا الهي! ان لم تبدأني الرحمة منك بحسن التوفيق، فمن الذي يسلك بي اليك في الطريق الواضح؟ فالتوفيق من عندك وحدك.', r: 'التوفيق من الله وحده' },
+                '25': { w: 'أَنَاتُكَ', m: '<b>اناتك:</b> حلمك وصبرك وامهالك.<br><br><b>المعنى:</b> ان اسلمتني اناتك (صبرك وامهالك) لقائد الامل والمنى، فمن الذي يقيل عثراتي من كبوات الهوى؟', r: 'حلم الله وصبره على عباده' },
+                '26': { w: 'لِقَائِدِ الأَمَلِ وَالْمُنَى', m: '<b>المعنى:</b> ان اسلمتني اناتك لقائد الامل والمنى، فمن الذي يقيل عثراتي من كبوات الهوى؟ فأنت وحده القادر على نجاتي من ضلال الهوى.', r: 'النجاة من الهوى بالله وحده' },
+                '27': { w: 'مِنْ كَبَوَاتِ الْهَوَى', m: '<b>المعنى:</b> ان اسلمتني اناتك لقائد الامل والمنى، فمن الذي يقيل عثراتي من كبوات الهوى (سقطاته وزلاته)؟', r: 'الله وحده يقي من الهوى' },
+                '28': { w: 'النَّصَبُ وَالْحِرْمَانُ', m: '<b>المعنى:</b> وان خذلني نصرك عند محاربة النفس والشيطان، فقد وكلني خذلانك الى حيث التعب الشديد والحرمان.', r: 'الحاجة الى نصر الله' },
+                '29': { w: 'عَنْ دَارِ الْوِصَالِ', m: '<b>المعنى:</b> أتراني ما اتيتك الا من حيث الامال، أم علقت بأطراف حبائك الا حين باعدتني ذنوبي عن دار الوصال (دار القرب)؟', r: 'الذنوب تبعد عن الله' },
+                '30': { w: 'امْتَطَتْ نَفْسِي', m: '<b>المعنى:</b> فبئس المطية (الدابة) التي امتطتها نفسي من هواها. فالنفس الامارة بالسوء دابة سوء.', r: 'النفس الامارة بالسوء' },
+                '31': { w: 'لِمَا سَوَّلَتْ لَهَا ظُنُونُها وَمُنَاهَا', m: '<b>المعنى:</b> فواها لها (ويل لها) لما سولت لها ظنونها ومناها! وتبا لها لجرأتها على سيدها ومولاها!', r: 'لوم النفس على المعصية' },
+                '32': { w: 'قَرَعْتُ بَابَ رَحْمَتِكَ', m: '<b>المعنى:</b> يا الهي! قرعت باب رحمتك بيد رجائي، وهربت اليك لاجئا من فرط أهوائي، وعلقت بأطراف حبائك انامل ولائي.', r: 'الرجاء والالتجاء الى الله' },
+                '33': { w: 'أَنَامِلَ وَلائِي', m: '<b>انامل:</b> اطراف الاصابع.<br><b>ولائي:</b> تعلقي وولائي.<br><br><b>المعنى:</b> وعلقت بأطراف حبائك انامل ولائي -- اي تعلقت بك بأطراف اصابعي، متمسكا بحبائك.', r: 'التمسك بحبل الله' },
+                '34': { w: 'صَرْعَةِ رِدَائِي', m: '<b>المعنى:</b> وأقلني من صرعة ردائي -- اي من سقطتي وزلتي التي اوقعتني في المعاصي.', r: 'طلب العفو من الله' },
+                '35': { w: 'مُنْقَلَبِي وَمَثْوَايَ', m: '<b>منقلبي:</b> مرجعي.<br><b>مثواي:</b> مقري.<br><br><b>المعنى:</b> وانك غاية مطلوبي، ومناي في منقلبي (مرجعي يوم القيامة) ومثواي (مقري الاخير).', r: 'الله غاية كل مطلوب' },
+                '36': { w: 'وَرَدَ إِلَى حِيَاضِكَ', m: '<b>المعنى:</b> ام كيف ترد ظمآنا ورد الى حياضك (احواضك) شاربا؟! فكلا، لا ترد من اتى اليك طالبا.', r: 'الله لا يرد سائلا' },
+                '37': { w: 'حِيَاضُكَ', m: '<b>حياضك:</b> جمع حوض، وهو مكان الشرب.<br><br><b>المعنى:</b> كلا، وحياضك مترعة (مليئة) حتى في ضنك المحول (زمن الشدة والقحط). وبابك مفتوح للطلب.', r: 'كرم الله وسعة رحمته' },
+                '38': { w: 'ضَنْكِ الْمُحُولِ', m: '<b>الضنك:</b> الشدة والضيق.<br><b>المحول:</b> القحط والجدب.<br><br><b>المعنى:</b> وحياضك مترعة حتى في ضنك المحول -- اي في اشد الاوقات صعوبة. فرحمتك لا تنقطع.', r: 'رحمة الله لا تنقطع' },
+                '39': { w: 'وَالْوُغُولِ', m: '<b>الوغول:</b> الدخول والولوج.<br><br><b>المعنى:</b> وبابك مفتوح للطلب والوغول -- اي للدخول والولوج الى رحمتك.', r: 'باب الله مفتوح' },
+                '40': { w: 'أَزِمَّةُ نَفْسِي عَقَلْتُهَا', m: '<b>أزمة:</b> جمع زمام (مقود).<br><b>عقلتها:</b> ربطتها.<br><br><b>المعنى:</b> يا الهي! هذه أزمة نفسي قد عقلتها (ربطتها) بعقال مشيئتك. وعباء ذنوبي درأتها بعفوك.', r: 'تسليم الامر لله' },
+                '41': { w: 'دَرَأْتُهَا', m: '<b>درأتها:</b> دفعتها ومنعتها.<br><br><b>المعنى:</b> وهذه اعباء ذنوبي درأتها بعفوك ورحمتك -- اي دفعت اوزار ذنوبي بتوسلي بعفوك ورحمتك.', r: 'العفو الالهي يدرأ الذنوب' },
+                '42': { w: 'جَنَابِ لُطْفِكَ وَرَأْفَتِكَ', m: '<b>المعنى:</b> وهذه أهوائي المضللة وكلتها الى جناب لطفك ورافتك -- اي فوضت أهوائي الى ساحة لطفك ورحمتك.', r: 'التوكل على لطف الله' },
+                '43': { w: 'جُنَّةً', m: '<b>جنة:</b> وقاية وحماية وستر.<br><br><b>المعنى:</b> فاجعل اللهم صباحي هذا نازلا علي بضياء الهدى وبسلامة في الدين والدنيا، ومسائي جنة (وقاية) من كيد العدى.', r: 'طلب الحماية من الله' },
+                '44': { w: 'مِنْ مُرْدِيَاتِ الْهَوَى', m: '<b>مُرديات الهوى:</b> المهلكات التي توقعها الشهوات.<br><br><b>المعنى:</b> ومسائي وقاية من مرديات الهوى -- اي من كل ما يهلك الانسان بسبب اتباع هواه.', r: 'الهوى مهلكة' },
+                '45': { w: 'تُولِجُ اللَّيْلَ فِي النَّهَارِ', m: '<b>المعنى:</b> انك قادر على ما تشاء. تولج الليل في النهار وتولج النهار في الليل -- اي تدخل الليل في النهار والنهار في الليل.', r: '﴿تُولِجُ اللَّيْلَ فِي النَّهَارِ﴾ آل عمران/27' },
+                '46': { w: 'بِغَيْرِ حِسَابٍ', m: '<b>المعنى:</b> وترزق من تشاء بغير حساب -- اي بغير تقدير محدد ولا حدود. فان رزقك واسع لا يحصى.', r: '﴿وَتَرْزُقُ مَن تَشَاءُ بِغَيْرِ حِسَابٍ﴾ البقرة/212' },
+                '47': { w: 'دَيَاجِيَ الْغَسَقِ', m: '<b>دياجي:</b> جمع ديج، الظلمة الشديدة.<br><b>الغسق:</b> ظلمة اول الليل.<br><br><b>المعنى:</b> وانرت بكرمك دياجي الغسق -- اي اضاءت بكرمك ظلمات اول الليل الشديدة.', r: 'انارة الله للظلمات' },
+                '48': { w: 'الصُّمِّ الصَّيَاخِيدِ', m: '<b>الصم:</b> الصلاب التي لا مسام لها.<br><b>الصياخيد:</b> الصخور العظام الصلبة.<br><br><b>المعنى:</b> وانهرت المياه من الصم الصياخيد عذبا واجاجا -- اي فجرت المياه من الصخور الصلبة.', r: '﴿وَأَنزَلْنَا مِنَ السَّمَاءِ مَاءً بِقَدَرٍ﴾ المؤمنون/18' },
+                '49': { w: 'الْمُعْصِرَاتِ', m: '<b>المعصرات:</b> السحب الحاملة للمطر.<br><br><b>المعنى:</b> وانزلت من المعصرات (السحب) ماء ثجاجا -- اي متدفقا بغزارة.', r: '﴿وَأَنزَلْنَا مِنَ الْمُعْصِرَاتِ مَاءً ثَجَّاجاً﴾ النبأ/14' },
+                '50': { w: 'ثَجَّاجاً', m: '<b>ثجاجا:</b> متدفقا بغزارة.<br><br><b>المعنى:</b> وانزلت من المعصرات ماء ثجاجا -- اي متدفقا بغزارة، يروي الارض ويحييها بعد موتها.', r: '﴿مَاءً ثَجَّاجاً﴾ النبأ/14' },
+                '51': { w: 'لُغُوباً وَلا عِلاجاً', m: '<b>لغوبا:</b> تعبا واعياء.<br><b>علاجا:</b> كلفة ومشقة.<br><br><b>المعنى:</b> من غير ان تمارس فيما ابتدأته لغوبا ولا علاجا -- اي من غير ان يصيبك تعب او مشقة.', r: '﴿وَمَا مَسَّنَا مِن لُّغُوبٍ﴾ ق/38' },
+                '52': { w: 'تَوَحَّدَ بِالْعِزِّ وَالْبَقَاءِ', m: '<b>المعنى:</b> فيا من توحّد بالعز والبقاء -- اي انفرد بالعزة والخلود. وقهر عباده بالموت والفناء.', r: 'الله الواحد القهار' },
+                '53': { w: 'مِنْ سَنِيِّ مَوَاهِبِكَ', m: '<b>سني:</b> سام رفيع.<br><b>مواهبك:</b> عطاياك.<br><br><b>المعنى:</b> بك انزلت حاجتي فلا تردني من سني مواهبك خائبا -- اي يا كريم، فلا تردني من عطاياك السامية.', r: 'طلب العطاء من الله' },
+                '54': { w: 'قَلْبِي مَحْجُوبٌ', m: '<b>المحجوب:</b> الممنوع عن الرؤية.<br><br><b>المعنى:</b> يا الهي! قلبي محجوب (عن معرفتك)، ونفسي معيوب، وعقلي مغلوب، وهوائي غالب.', r: 'اعتراف بالعجز امام الله' },
+                '54b': { w: 'نَفْسِي مَعْيُوبٌ', m: '<b>المعنى:</b> ونفسي معيوب -- اي مليئة بالعيوب. وعقلي مغلوب وهوائي غالب وطاعتي قليل ومعصيتي كثير.', r: 'اعتراف بالذنب والضعف' },
+                '55': { w: 'يَا سَتَّارَ الْعُيُوبِ', m: '<b>ستار العيوب:</b> يا من يستر العيوب ولا يفضح.<br><br><b>المعنى:</b> فكيف حيلتي يا ستار العيوب؟ فقلبي محجوب ونفسي معيوب، فمن ينقذني غيرك؟', r: '«يا ستار العيوب يا ارحم الراحمين»' },
+                '56': { w: 'يَا عَلَّامَ الْغُيُوبِ', m: '<b>علام الغيوب:</b> يا من يعلم كل شيء خفي.<br><br><b>المعنى:</b> فكيف حيلتي يا علام الغيوب؟ فأنت وحدك تعلم ما في قلبي من عيوب وذنوب.', r: '﴿عَالِمُ الْغَيْبِ وَالشَّهَادَةِ﴾ التوبة/94' },
+                '57': { w: 'يَا كَاشِفَ الْكُرُوبِ', m: '<b>كاشف الكروب:</b> يا من يكشف الشدائد والمصائب.<br><br><b>المعنى:</b> فكيف حيلتي يا كاشف الكروب؟ فلا يكشف كربي غيرك. اغفر ذنوبي كلها بحرمة محمد وال محمد.', r: 'دعاء كشف الكربة' }
+            };
 
-            function stripHarakatOnly(textNode) {
-                return textNode.replace(/[\u064B-\u065F\u0670]/g, '');
-            }
+            /* ===== FONT SELECTION ===== */
+            var fontMap = {
+                'Amiri': "'Amiri', serif",
+                'Lateef': "'Lateef', serif",
+                'Noto Naskh Arabic': "'Noto Naskh Arabic', serif",
+                'Cairo': "'Cairo', sans-serif",
+                'Tajawal': "'Tajawal', sans-serif",
+                'Almarai': "'Almarai', sans-serif",
+                'Scheherazade New': "'Scheherazade New', serif",
+                'Changa': "'Changa', sans-serif",
+                'El Messiri': "'El Messiri', sans-serif",
+                'Rakkas': "'Rakkas', sans-serif"
+            };
 
-            function toggleHarakatInElement(el, remove) {
-                var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
-                var nodes = [];
-                while (walker.nextNode()) {
-                    nodes.push(walker.currentNode);
-                }
-                nodes.forEach(function(node) {
-                    if (remove) {
-                        node.textContent = stripHarakatOnly(node.textContent);
-                    } else {
-                        // Restore from data-raw
-                        // We need to rebuild from scratch
-                    }
-                });
-            }
+            var currentFont = 'Amiri';
 
-            // Store original HTML for restoration
-            var originalHTMLs = [];
-            allDuaTexts.forEach(function(el) { originalHTMLs.push(el.innerHTML); });
-
-            harakatToggle.addEventListener('click', function() {
-                harakatVisible = !harakatVisible;
-                this.classList.toggle('active', !harakatVisible);
-                this.childNodes[2].textContent = harakatVisible ? ' إخفاء التشكيل' : ' إظهار التشكيل';
-
-                allDuaTexts.forEach(function(el, i) {
-                    if (!harakatVisible) {
-                        // Only strip diacritical marks from text nodes, keep all HTML tags
-                        var raw = el.getAttribute('data-raw');
-                        if (raw) {
-                            el.innerHTML = stripHarakatOnly(raw);
-                        } else {
-                            // Process existing innerHTML: strip harakat from text only
-                            var html = el.innerHTML;
-                            // Remove diacritical marks from the entire HTML string
-                            el.innerHTML = stripHarakatOnly(html);
-                        }
-                    } else {
-                        // Restore original HTML with all tags and harakat
-                        el.innerHTML = originalHTMLs[i];
-                    }
+            document.querySelectorAll('.font-opt').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.font-opt').forEach(function(b) { b.classList.remove('active'); });
+                    this.classList.add('active');
+                    var fontName = this.getAttribute('data-font');
+                    currentFont = fontName;
+                    document.documentElement.style.setProperty('--font-family', fontMap[fontName]);
                 });
             });
 
-            /* ===== TOOLTIPS DATA ===== */
-            var tooltipsData = {
-                '0': { w: 'دَلَعَ لِسَانَ الصَّبَاحِ بِنُطْقِ تَبَلُّجِهِ', m: '<b>دَلَعَ:</b> أخرج وأظهر.<br><b>لسان الصباح:</b> شروق الشمس ووضوح النهار.<br><b>النطق:</b> هو ضد الصمت.<br><b>التبلج:</b> الإضاءة والإشراق.<br><br><b>المعنى:</b> يا إلهي! يا مَن أخرجتَ ضوء الصباح، وأظهرتَ إشراقة النهار وضوءه...', r: '✦ دعاء الصباح — الإمام زين العابدين (ع)' },
-                '1': { w: 'بِغَيَاهِبِ تَلَجْلُجِهِ', m: '<b>التسريح:</b> الإرسال. قال عزّ وجلّ: ﴿أو تسريح بإحسان﴾ البقرة/229.<br><b>قطع الليل:</b> أي حركة الليل: درجة درجة، وقطعة قطعة.<br><b>الغياهب:</b> الظلمة الشديدة.<br><b>التلجلج:</b> التردد.<br><br><b>المعنى:</b> يا إلهي! يا مَن أرسلتَ الليل المظلم الشديد الظلمة، متحركاً متردداً ذهاباً وإياباً...', r: '✦ دعاء الصباح' },
-                '2': { w: 'أَتْقَنَ صُنْعَ الْفَلَكِ الدَّوَّارِ', m: '<b>أتقن:</b> أحكم.<br><b>الفلك:</b> جمعها أفلاك، وهي الكواكب والنجوم.<br><b>الدوّار:</b> المتحرك بالاستدارة.<br><b>التبرج:</b> الزينة.<br><br><b>المعنى:</b> إلهي! يا مَن أتقنتَ وأحكمتَ صنع كلّ شيء، وفي أجمل تصوير وتبرج وزينة...', r: '✦ ﴿صنع الله الذي أتقن كلّ شيء﴾ النمل/88' },
-                '3': { w: 'بِنُورِ تَأَجُّجِهِ', m: '<b>الشعشعة:</b> المزج والخلط.<br><b>التأجج:</b> هو إضرام النار واشتعالها ولهبها.<br><br><b>المعنى:</b> يا إلهي! يا مَن مزجتَ ضياء الشمس بالأشعة التي تخرج منها حال تأججها واشتعالها، فيكون منها ضياء دائماً أبداً...', r: '✦ دعاء الصباح' },
-                '4': { w: 'يَا مَنْ دَلَّ عَلَى ذَاتِهِ بِذَاتِهِ', m: 'هذه فقرة موجزة قالها أمير المؤمنين (ع) فيها دلالات واسعة:<br><br><b>المعنى:</b> يا إلهي! يا مَن كان نور ذاته المقدسة، هو دليل موصل للطالبين والراغبين إلى التقرب إليه...', r: '✦ أمير المؤمنين علي بن أبي طالب (ع)' },
-                '5': { w: 'عَنْ مُجَانَسَةِ مَخْلُوقَاتِهِ', m: '<b>التنزّه:</b> التباعد.<br><b>المجانسة:</b> المشاركة.<br><br><b>المعنى:</b> إنّ الله تبارك وتعالى نأى عن مشابهة مخلوقاته، لأنّه: ﴿ليس كمثله شيء﴾.', r: ' ﴿لَيْسَ كَمِثْلِهِ شَيْءٌ﴾ الشورى/11' },
-                '6': { w: 'عَنْ مُلاءَمَةِ كَيْفِيَّاتِهِ', m: '<b>المعنى:</b> أنّه تبارك وتعالى جلّ وترفّع عن أن يكون ملائماً ومناسباً لخلق المخلوقين، بل هو القديم الأزلي، الذي ﴿لم يلد ولم يولد﴾.', r: '✦ سورة الإخلاص' },
-                '7': { w: 'قَرُبَ مِنْ خَطَرَاتِ الظُّنُونِ', m: '<b>المعنى:</b> إلهي! يا مَن تعاليتَ عن جميع المخلوقات، وكنتَ قريباً من خواطرهم ولمحاتهم النفسية. ولكن العلم بك لا يصل إلى حد اليقين، بل هو خطرات ظنية.<br><br>قال رسول الله (ص): «يا عليّ! ما عرف الله تعالى إلاّ أنا وأنت».', r: '✦ حديث قدسي' },
-                '8': { w: 'عَنْ لَحَظَاتِ الْعُيُونِ', m: '<b>المعنى:</b> إلهي! يا مَن قربتَ من خطرات القلوب، وبعدتَ عن لحظات ونظرات العيون. إنّك لا تدركك الأبصار ولكنّك تدرك الأبصار.', r: '✦ ﴿لَّا تُدْرِكُهُ الْأَبْصَارُ﴾ الأنعام/103' },
-                '9': { w: 'وَعَلِمَ بِمَا كَانَ قَبْلَ أَنْ يَكُونَ', m: '<b>المعنى:</b> إنّ الموجودات كلّها لها وجودان: وجود صور أزلية في علم الله تعالى، ووجود آخر هو ما أخرجه سبحانه إلى عالم الشهادة. إنّ علم الله تعالى علم إحاطة في كلّ شيء.', r: '✦ دعاء الصباح' },
-                '10': { w: 'أَرْقَدَنِي فِي مِهَادِ أَمْنِهِ وَأَمَانِهِ', m: '<b>المهد:</b> الفراش أو السرير.<br><b>الأمن:</b> طمأنينة النفس، وزوال الخوف.<br><br><b>المعنى:</b> إلهي! يا مَن خلقتني ونحن في رعايتك وحفظك وأمانك، سواء في حالة النوم أو اليقظة...', r: '✦ دعاء الصباح' },
-                '11': { w: 'مِنْ مِنَنِهِ وَإِحْسَانِهِ', m: '<b>أيقظني:</b> نبّهني من النوم.<br><b>منحني:</b> أعطاني ووهبني.<br><br><b>المعنى:</b> إلهي! يا مَن أيقظتني ونبّهتني من نوم الغافلين، إلى ما أعطيتني من أعمال الصالحين...', r: '✦ دعاء الصباح' },
-                '12': { w: 'أَكُفَّ السُّوءِ', m: '<b>السوء:</b> كل ما يغمّ الإنسان.<br><b>اليد:</b> القدرة.<br><br><b>المعنى:</b> إلهي! يا مَن حرستَ عبادك المؤمنين، ودفعتَ عنهم كل سوء. إنّك قلت: ﴿إنّ الله يدافع عن الذين آمنوا﴾.', r: '✦ ﴿إِنَّ اللَّهَ يُدَافِعُ عَنِ الَّذِينَ آمَنُوا﴾ الحج/38' },
-                '13': { w: 'اللَّيْلِ الأَلْيَلِ', m: '<b>الدليل:</b> الهادي والمرشد، والمراد به رسول الله (ص).<br><b>الأليل:</b> الليل المظلم الحالك.<br><br><b>المعنى:</b> صلِّ على الذي كان دليلاً عليك في الأوقات المظلمة بالجهل والظلم...', r: '✦ الصلاة على النبي وآله' },
-                '14': { w: 'بِحَبْلِ الشَّرَفِ الأَطْوَلِ', m: '<b>المعنى:</b> وصف الرسول (ص) بأنّه ماسك ومتعلق بكلّ شيء موصل بالشرف الرفيع العالي والكرامة العظمى.', r: '✦ وصف رسول الله (ص)' },
-                '15': { w: 'فِي ذِرْوَةِ الْكَاهِلِ الأَعْبَلِ', m: '<b>الناصع:</b> الواضح.<br><b>الحسب:</b> مفاخر الأجداد.<br><b>الذروة:</b> أعالي الشيء.<br><b>الكاهل:</b> ما بين الكتفين.<br><br><b>المعنى:</b> يصف رسول الله (ص) بأنّه عالي النسب، شامخ الحسب، رفيع الشأن.', r: '✦ وصف نسب رسول الله (ص)' },
-                '16': { w: 'زَحَالِيفِهَا', m: '<b>الزحلفة:</b> آثار تزلج الصبيان، كالدحرجة.<br><br><b>المعنى:</b> يصف رسول الله (ص) بأنّه ثابت القدم منذ أن خلقه الله، مهما مرّت عليه من منحدرات ومزالق.', r: '✦ ثبات رسول الله (ص) على الحق' },
-                '17': { w: 'مَصَارِيعَ الصَّبَاحِ', m: '<b>مصاريع:</b> جمع مصراع (أبواب).<br><b>الرحمة:</b> رقّة في القلب تقتضي الإحسان.<br><b>الفلاح:</b> الظفر وإدراك البغية.<br><br><b>المعنى:</b> يا إلهي! افتح لنا مصاريع أبواب هذا الصباح بمفاتيح الرحمة والظفر والفلاح...', r: '✦ التوسل بفتح أبواب الرحمة' },
-                '18': { w: 'خِلَعِ الْهِدَايَةِ', m: '<b>المعنى:</b> وألبسنا من أفضل ما عندك من الخلع والمواهب التي هديت بها عبادك الصالحين...', r: '✦ ﴿وَمَن يُطِعِ اللَّهَ وَالرَّسُولَ فَأُوْلَئِكَ مَعَ الَّذِينَ أَنْعَمَ اللَّهُ عَلَيْهِم﴾' },
-                '19': { w: 'شِرْبِ جَنَانِي', m: '<b>الشِّرب:</b> الحظ من الماء.<br><b>الجَنان:</b> القلب.<br><b>الينابيع:</b> جمع ينبوع (عين الماء).<br><b>الخشوع:</b> خضوع القلب والجوارح.<br><br><b>المعنى:</b> يا إلهي! اجعل عظمتك في قلبي تجري جريان الخشوع والخضوع لك وحدك...', r: '✦ خشوع القلب لله تعالى' },
-                '20': { w: 'يَنَابِيعَ الْخُشُوعِ', m: '<b>موق العين:</b> طرفها.<br><b>زفرات:</b> جمع زفر (القربة التي يحملون بها الماء).<br><br><b>المعنى:</b> أنزل من أطراف عيوني من هيبتك الدموع كما ينزل الماء من أفواه القرب...', r: '✦ دموع الخشوع والخضوع' },
-                '21': { w: 'زَفَراتِ الدُّمُوعِ', m: '<b>النزق:</b> الخفة والطيش.<br><b>الخرق:</b> ضد الرفق، الجهل والحمق.<br><b>الأزمّة:</b> جمع زمام (المقود).<br><b>القنوع:</b> السؤال والتذلل.<br><br><b>المعنى:</b> يا إلهي! إنّك تعلم أنّ عندي صفات تبعدني عن مسألتك، فاربطها برباط الخضوع...', r: '✦ التذلل والخضوع لله تعالى' },
-                '22': { w: 'نَزَقَ الْخُرْقِ', m: '<b>المعنى:</b> يا إلهي! إنّك تعلم أنّ عندي صفات تبعدني عن مسألتك والتذلل إليك، فاربطها ياربّ برباط الخضوع والجمها بلجام التذلل.', r: '✦ أدب الدعاء والتذلل' },
-                '23': { w: 'بِأَزِمَّةِ الْقُنُوعِ', m: '<b>المعنى:</b> يا إلهي! إنّك تعلم أنّ عندي صفات تبعدني عن مسألتك والتذلل إليك، فاربطها ياربّ برباط الخضوع والجمها بلجام التذلل والخشوع.', r: '✦ التذلل والخضوع لله تعالى' },
-                '24': { w: 'بِحُسْنِ التَّوْفِيقِ', m: '<b>المعنى:</b> يا إلهي! إن لم تبدأني الرحمة منك بحسن التوفيق، فمن الذي يسلك بي إليك في الطريق الواضح؟ فالتوفيق من عندك وحدك.', r: '✦ التوفيق من الله وحده' },
-                '25': { w: 'أَنَاتُكَ', m: '<b>أناتك:</b> حلمك وصبرك وإمهالك.<br><br><b>المعنى:</b> إن أسلمتني أناتك (صبرك وإمهالك) لقائد الأمل والمنى، فمن الذي يقيل عثراتي من كبوات الهوى؟', r: '✦ حلم الله وصبره على عباده' },
-                '26': { w: 'لِقَائِدِ الأَمَلِ وَالْمُنَى', m: '<b>المعنى:</b> إن أسلمتني أناتك لقائد الأمل والمنى، فمن الذي يقيل عثراتي من كبوات الهوى؟ فأنت وحده القادر على نجاتي من ضلال الهوى.', r: '✦ النجاة من الهوى بالله وحده' },
-                '27': { w: 'مِنْ كَبَوَاتِ الْهَوَى', m: '<b>المعنى:</b> إن أسلمتني أناتك لقائد الأمل والمنى، فمن الذي يقيل عثراتي من كبوات الهوى (سقطاته وزلاته)؟', r: '✦ الله وحده يقي من الهوى' },
-                '28': { w: 'النَّصَبُ وَالْحِرْمَانُ', m: '<b>المعنى:</b> وإن خذلني نصرك عند محاربة النفس والشيطان، فقد وكلني خذلانك إلى حيث التعب الشديد والحرمان.', r: '✦ الحاجة إلى نصر الله' },
-                '29': { w: 'عَنْ دَارِ الْوِصَالِ', m: '<b>المعنى:</b> أتراني ما أتيتك إلاّ من حيث الآمال، أم علقت بأطراف حبائك إلاّ حين باعدتني ذنوبي عن دار الوصال (دار القرب)؟', r: '✦ الذنوب تبعد عن الله' },
-                '30': { w: 'امْتَطَتْ نَفْسِي', m: '<b>المعنى:</b> فبئس المطية (الدابّة) التي امتطتها نفسي من هواها. فالنفس الأمّارة بالسوء دابّة سوء.', r: '✦ النفس الأمّارة بالسوء' },
-                '31': { w: 'لِمَا سَوَّلَتْ لَهَا ظُنُونُها وَمُنَاهَا', m: '<b>المعنى:</b> فواهاً لها (ويلٌ لها) لما سوّلت لها ظنونها ومناها! وتباً لها لجرأتها على سيّدها ومولاها!', r: ' لوم النفس على المعصية' },
-                '32': { w: 'قَرَعْتُ بَابَ رَحْمَتِكَ', m: '<b>المعنى:</b> يا إلهي! قرعتُ باب رحمتك بيد رجائي، وهربتُ إليك لاجئاً من فرط أهوائي، وعلّقتُ بأطراف حبائك أنامل ولائي.', r: '✦ الرجاء والالتجاء إلى الله' },
-                '33': { w: 'أَنَامِلَ وَلائِي', m: '<b>أنامل:</b> أطراف الأصابع.<br><b>ولائي:</b> تعلّقي وولائي.<br><br><b>المعنى:</b> وعلّقتُ بأطراف حبائك أنامل ولائي — أي تعلّقتُ بك بأطراف أصابعي، متمسّكاً بحبائك.', r: '✦ التمسك بحبل الله' },
-                '34': { w: 'صَرْعَةِ رِدَائِي', m: '<b>المعنى:</b> وأقلني من صرعة ردائي — أي من سقطتي وزلتي التي أوقعتني في المعاصي.', r: '✦ طلب العفو من الله' },
-                '35': { w: 'مُنْقَلَبِي وَمَثْوَايَ', m: '<b>منقلبي:</b> مرجعي.<br><b>مثواي:</b> مقرّي.<br><br><b>المعنى:</b> وإنك غاية مطلوبي، ومنايَ في منقلبي (مرجعي يوم القيامة) ومثوايَ (مقرّي الأخير).', r: '✦ الله غاية كل مطلوب' },
-                '36': { w: 'وَرَدَ إِلَى حِيَاضِكَ', m: '<b>المعنى:</b> أم كيف تردّ ظمآناً ورد إلى حياضك (أحواضك) شارِباً؟! فكلاّ، لا تردّ من أتى إليك طالباً.', r: '✦ الله لا يردّ سائلاً' },
-                '37': { w: 'حِيَاضُكَ', m: '<b>حياضك:</b> جمع حوض، وهو مكان الشرب.<br><br><b>المعنى:</b> كلاّ، وحياضك مترعة (مليئة) حتى في ضنك المحول (زمن الشدة والقحط). وبابك مفتوح للطلب.', r: '✦ كرم الله وسعة رحمته' },
-                '38': { w: 'ضَنْكِ الْمُحُولِ', m: '<b>الضنك:</b> الشدة والضيق.<br><b>المحول:</b> القحط والجدب.<br><br><b>المعنى:</b> وحياضك مترعة حتى في ضنك المحول — أي في أشدّ الأوقات صعوبة. فرحمتك لا تنقطع.', r: '✦ رحمة الله لا تنقطع' },
-                '39': { w: 'وَالْوُغُولِ', m: '<b>الوُغول:</b> الدخول والولوج.<br><br><b>المعنى:</b> وبابك مفتوح للطلب والوُغول — أي للدخول والولوج إلى رحمتك.', r: '✦ باب الله مفتوح' },
-                '40': { w: 'أَزِمَّةُ نَفْسِي عَقَلْتُهَا', m: '<b>أزِمَّة:</b> جمع زمام (مقود).<br><b>عقلتها:</b> ربطتها.<br><br><b>المعنى:</b> يا إلهي! هذه أزِمَّة نفسي قد عقلتها (ربطتها) بعقال مشيئتك. وأعباء ذنوبي درأتها بعفوك.', r: '✦ تسليم الأمر لله' },
-                '41': { w: 'دَرَأْتُهَا', m: '<b>درأتها:</b> دفعتها ومنعتها.<br><br><b>المعنى:</b> وهذه أعباء ذنوبي درأتها بعفوك ورحمتك — أي دفعتُ أوزار ذنوبي بتوسلي بعفوك ورحمتك.', r: '✦ العفو الإلهي يدرأ الذنوب' },
-                '42': { w: 'جَنَابِ لُطْفِكَ وَرَأْفَتِكَ', m: '<b>المعنى:</b> وهذه أهوائي المضللة وكلتُها إلى جناب لطفك ورأفتك — أي فوّضتُ أهوائي إلى ساحة لطفك ورحمتك.', r: '✦ التوكل على لطف الله' },
-                '43': { w: 'جُنَّةً', m: '<b>جنّة:</b> وقاية وحماية وستر.<br><br><b>المعنى:</b> فاجعل اللهم صباحي هذا نازلاً عليّ بضياء الهدى وبسلامة في الدين والدنيا، ومسائي جنّة (وقاية) من كيد العدى.', r: '✦ طلب الحماية من الله' },
-                '44': { w: 'مِنْ مُرْدِيَاتِ الْهَوَى', m: '<b>مُرديات الهوى:</b> المهلكات التي توقعها الشهوات.<br><br><b>المعنى:</b> ومسائي وقاية من مُرديات الهوى — أي من كل ما يهلك الإنسان بسبب اتباع هواه.', r: '✦ الهوى مهلكة' },
-                '45': { w: 'تُولِجُ اللَّيْلَ فِي النَّهَارِ', m: '<b>المعنى:</b> إنّك قادر على ما تشاء. تُولج الليل في النهار وتُولج النهار في الليل — أي تُدخل الليل في النهار والنهار في الليل.', r: '✦ ﴿تُولِجُ اللَّيْلَ فِي النَّهَارِ﴾ آل عمران/27' },
-                '46': { w: 'بِغَيْرِ حِسَابٍ', m: '<b>المعنى:</b> وترزق من تشاء بغير حساب — أي بغير تقدير محدد ولا حدود. فإنّ رزقك واسع لا يُحصى.', r: '✦ ﴿وَتَرْزُقُ مَن تَشَاءُ بِغَيْرِ حِسَابٍ﴾ البقرة/212' },
-                '47': { w: 'دَيَاجِيَ الْغَسَقِ', m: '<b>دياجي:</b> جمع ديج، الظلمة الشديدة.<br><b>الغسق:</b> ظلمة أول الليل.<br><br><b>المعنى:</b> وأنرتَ بكرمك دياجي الغسق — أي أضاءت بكرمك ظلمات أول الليل الشديدة.', r: '✦ إنارة الله للظلمات' },
-                '48': { w: 'الصُّمِّ الصَّيَاخِيدِ', m: '<b>الصمّ:</b> الصلاب التي لا مسامّ لها.<br><b>الصياخيد:</b> الصخور العظام الصلبة.<br><br><b>المعنى:</b> وأنهرتَ المياه من الصمّ الصياخيد عذباً وأُجاجاً — أي فجّرت المياه من الصخور الصلبة.', r: '✦ ﴿وَأَنزَلْنَا مِنَ السَّمَاءِ مَاءً بِقَدَرٍ﴾ المؤمنون/18' },
-                '49': { w: 'الْمُعْصِرَاتِ', m: '<b>المعصرات:</b> السحب الحاملة للمطر.<br><br><b>المعنى:</b> وأنزلتَ من المعصرات (السحب) ماءً ثجّاجاً — أي متدفقاً بغزارة.', r: '✦ ﴿وَأَنزَلْنَا مِنَ الْمُعْصِرَاتِ مَاءً ثَجَّاجاً﴾ النبأ/14' },
-                '50': { w: 'ثَجَّاجاً', m: '<b>ثجّاجاً:</b> متدفقاً بغزارة.<br><br><b>المعنى:</b> وأنزلتَ من المعصرات ماءً ثجّاجاً — أي متدفقاً بغزارة، يروي الأرض ويحييها بعد موتها.', r: '✦ ﴿مَاءً ثَجَّاجاً﴾ النبأ/14' },
-                '51': { w: 'لُغُوباً وَلا عِلاجاً', m: '<b>لغوباً:</b> تعباً وإعياءً.<br><b>علاجاً:</b> كُلفةً ومشقّة.<br><br><b>المعنى:</b> من غير أن تمارس فيما ابتدأتَه لغوباً ولا علاجاً — أي من غير أن يصيبك تعب أو مشقّة.', r: ' ﴿وَمَا مَسَّنَا مِن لُّغُوبٍ﴾ ق/38' },
-                '52': { w: 'تَوَحَّدَ بِالْعِزِّ وَالْبَقَاءِ', m: '<b>المعنى:</b> فيا مَن توحّد بالعزّ والبقاء — أي انفرد بالعزّة والخلود. وقهر عباده بالموت والفناء.', r: '✦ الله الواحد القهّار' },
-                '53': { w: 'مِنْ سَنِيِّ مَوَاهِبِكَ', m: '<b>سنّي:</b> سامٍ رفيع.<br><b>مواهبك:</b> عطاياك.<br><br><b>المعنى:</b> بك أنزلت حاجتي فلا تردّني من سنّي مواهبك خائباً — أي يا كريم، فلا تردّني من عطاياك السامية.', r: '✦ طلب العطاء من الله' },
-                '54': { w: 'قَلْبِي مَحْجُوبٌ', m: '<b>المحجوب:</b> الممنوع عن الرؤية.<br><br><b>المعنى:</b> يا إلهي! قلبي محجوب (عن معرفتك)، ونفسي معيوب، وعقلي مغلوب، وهوائي غالب.', r: '✦ اعتراف بالعجز أمام الله' },
-                '54b': { w: 'نَفْسِي مَعْيُوبٌ', m: '<b>المعنى:</b> ونفسي معيوب — أي مليئة بالعيوب. وعقلي مغلوب وهوائي غالب وطاعتي قليل ومعصيتي كثير.', r: '✦ اعتراف بالذنب والضعف' },
-                '55': { w: 'يَا سَتَّارَ الْعُيُوبِ', m: '<b>ستّار العيوب:</b> يا مَن يستر العيوب ولا يفضح.<br><br><b>المعنى:</b> فكيف حيلتي يا ستّار العيوب؟ فقلبي محجوب ونفسي معيوب، فمن ينقذني غيرك؟', r: '✦ «يا ستّار العيوب يا أرحم الراحمين»' },
-                '56': { w: 'يَا عَلَّامَ الْغُيُوبِ', m: '<b>علّام الغيوب:</b> يا مَن يعلم كلّ شيء خفي.<br><br><b>المعنى:</b> فكيف حيلتي يا علّام الغيوب؟ فأنت وحدك تعلم ما في قلبي من عيوب وذنوب.', r: '✦ ﴿عَالِمُ الْغَيْبِ وَالشَّهَادَةِ﴾ التوبة/94' },
-                '57': { w: 'يَا كَاشِفَ الْكُرُوبِ', m: '<b>كاشف الكروب:</b> يا مَن يكشف الشدائد والمصائب.<br><br><b>المعنى:</b> فكيف حيلتي يا كاشف الكروب؟ فلا يكشف كربي غيرك. اغفر ذنوبي كلّها بحرمة محمد وآل محمد.', r: '✦ دعاء كشف الكربة' }
+            /* ===== THEME SELECTION ===== */
+            var currentTheme = 'gold';
+
+            document.querySelectorAll('.theme-opt').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.theme-opt').forEach(function(b) { b.classList.remove('active'); });
+                    this.classList.add('active');
+                    var theme = this.getAttribute('data-theme');
+                    currentTheme = theme;
+
+                    document.body.classList.remove('theme-green', 'theme-blue', 'theme-teal', 'theme-purple', 'theme-red', 'theme-orange', 'theme-pink');
+
+                    if (theme !== 'gold') {
+                        document.body.classList.add('theme-' + theme);
+                    }
+
+                    updateAccentColors();
+                });
+            });
+
+            var themeColors = {
+                'gold': { accent: '#d4a843', dim: '#b8922e', light: '#e8c56d' },
+                'green': { accent: '#4caf50', dim: '#388e3c', light: '#66bb6a' },
+                'blue': { accent: '#2196f3', dim: '#1976d2', light: '#42a5f5' },
+                'teal': { accent: '#009688', dim: '#00796b', light: '#26a69a' },
+                'purple': { accent: '#9c27b0', dim: '#7b1fa2', light: '#ab47bc' },
+                'red': { accent: '#f44336', dim: '#d32f2f', light: '#ef5350' },
+                'orange': { accent: '#ff9800', dim: '#f57c00', light: '#ffa726' },
+                'pink': { accent: '#e91e63', dim: '#c2185b', light: '#ec407a' }
             };
+
+            function updateAccentColors() {
+                var c = themeColors[currentTheme];
+                document.documentElement.style.setProperty('--accent', c.accent);
+                document.documentElement.style.setProperty('--accent-dim', c.dim);
+                document.documentElement.style.setProperty('--accent-light', c.light);
+            }
+
+            /* ===== DARK/LIGHT MODE ===== */
+            var isDarkMode = true;
+            var darkModeToggle = document.getElementById('darkModeToggle');
+            var darkModeIcon = document.getElementById('darkModeIcon');
+
+            darkModeToggle.addEventListener('click', function() {
+                isDarkMode = !isDarkMode;
+                document.body.classList.toggle('light-mode', !isDarkMode);
+
+                if (isDarkMode) {
+                    darkModeIcon.innerHTML = '<path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>';
+                    this.querySelector('span').textContent = 'الوضع الداكن';
+                } else {
+                    darkModeIcon.innerHTML = '<path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 0 0 0-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>';
+                    this.querySelector('span').textContent = 'الوضع الفاتح';
+                }
+            });
 
             /* ===== COPY SYSTEM ===== */
             var toast = document.getElementById('toast');
 
             function showToast(msg) {
-                toast.textContent = msg || 'تم النسخ بنجاح ✓';
+                toast.textContent = msg || 'تم النسخ بنجاح';
                 toast.classList.add('visible');
                 setTimeout(function() { toast.classList.remove('visible'); }, 2000);
             }
 
             function copyText(text) {
                 if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(text).then(function() { showToast('تم النسخ بنجاح ✓'); }).catch(function() { fallbackCopy(text); });
+                    navigator.clipboard.writeText(text).then(function() { showToast('تم النسخ بنجاح'); }).catch(function() { fallbackCopy(text); });
                 } else { fallbackCopy(text); }
             }
 
@@ -1025,7 +1219,7 @@
                 var ta = document.createElement('textarea');
                 ta.value = text; ta.style.position = 'fixed'; ta.style.left = '-9999px';
                 document.body.appendChild(ta); ta.select();
-                try { document.execCommand('copy'); showToast('تم النسخ بنجاح ✓'); } catch(e) { showToast('فشل النسخ'); }
+                try { document.execCommand('copy'); showToast('تم النسخ بنجاح'); } catch(e) { showToast('فشل النسخ'); }
                 document.body.removeChild(ta);
             }
 
@@ -1049,9 +1243,6 @@
                     if (raw) allText += raw + '\n\n';
                 });
                 copyText(allText.trim());
-                this.classList.add('active');
-                var self = this;
-                setTimeout(function() { self.classList.remove('active'); }, 1500);
             });
 
             document.getElementById('tooltipCopyBtn').addEventListener('click', function() {
@@ -1098,7 +1289,7 @@
 
                     requestAnimationFrame(function() {
                         var tRect = trigger.getBoundingClientRect();
-                        var popupW = Math.min(420, window.innerWidth * 0.92);
+                        var popupW = Math.min(400, window.innerWidth * 0.92);
                         var left = tRect.left + (tRect.width / 2) - (popupW / 2);
                         var top = tRect.bottom + 12;
 
@@ -1141,6 +1332,8 @@
                     particle.style.top = y + 'px';
 
                     var colors = ['rgba(212, 168, 67, 0.8)', 'rgba(201, 160, 220, 0.7)', 'rgba(232, 197, 109, 0.6)', 'rgba(138, 107, 168, 0.5)'];
+                    var c = themeColors[currentTheme];
+                    colors = [c.accent + 'cc', c.dim + 'aa', c.light + '99', '#c9a0dc88'];
                     particle.style.background = colors[Math.floor(Math.random() * colors.length)];
 
                     var size = 2 + Math.random() * 5;
@@ -1246,6 +1439,178 @@
                 var m = Math.floor(s / 60), sec = Math.floor(s % 60);
                 return m + ':' + (sec < 10 ? '0' : '') + sec;
             }
+
+            /* ===== EXPORT AS STORY IMAGE ===== */
+            var exportBtn = document.getElementById('exportBtn');
+
+            exportBtn.addEventListener('click', function() {
+                showToast('جاري تجهيز الصورة...');
+
+                var canvas = document.getElementById('exportCanvas');
+                var ctx = canvas.getContext('2d');
+
+                var W = 1080, H = 1920;
+                canvas.width = W;
+                canvas.height = H;
+
+                // Get current theme colors
+                var c = themeColors[currentTheme];
+                var bgColor = isDarkMode ? '#0a0a0a' : '#f5f5f7';
+                var cardBg = isDarkMode ? 'rgba(26,26,30,0.9)' : 'rgba(255,255,255,0.9)';
+                var textColor = isDarkMode ? '#e8e8e8' : '#1d1d1f';
+                var textDim = isDarkMode ? '#666666' : '#aeaeb2';
+                var goldColor = c.accent;
+
+                // Background
+                ctx.fillStyle = bgColor;
+                ctx.fillRect(0, 0, W, H);
+
+                // Geometric pattern background (subtle)
+                ctx.globalAlpha = 0.03;
+                ctx.strokeStyle = goldColor;
+                ctx.lineWidth = 1;
+                for (var gx = 0; gx < W; gx += 100) {
+                    for (var gy = 0; gy < H; gy += 100) {
+                        ctx.beginPath();
+                        ctx.arc(gx + 50, gy + 50, 30, 0, Math.PI * 2);
+                        ctx.stroke();
+                    }
+                }
+                ctx.globalAlpha = 1;
+
+                // Header
+                var fontFamily = fontMap[currentFont];
+                ctx.fillStyle = goldColor;
+                ctx.font = 'bold 52px ' + fontFamily;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('دعاء الصباح', W / 2, 120);
+
+                // Decorative line
+                ctx.strokeStyle = goldColor;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(W / 2 - 120, 160);
+                ctx.lineTo(W / 2 + 120, 160);
+                ctx.stroke();
+
+                // Collect all dua text
+                var allText = '';
+                var cards = document.querySelectorAll('.dua-card');
+                cards.forEach(function(card, i) {
+                    var textEl = card.querySelector('.dua-text');
+                    var raw = textEl.getAttribute('data-raw');
+                    if (raw) {
+                        // Clean up raw text - remove HTML entities
+                        var clean = raw.replace(/<[^>]*>/g, '');
+                        allText += clean + '\n';
+                    }
+                });
+
+                // Wrap text
+                ctx.fillStyle = textColor;
+                ctx.font = '32px ' + fontFamily;
+                ctx.textAlign = 'right';
+                ctx.textBaseline = 'top';
+
+                var lines = [];
+                var paragraphs = allText.split('\n');
+                var maxWidth = W - 120;
+
+                paragraphs.forEach(function(para) {
+                    if (para.trim() === '') {
+                        lines.push('');
+                        return;
+                    }
+                    var words = para.split(' ');
+                    var currentLine = '';
+                    words.forEach(function(word) {
+                        var testLine = currentLine + (currentLine ? ' ' : '') + word;
+                        var metrics = ctx.measureText(testLine);
+                        if (metrics.width > maxWidth && currentLine) {
+                            lines.push(currentLine);
+                            currentLine = word;
+                        } else {
+                            currentLine = testLine;
+                        }
+                    });
+                    if (currentLine) lines.push(currentLine);
+                });
+
+                // Draw text
+                var lineHeight = 52;
+                var startY = 200;
+                var maxVisibleLines = Math.floor((H - startY - 200) / lineHeight);
+
+                if (lines.length > maxVisibleLines) {
+                    // Truncate and add ellipsis
+                    var visibleLines = lines.slice(0, maxVisibleLines);
+                    visibleLines.push('...');
+                    lines = visibleLines;
+                }
+
+                lines.forEach(function(line, i) {
+                    var y = startY + i * lineHeight;
+                    if (y > H - 200) return;
+
+                    if (line === '') {
+                        return;
+                    }
+
+                    // Check for special words to color
+                    var parts = line.split(/(\s+)/);
+                    var currentX = W - 60;
+                    ctx.fillStyle = textColor;
+
+                    parts.forEach(function(part) {
+                        if (part.trim()) {
+                            // Check if this part should be gold
+                            var isGold = false;
+                            var checkText = part.replace(/[\u064B-\u065F\u0670]/g, '');
+                            var goldWords = ['اللهِ', 'اَللّهُمَّ', 'اللَّهُمَّ', 'الله', 'اللَّهُ', 'اللهُ', 'إِلَهِي', 'يَا مَنْ', 'كَلاَّ', 'لا إِلَهَ إِلَّا أَنْتَ', 'يَا كَرِيمُ', 'يَا أَرْحَمَ', 'الرَّاحِمِينَ', 'يَا غَفَّارُ'];
+
+                            goldWords.forEach(function(gw) {
+                                if (checkText.includes(gw.replace(/[\u064B-\u065F\u0670]/g, ''))) {
+                                    isGold = true;
+                                }
+                            });
+
+                            ctx.fillStyle = isGold ? goldColor : textColor;
+                        }
+
+                        var m = ctx.measureText(part);
+                        ctx.fillText(part, currentX, y);
+                        currentX -= m.width;
+                    });
+                });
+
+                // Bottom decoration
+                ctx.globalAlpha = 0.5;
+                ctx.strokeStyle = goldColor;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(W / 2 - 120, H - 140);
+                ctx.lineTo(W / 2 + 120, H - 140);
+                ctx.stroke();
+
+                ctx.globalAlpha = 1;
+                ctx.fillStyle = textDim;
+                ctx.font = '24px ' + fontFamily;
+                ctx.textAlign = 'center';
+                ctx.fillText('اللهم صل على محمد وآل محمد', W / 2, H - 110);
+                ctx.fillStyle = goldColor;
+                ctx.font = '22px ' + fontFamily;
+                ctx.fillText('اللهم عجل لوليك الفرج', W / 2, H - 75);
+
+                // Download
+                setTimeout(function() {
+                    var link = document.createElement('a');
+                    link.download = 'دعاء-الصباح-story.png';
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                    showToast('تم تصدير الصورة بنجاح');
+                }, 500);
+            });
 
             /* ===== SCROLL TO TOP ===== */
             var scrollTopBtn = document.getElementById('scrollTop');
