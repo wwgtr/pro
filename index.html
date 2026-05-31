@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دعاء الصباح</title>
+    <link href="https://cdn.jsdelivr.net/npm/fontsource-amiri@latest/latin.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: rgba(30, 30, 30, 0.65);
+            --bg-card-hover: rgba(40, 40, 40, 0.75);
+            --gold: #d4a843;
+            --gold-dim: #b8922e;
+            --text-primary: #e8e8e8;
+            --text-secondary: #999999;
+            --text-dim: #666666;
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --glass-border-hover: rgba(212, 168, 67, 0.25);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --radius: 20px;
+            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Amiri', serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 2.2;
+            font-size: 19px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(212, 168, 67, 0.04) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(100, 100, 120, 0.03) 0%, transparent 50%);
+            z-index: -1;
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 16px 40px;
+        }
+
+        /* ===== AUDIO PLAYER ===== */
+        .audio-player-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 16px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-bottom: 1px solid var(--glass-border);
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        .audio-player {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 20px;
+            background: var(--bg-card);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .play-btn {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: none;
+            background: var(--gold);
+            color: var(--bg-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        .play-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 20px rgba(212, 168, 67, 0.3);
+        }
+
+        .play-btn:active {
+            transform: scale(0.95);
+        }
+
+        .play-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--bg-primary);
+        }
+
+        .player-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .player-title {
+            font-size: 14px;
+            color: var(--text-primary);
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .player-subtitle {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .progress-container {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .progress-bar-wrapper {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gold);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.1s linear;
+            will-change: width;
+            transform: translateZ(0);
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--text-dim);
+            font-family: 'SF Mono', 'Courier New', monospace;
+            direction: ltr;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .volume-control svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .volume-control svg:hover {
+            fill: var(--gold);
+        }
+
+        .volume-slider {
+            width: 60px;
+            height: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--gold);
+            cursor: pointer;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            text-align: center;
+            padding: 40px 20px 30px;
+        }
+
+        .header-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 16px;
+            fill: var(--gold);
+            opacity: 0.85;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            color: var(--gold);
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        /* ===== CONTROLS ===== */
+        .controls-bar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 0 16px 24px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            padding: 10px 22px;
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            background: var(--bg-card);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            color: var(--text-secondary);
+            font-family: 'Amiri', serif;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        .control-btn:hover {
+            border-color: var(--glass-border-hover);
+            color: var(--gold);
+            background: var(--bg-card-hover);
+        }
+
+        .control-btn.active {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(212, 168, 67, 0.1);
+        }
+
+        .control-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* ===== DUA CARDS ===== */
+        .dua-section {
+            margin-bottom: 16px;
+        }
+
+        .dua-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            margin-bottom: 12px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            will-change: transform, opacity;
+            transform: translateZ(0);
+            opacity: 0;
+            animation: cardFadeIn 0.6s ease forwards;
+        }
+
+        .dua-card:hover {
+            border-color: var(--glass-border-hover);
+            background: var(--bg-card-hover);
+        }
+
+        @keyframes cardFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dua-card .section-label {
+            font-size: 12px;
+            color: var(--gold-dim);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dua-card .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--glass-border));
+        }
+
+        .dua-text {
+            font-size: 21px;
+            line-height: 2.4;
+            text-align: justify;
+            text-align-last: right;
+        }
+
+        .dua-text .gold {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .dua-text .tooltip-trigger {
+            color: #c9a0dc;
+            cursor: pointer;
+            border-bottom: 1px dashed rgba(201, 160, 220, 0.3);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .dua-text .tooltip-trigger:hover {
+            color: #ddb8f0;
+            border-bottom-color: #ddb8f0;
+        }
+
+        .no-harakat .harakat {
+            display: none;
+        }
+
+        /* ===== TOOLTIP POPUP ===== */
+        .tooltip-popup {
+            position: fixed;
+            z-index: 1000;
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border-hover);
+            border-radius: 16px;
+            padding: 20px;
+            max-width: 340px;
+            width: 90%;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            pointer-events: none;
+            opacity: 0;
+            transform: scale(0.9) translateY(10px);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, opacity;
+        }
+
+        .tooltip-popup.visible {
+            pointer-events: auto;
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .tooltip-popup .tooltip-word {
+            color: var(--gold);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.8;
+        }
+
+        .tooltip-popup .tooltip-meaning {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .tooltip-popup .tooltip-close {
+            position: absolute;
+            top: 8px;
+            left: 12px;
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            cursor: pointer;
+            font-size: 18px;
+            padding: 4px;
+            line-height: 1;
+        }
+
+        /* ===== OVERLAY ===== */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 40px 20px 30px;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 40px;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .footer-socials a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            background: var(--bg-card);
+        }
+
+        .footer-socials a:hover {
+            color: var(--gold);
+            border-color: var(--glass-border-hover);
+        }
+
+        .footer-socials svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        /* ===== SCROLL TO TOP ===== */
+        .scroll-top {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+            background: var(--bg-card);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            z-index: 50;
+            will-change: transform, opacity;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-top svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            body {
+                font-size: 17px;
+            }
+
+            .dua-text {
+                font-size: 18px;
+                line-height: 2.2;
+            }
+
+            .dua-card {
+                padding: 22px 18px;
+                border-radius: 16px;
+            }
+
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .audio-player {
+                padding: 8px 14px;
+                gap: 10px;
+            }
+
+            .play-btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            .volume-control {
+                display: none;
+            }
+
+            .controls-bar {
+                gap: 8px;
+            }
+
+            .control-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .tooltip-popup {
+                max-width: 280px;
+                padding: 16px;
+            }
+
+            .footer-socials {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .dua-text {
+                font-size: 16px;
+                line-height: 2;
+            }
+
+            .player-title {
+                font-size: 12px;
+            }
+        }
+
+        /* ===== LOADING SHIMMER ===== */
+        .shimmer {
+            background: linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.03) 50%, transparent 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- AUDIO PLAYER -->
+    <div class="audio-player-wrapper">
+        <div class="audio-player">
+            <button class="play-btn" id="playBtn" aria-label="تشغيل">
+                <svg id="playIcon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+                <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none"><rect x="5" y="3" width="4" height="18" rx="1"/><rect x="15" y="3" width="4" height="18" rx="1"/></svg>
+            </button>
+            <div class="progress-container">
+                <div class="player-title">دعاء الصباح</div>
+                <div class="progress-bar-wrapper" id="progressWrapper">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="time-display">
+                    <span id="currentTime">0:00</span>
+                    <span id="totalTime">0:00</span>
+                </div>
+            </div>
+            <div class="volume-control">
+                <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8.5v7a4.47 4.47 0 0 0 2.5-3.5zM14 3.23v2.06a6.51 6.51 0 0 1 0 13.42v2.06A8.51 8.51 0 0 0 14 3.23z"/></svg>
+                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.8">
+            </div>
+        </div>
+    </div>
+
+    <!-- OVERLAY -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- TOOLTIP POPUP -->
+    <div class="tooltip-popup" id="tooltipPopup">
+        <button class="tooltip-close" id="tooltipClose">✕</button>
+        <div class="tooltip-word" id="tooltipWord"></div>
+        <div class="tooltip-meaning" id="tooltipMeaning"></div>
+    </div>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+            <svg class="header-icon" viewBox="0 0 64 64">
+                <path d="M32 4C22.06 4 14 12.06 14 22c0 6.5 3.5 12.2 8.7 15.3-.4 1.5-.7 3-.7 4.7 0 8.3 6.7 15 15 15s15-6.7 15-15c0-1.7-.3-3.2-.7-4.7C56.5 34.2 60 28.5 60 22 60 12.06 51.94 4 32 4zm0 4c7.73 0 14 6.27 14 14 0 5.5-3.2 10.3-7.8 12.6-.7.3-1.1 1-1.1 1.8.1 1.4.2 2.8.2 4.2 0 5.5-4.5 10-10 10s-10-4.5-10-10c0-1.4.1-2.8.2-4.2 0-.8-.4-1.5-1.1-1.8C17.8 36.3 14.6 31.5 14.6 26c0-7.73 6.27-14 14-14h3.4z" fill="var(--gold)" opacity="0.9"/>
+                <circle cx="32" cy="24" r="6" fill="var(--gold)" opacity="0.6"/>
+                <path d="M32 8a14 14 0 0 0-14 14c0 4.5 2.1 8.5 5.4 11.1l.6.5c.3.2.4.6.3.9-.1 1.1-.2 2.2-.2 3.3 0 4.4 3.6 8 8 8s8-3.6 8-8c0-1.1-.1-2.2-.2-3.3-.1-.3 0-.7.3-.9l.6-.5C53.9 30.5 56 26.5 56 22 56 14.27 49.73 8 42 8h-10z" fill="var(--gold)" opacity="0.15"/>
+            </svg>
+            <h1>دعاء الصباح</h1>
+            <p>بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</p>
+        </header>
+
+        <!-- CONTROLS -->
+        <div class="controls-bar">
+            <button class="control-btn" id="harakatToggle">
+                <svg viewBox="0 0 24 24"><path d="M3 17h2v2H3v-2zm4 0h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zM3 13h2v2H3v-2zm4 0h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zM3 9h2v2H3V9zm4 0h2v2H7V9zm4 0h2v2h-2V9zm4 0h2v2h-2V9zm4 0h2v2h-2V9zM3 5h2v2H3V5zm4 0h2v2H7V5zm4 0h2v2h-2V5zm4 0h2v2h-2V5zm4 0h2v2h-2V5z"/></svg>
+                إظهار التشكيل
+            </button>
+        </div>
+
+        <!-- DUA CONTENT -->
+        <main class="dua-section">
+
+            <!-- Card 1: Opening -->
+            <div class="dua-card" style="animation-delay: 0.05s;">
+                <div class="dua-text">
+                    بِسْمِ <span class="gold">اللهِ</span> الرَّحْمَنِ الرَّحِيمِ :
+                    <span class="gold">اَللّهُمَّ</span> يا مَنْ دَلَعَ لِسَانَ الصَّبَاحِ بِنُطْقِ تَبَلُّجِهِ ، وَسَرَّحَ قِطَعَ اللَّيْلِ الْمُظْلِمِ بِغَيَاهِبِ تَلَجْلُجِهِ ، وَأَتْقَنَ صُنْعَ الْفَلَكِ الدَّوَّارِ فِي مَقَادِيرِ تَبَرُّجِهِ ، وَشَعْشَعَ ضِيَاءَ الشَّمْسِ بِنُورِ تَأَجُّجِهِ ،
+                    <span class="gold">يَا مَنْ دَلَّ عَلَى ذَاتِهِ بِذَاتِهِ</span> ،
+                    وَتَنَزَّهَ عَنْ مُجَانَسَةِ مَخْلُوقَاتِهِ ، وَجَلَّ عَنْ مُلاءَمَةِ كَيْفِيَّاتِهِ .
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="dua-card" style="animation-delay: 0.1s;">
+                <div class="dua-text">
+                    <span class="gold">يَا مَنْ</span> قَرُبَ مِنْ خَطَرَاتِ الظُّنُونِ ، وَبَعُدَ عَنْ لَحَظَاتِ الْعُيُونِ ، وَعَلِمَ بِمَا كَانَ قَبْلَ أَنْ يَكُونَ ،
+                    <span class="gold">يَا مَنْ</span> أَرْقَدَنِي فِي مِهَادِ أَمْنِهِ وَأَمَانِهِ ، وَأَيْقَظَنِي إِلَى مَا مَنَحَنِي بِهِ مِنْ مِنَنِهِ وَإِحْسَانِهِ ، وَكَفَّ أَكُفَّ السُّوءِ عَنِّي بِيَدِهِ وَسُلْطَانِهِ .
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="dua-card" style="animation-delay: 0.15s;">
+                <div class="dua-text">
+                    صَلِّ <span class="gold">اَللَّهُمَّ</span> عَلَى الدَّلِيلِ إِلَيْكَ فِي اللَّيْلِ الأَلْيَلِ ، وَالْمَاسِكِ مِنْ أَسْبَابِكَ بِحَبْلِ الشَّرَفِ الأَطْوَلِ ، والنَّاصِعِ الْحَسَبِ فِي ذِرْوَةِ الْكَاهِلِ الأَعْبَلِ ، وَالثَّابِتِ الْقَدَمِ عَلَى زَحَالِيفِهَا فِي الزَّمَنِ الأَوَّلِ ، وَعَلَى آلِهِ الأَخْيَارِ الْمُصْطَفَيْنَ الأَبْرَارِ .
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="dua-card" style="animation-delay: 0.2s;">
+                <div class="dua-text">
+                    وَافْتَحِ <span class="gold">اللَّهُمَّ</span> لَنَا مَصَارِيعَ الصَّبَاحِ بِمَفَاتِيحِ الرَّحْمَةِ وَالْفَلاحِ ، وَأَلْبِسْنِي <span class="gold">اللَّهُمَّ</span> مِنْ أَفْضَلِ خِلَعِ الْهِدَايَةِ وَالصَّلاحِ ، وَأَغْرِسِ <span class="gold">اللَّهُمَّ</span> بِعَظَمَتِكَ فِي شِرْبِ جَنَانِي يَنَابِيعَ الْخُشُوعِ ، وَأَجْرِ <span class="gold">اللَّهُمَّ</span> لِهَيْبَتِكَ مِنْ آمَاقِي زَفَراتِ الدُّمُوعِ .
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="dua-card" style="animation-delay: 0.25s;">
+                <div class="dua-text">
+                    وَأَدِّبِ <span class="gold">اللَّهُمَّ</span> نَزَقَ الْخُرْقِ مِنِّي بِأَزِمَّةِ الْقُنُوعِ ،
+                    <span class="gold">إِلَهِي</span> إِنْ لَمْ تَبْتَدِئْنِي الرَّحْمَةُ مِنْكَ بِحُسْنِ التَّوْفِيقِ فَمَنِ السَّالِكُ بِي إِلَيْكَ فِي وَاضِحِ الطَّرِيقِ ؟ وَإِنْ أَسْلَمَتْنِي أَنَاتُكَ لِقَائِدِ الأَمَلِ وَالْمُنَى فَمَنِ الْمُقِيلُ عَثَرَاتِي مِنْ كَبَوَاتِ الْهَوَى ؟
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="dua-card" style="animation-delay: 0.3s;">
+                <div class="dua-text">
+                    وَإِنْ خَذَلَنِي نَصْرُكَ عِنْدَ مُحَارَبَةِ النَّفْسِ وَالشَّيْطَانِ ، فَقَدْ وَكَلَنِي خِذْلانُكَ إِلَى حَيْثُ النَّصَبُ وَالْحِرْمَانُ .
+                    <span class="gold">إِلَهِي</span> أَتَرَانِي مَا أَتَيْتُكَ إِلَّا مِنْ حَيْثُ الآمَالُ ، أَمْ عَلِقْتُ بِأَطْرَافِ حِبَالِكَ إِلَّا حِينَ بَاعَدَتْنِي ذُنُوبِي عَنْ دَارِ الْوِصَالِ .
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="dua-card" style="animation-delay: 0.35s;">
+                <div class="dua-text">
+                    فَبِئْسَ الْمَطِيَّةُ الَّتِي امْتَطَتْ نَفْسِي مِنْ هَوَاهَا ، فَوَاهاً لَهَا لِمَا سَوَّلَتْ لَهَا ظُنُونُها وَمُنَاهَا ! وَتَبًّا لَهَا لِجُرْأَتِهَا عَلَى <span class="gold">سَيِّدِهَا وَمَوْلاَهَا</span> !
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="dua-card" style="animation-delay: 0.4s;">
+                <div class="dua-text">
+                    <span class="gold">إِلَهِي</span> قَرَعْتُ بَابَ رَحْمَتِكَ بِيَدِ رَجَائِي ، وَهَرَبْتُ إِلَيْكَ لاجِئاً مِنْ فَرْطِ أَهْوَائِي ، وَعَلَّقْتُ بِأَطْرَافِ حِبَالِكَ أَنَامِلَ وَلائِي ، فَاصْفَحِ <span class="gold">اللَّهُمَّ</span> عَمَّا كُنْتُ أَجْرَمْتُهُ مِنْ زَلَلِي وَخَطَائِي ، وَأَقِلْنِي مِنْ صَرْعَةِ رِدَائِي ، فَإِنَّكَ <span class="gold">سَيِّدِي وَمَوْلايَ</span> وَمُعْتَمَدِي وَرَجَائِي ، وَأَنْتَ غَايَةُ مَطْلُوبِي ، وَمُنَايَ فِي مُنْقَلَبِي وَمَثْوَايَ .
+                </div>
+            </div>
+
+            <!-- Card 9 -->
+            <div class="dua-card" style="animation-delay: 0.45s;">
+                <div class="dua-text">
+                    <span class="gold">إِلَهِي</span> كَيْفَ تَطْرُدُ مِسْكِيناً الْتَجَأَ إِلَيْكَ مِنَ الذُّنُوبِ هَارِباً ؟ أَمْ كَيْفَ تُخَيِّبُ مُسْتَرْشِداً قَصَدَ إِلَى جَنَابِكَ سَاعِياً ؟ أَمْ كَيْفَ تَرُدُّ ظَمْآناً وَرَدَ إِلَى حِيَاضِكَ شَارِباً ؟!
+                </div>
+            </div>
+
+            <!-- Card 10 -->
+            <div class="dua-card" style="animation-delay: 0.5s;">
+                <div class="dua-text">
+                    <span class="gold">كَلاَّ</span> ، وَحِيَاضُكَ مُتْرَعَةٌ فِي ضَنْكِ الْمُحُولِ ، وَبَابُكَ مَفْتُوحٌ لِلطَّلَبِ وَالْوُغُولِ ، وَأَنْتَ <span class="gold">غَايَةُ الْمَسْؤُولِ</span> وَنِهَايَةُ الْمَأْمُولِ !
+                </div>
+            </div>
+
+            <!-- Card 11 -->
+            <div class="dua-card" style="animation-delay: 0.55s;">
+                <div class="dua-text">
+                    <span class="gold">إِلَهِي</span> هَذِهِ أَزِمَّةُ نَفْسِي عَقَلْتُهَا بِعِقَالِ مَشِيئَتِكَ ، وَهَذِهِ أَعْبَاءُ ذُنُوبِي دَرَأْتُهَا بِعَفْوِكَ وَرَحْمَتِكَ ، وَهَذِهِ أَهْوَائِي الْمُضِلَّةُ وَكَلْتُهَا إِلَى جَنَابِ لُطْفِكَ وَرَأْفَتِكَ .
+                </div>
+            </div>
+
+            <!-- Card 12 -->
+            <div class="dua-card" style="animation-delay: 0.6s;">
+                <div class="dua-text">
+                    فَاجْعَلِ <span class="gold">اللَّهُمَّ</span> صَبَاحِي هَذَا نَازِلاً عَلَيَّ بِضِيَاءِ الْهُدَى وَبِالسَّلامَةِ فِي الدِّينِ وَالدُّنْيَا ، وَمَسَائِي جُنَّةً مِنْ كَيْدِ الْعِدَى وَوِقَايَةً مِنْ مُرْدِيَاتِ الْهَوَى .
+                </div>
+            </div>
+
+            <!-- Card 13 -->
+            <div class="dua-card" style="animation-delay: 0.65s;">
+                <div class="dua-text">
+                    <span class="gold">إِنَّكَ قَادِرٌ</span> عَلَى مَا تَشَاءُ ، تُؤْتِي الْمُلْكَ مَنْ تَشَاءُ ، وَتَنْزِعُ الْمُلْكَ مِمَّنْ تَشَاءُ ، وَتُعِزُّ مَنْ تَشَاءُ وَتُذِلُّ مَنْ تَشَاءُ ، بِيَدِكَ الْخَيْرُ <span class="gold">إِنَّكَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ</span> ، تُولِجُ اللَّيْلَ فِي النَّهَارِ وَتُولِجُ النَّهَارَ فِي اللَّيْلِ ، وَتُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ ، وَتُخْرِجُ الْمَيِّتَ مِنَ الْحَيِّ ، وَتَرْزُقُ مَنْ تَشَاءُ بِغَيْرِ حِسَابٍ .
+                </div>
+            </div>
+
+            <!-- Card 14 -->
+            <div class="dua-card" style="animation-delay: 0.7s;">
+                <div class="dua-text">
+                    <span class="gold">لا إِلَهَ إِلَّا أَنْتَ</span> سُبْحَانَكَ <span class="gold">اللَّهُمَّ</span> وَبِحَمْدِكَ ، مَنْ ذَا يَعْرِفُ قَدْرَكَ فَلا يَخَافُكَ ، وَمَنْ ذَا يَعْلَمُ مَا أَنْتَ فَلا يَهَابُكَ .
+                </div>
+            </div>
+
+            <!-- Card 15 -->
+            <div class="dua-card" style="animation-delay: 0.75s;">
+                <div class="dua-text">
+                    أَلَّفْتَ بِقُدْرَتِكَ الْفِرَقَ ، وَفَلَقْتَ بِلُطْفِكَ الْفَلَقَ ، وَأَنَرْتَ بِكَرَمِكَ دَيَاجِيَ الْغَسَقِ ، وَأَنْهَرْتَ الْمِيَاهَ مِنَ الصُّمِّ الصَّيَاخِيدِ عَذْباً وَأُجَاجاً ، وَأَنْزَلْتَ مِنَ الْمُعْصِرَاتِ مَاءً ثَجَّاجاً ، وَجَعَلْتَ الشَّمْسَ وَالْقَمَرَ لِلْبَرِيَّةِ سِرَاجاً وَهَّاجاً ، مِنْ غَيْرِ أَنْ تُمَارِسَ فِيمَا ابْتَدَأْتَ بِهِ لُغُوباً وَلا عِلاجاً .
+                </div>
+            </div>
+
+            <!-- Card 16 -->
+            <div class="dua-card" style="animation-delay: 0.8s;">
+                <div class="dua-text">
+                    فَيَا مَنْ <span class="gold">تَوَحَّدَ بِالْعِزِّ وَالْبَقَاءِ</span> ، وَقَهَرَ عِبَادَهُ بِالْمَوْتِ وَالْفَنَاءِ ، صَلِّ عَلَى مُحَمَّدٍ وَآلِهِ الأَتْقِيَاءِ ، وَاسْمَعْ نِدَائِي ، وَاسْتَجِبْ دُعَائِي ، وَحَقِّقْ بِفَضْلِكَ أَمَلِي وَرَجَائِي .
+                </div>
+            </div>
+
+            <!-- Card 17 -->
+            <div class="dua-card" style="animation-delay: 0.85s;">
+                <div class="dua-text">
+                    <span class="gold">يا خَيْرَ مَنْ دُعِيَ</span> لِكَشْفِ الضُّرِ ، وَالْمَأْمُولَِ لِكُلِّ عُسْرٍ وَيُسْرٍ ، بِكَ أَنْزَلْتُ حَاجَتِي فَلا تَرُدَّنِي مِنْ سَنِيِّ مَوَاهِبِكَ خَائِباً ، <span class="gold">يَا كَرِيمُ يَا كَرِيمُ يَا كَرِيمُ</span> ، بِرَحْمَتِكَ <span class="gold">يَا أَرْحَمَ الرَّاحِمِينَ</span> ، وَصَلَّى <span class="gold">اللهُ</span> عَلَى خَيْرِ خَلْقِهِ مُحَمَّدٍ وَآلِهِ أَجْمَعِينَ .
+                </div>
+            </div>
+
+            <!-- Card 18: Sujood -->
+            <div class="dua-card" style="animation-delay: 0.9s;">
+                <div class="section-label">
+                    <span>🤲 ثم اسجد وقل</span>
+                </div>
+                <div class="dua-text">
+                    <span class="gold">إِلَهِي</span> قَلْبِي مَحْجُوبٌ وَنَفْسِي مَعْيُوبٌ ، وَعَقْلِي مَغْلُوبٌ وَهَوَائِي غَالِبٌ ، وَطَاعَتِي قَلِيلٌ وَمَعْصِيَتِي كَثِيرٌ ، وَلِسَانِي مُقِرٌّ بِالذُّنُوبِ ، فَكَيْفَ حِيلَتِي <span class="gold">يَا سَتَّارَ الْعُيُوبِ</span> ، وَ<span class="gold">يَا عَلَّامَ الْغُيُوبِ</span> ، وَ<span class="gold">يَا كَاشِفَ الْكُرُوبِ</span> .
+                </div>
+            </div>
+
+            <!-- Card 19 -->
+            <div class="dua-card" style="animation-delay: 0.95s;">
+                <div class="dua-text">
+                    اغْفِرْ ذُنُوبِي كُلَّهَا بِحُرْمَةِ مُحَمَّدٍ وَآلِ مُحَمَّدٍ ، <span class="gold">يَا غَفَّارُ يَا غَفَّارُ يَا غَفَّارُ</span> ، بِرَحْمَتِكَ <span class="gold">يَا أَرْحَمَ الرَّاحِمِينَ</span> .
+                </div>
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-text">اللهم صلِّ على محمد وآل محمد</div>
+            <div class="footer-socials">
+                <!-- Instagram -->
+                <a href="https://instagram.com/ne_7u" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                    </svg>
+                    ne_7u
+                </a>
+                <!-- Telegram -->
+                <a href="https://t.me/WWGTR" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                    WWGTR
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- SCROLL TO TOP -->
+    <button class="scroll-top" id="scrollTop" aria-label="العودة للأعلى">
+        <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+    </button>
+
+    <audio id="audioPlayer" preload="metadata">
+        <source src="1.ogg" type="audio/ogg">
+    </audio>
+
+    <script>
+        (function() {
+            'use strict';
+
+            /* ===== HARAKAT TOGGLE ===== */
+            const harakatToggle = document.getElementById('harakatToggle');
+            const body = document.body;
+            let harakatVisible = true;
+
+            harakatToggle.addEventListener('click', function() {
+                harakatVisible = !harakatVisible;
+                body.classList.toggle('no-harakat', !harakatVisible);
+                harakatToggle.classList.toggle('active', !harakatVisible);
+                harakatToggle.childNodes[2].textContent = harakatVisible ? ' إخفاء التشكيل' : ' إظهار التشكيل';
+            });
+
+            /* ===== AUDIO PLAYER ===== */
+            const audio = document.getElementById('audioPlayer');
+            const playBtn = document.getElementById('playBtn');
+            const playIcon = document.getElementById('playIcon');
+            const pauseIcon = document.getElementById('pauseIcon');
+            const progressBar = document.getElementById('progressBar');
+            const progressWrapper = document.getElementById('progressWrapper');
+            const currentTimeEl = document.getElementById('currentTime');
+            const totalTimeEl = document.getElementById('totalTime');
+            const volumeSlider = document.getElementById('volumeSlider');
+
+            let isPlaying = false;
+
+            playBtn.addEventListener('click', function() {
+                if (isPlaying) {
+                    audio.pause();
+                } else {
+                    audio.play().catch(function() {});
+                }
+            });
+
+            audio.addEventListener('play', function() {
+                isPlaying = true;
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+            });
+
+            audio.addEventListener('pause', function() {
+                isPlaying = false;
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            });
+
+            audio.addEventListener('timeupdate', function() {
+                if (audio.duration) {
+                    var pct = (audio.currentTime / audio.duration) * 100;
+                    progressBar.style.width = pct + '%';
+                    currentTimeEl.textContent = formatTime(audio.currentTime);
+                }
+            });
+
+            audio.addEventListener('loadedmetadata', function() {
+                totalTimeEl.textContent = formatTime(audio.duration);
+            });
+
+            audio.addEventListener('ended', function() {
+                isPlaying = false;
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+                progressBar.style.width = '0%';
+                currentTimeEl.textContent = '0:00';
+            });
+
+            progressWrapper.addEventListener('click', function(e) {
+                if (audio.duration) {
+                    var rect = this.getBoundingClientRect();
+                    var clickX = e.clientX - rect.left;
+                    // RTL: calculate from right
+                    var rtlX = rect.width - clickX;
+                    var pct = rtlX / rect.width;
+                    audio.currentTime = pct * audio.duration;
+                }
+            });
+
+            volumeSlider.addEventListener('input', function() {
+                audio.volume = parseFloat(this.value);
+            });
+
+            audio.volume = 0.8;
+
+            function formatTime(seconds) {
+                if (isNaN(seconds)) return '0:00';
+                var mins = Math.floor(seconds / 60);
+                var secs = Math.floor(seconds % 60);
+                return mins + ':' + (secs < 10 ? '0' : '') + secs;
+            }
+
+            /* ===== TOOLTIP SYSTEM ===== */
+            const tooltipsData = {
+                'دَلَعَ لِسَانَ الصَّبَاحِ بِنُطْقِ تَبَلُّجِهِ': 'أظهر ضوء الصباح وامتداده بوضوحه وإشراقه، فكأن لسان الصباح ينطق بنوره',
+                'بِغَيَاهِبِ تَلَجْلُجِهِ': 'في ظلماته المتراكمة المتداخلة التي تتلاشى وتتراجع',
+                'صُنْعَ الْفَلَكِ الدَّوَّارِ': 'إتقان خلق السماء والأجرام الدوارة في مداراتها بدقة',
+                'بِنُورِ تَأَجُّجِهِ': 'بتوهجها واشتعال ضوئها القوي',
+                'دَلَّ عَلَى ذَاتِهِ بِذَاتِهِ': 'عرّفنا بوجوده من خلال آثاره وعظمته، لا يحتاج لدليل غيره',
+                'مُجَانَسَةِ مَخْلُوقَاتِهِ': 'مماثلة أو مشابهة خلقه، فهو منزّه عن أن يشبه أحداً',
+                'مُلاءَمَةِ كَيْفِيَّاتِهِ': 'موافقة صفاته لصفات المخلوقين، فهو جلّ عن أن تُحدّد كيفيته',
+                'خَطَرَاتِ الظُّنُونِ': 'ما يخطر في القلوب من أفكار وخواطر',
+                'لَحَظَاتِ الْعُيُونِ': 'نظرات الأعين، فهو أبعد من أن تُدركه الأبصار',
+                'مِهَادِ أَمْنِهِ': 'فراش الأمان الذي أنام عليه بحفظه',
+                'مِنَنِهِ وَإِحْسَانِهِ': 'نِعَمه وعطايا وجوده وكرمه',
+                'أَكُفَّ السُّوءِ': 'أيدي وأذرع الشر والأذى',
+                'اللَّيْلِ الأَلْيَلِ': 'الليل المظلم الشديد الظلمة',
+                'حَبْلِ الشَّرَفِ الأَطْوَلِ': 'أعلى أسباب الشرف والرفعة',
+                'ذِرْوَةِ الْكَاهِلِ الأَعْبَلِ': 'قمة الأصل الشريف والنسب العالي',
+                'زَحَالِيفِهَا': 'انزلاقاتها ومزالقها (أي ثبات قدمه رغم مزالق الزمن)',
+                'مَصَارِيعَ الصَّبَاحِ': 'أبواب الصباح (مصاريع = جمع مصراع = نصف الباب)',
+                'خِلَعِ الْهِدَايَةِ': 'أوسمة وألبسة الهداية (الخلعة = لباس التكريم)',
+                'شِرْبِ جَنَانِي': 'ريّ قلبي ونفسي (الشرب = نصيب من الماء)',
+                'زَفَراتِ الدُّمُوعِ': 'زفرات البكاء المشتاق (الزفرة = التنفس العميق من شدة الوجد)',
+                'نَزَقَ الْخُرْقِ': 'طيشي و جهلي (النزق = الخفة والطيش، الخرق = الجهل)',
+                'أَزِمَّةِ الْقُنُوعِ': 'لجام الرضا والتسليم (الأزِمَّة = جمع زمام = لجام)',
+                'حُسْنِ التَّوْفِيقِ': 'جميل العون والسداد من الله',
+                'أَنَاتُكَ': 'حلمك وصبرك وإمهالك',
+                'قَائِدِ الأَمَلِ': 'الذي يقود الأمل والشهوة',
+                'كَبَوَاتِ الْهَوَى': 'سقطات وسَفَوات الشهوة والنفس الأمّارة',
+                'النَّصَبُ وَالْحِرْمَانُ': 'التعب الشديد والحرمان من الخير',
+                'دَارِ الْوِصَالِ': 'دار القرب والاتصال بالله',
+                'امْتَطَتْ نَفْسِي': 'ركبت نفسي (امتطى = ركب)',
+                'مَا سَوَّلَتْ لَهَا ظُنُونُها': 'ما زيّنت لها أوهامها وأمانيها الكاذبة',
+                'قَرَعْتُ بَابَ رَحْمَتِكَ': 'طرقت باب رحمتك وطلبتك',
+                'أَنَامِلَ وَلائِي': 'أنامل ولائي وتعلقي بك (الأنامل = أطراف الأصابع)',
+                'صَرْعَةِ رِدَائِي': 'سقطتي وزلتي (الصَرَعة = السقوط)',
+                'مُنْقَلَبِي وَمَثْوَايَ': 'مرجعي ومقرّي النهائي (يوم القيامة)',
+                'حِيَاضِكَ': 'حياض الماء الخاصة بك (الحَوْض = مكان الشرب)',
+                'ضَنْكِ الْمُحُولِ': 'شدة القحط والجدب (الضنك = الشدة)',
+                'الوُغُولِ': 'الدخول والولوج (الوُغول = الدخول)',
+                'أَزِمَّةُ نَفْسِي عَقَلْتُهَا': 'لجمت نفسي وربطتها',
+                'دَرَأْتُهَا': 'دفعتها ومنعتها',
+                'جَنَابِ لُطْفِكَ وَرَأْفَتِكَ': 'ساحة كرمك ورحمتك',
+                'مَسَائِي جُنَّةً': 'اجعل مسائي وقاية وحماية',
+                'مُرْدِيَاتِ الْهَوَى': 'المهلكات التي توقعها الشهوات',
+                'تُولِجُ اللَّيْلَ فِي النَّهَارِ': 'تُدخل الليل في النهار وتُدخل النهار في الليل',
+                'بِغَيْرِ حِسَابٍ': 'بلا تقدير محدد ولا حدود',
+                'دَيَاجِيَ الْغَسَقِ': 'ظلمات وقت الغروب والعتمة',
+                'الصُّمِّ الصَّيَاخِيدِ': 'الصخور الصلبة التي لا مسام لها',
+                'الْمُعْصِرَاتِ': 'السحب الحاملة للمطر',
+                'ثَجَّاجاً': 'متدفقاً بغزارة',
+                'لُغُوباً وَلا عِلاجاً': 'تعباً ولا جهداً شاقاً',
+                'تَوَحَّدَ بِالْعِزِّ وَالْبَقَاءِ': 'انفرد بالعزة والخلود',
+                'سَنِيِّ مَوَاهِبِكَ': 'عطاياك السامية الرفيعة',
+                'قَلْبِي مَحْجُوبٌ': 'قلبي محجوب عن معرفتك',
+                'نَفْسِي مَعْيُوبٌ': 'نفسي فيها عيوب ونقائص',
+                'عَقْلِي مَغْلُوبٌ': 'عقلي مقهور وضعيف',
+                'هُوَائِي غَالِبٌ': 'شهوتي طاغية عليّ',
+                'سَتَّارَ الْعُيُوبِ': 'يا من يستر العيوب ولا يفضح',
+                'عَلاَّمَ الْغُيُوبِ': 'يا من يعلم كل شيء خفي',
+                'كَاشِفَ الْكُرُوبِ': 'يا من يكشف الشدائد والمصائب'
+            };
+
+            // Wrap tooltip phrases
+            function initTooltips() {
+                var duaCards = document.querySelectorAll('.dua-card');
+                var sortedKeys = Object.keys(tooltipsData).sort(function(a, b) {
+                    return b.length - a.length;
+                });
+
+                duaCards.forEach(function(card) {
+                    var textEl = card.querySelector('.dua-text');
+                    if (!textEl) return;
+
+                    var html = textEl.innerHTML;
+
+                    sortedKeys.forEach(function(phrase) {
+                        // Remove harakat from phrase for matching
+                        var plainPhrase = phrase.replace(/[\u064B-\u065F\u0670]/g, '');
+                        // Also try matching with harakat
+                        var regex = new RegExp('(' + phrase.replace(/([\u064B-\u065F\u0670])/g, '\\$1') + ')', 'g');
+                        var plainRegex = new RegExp('(' + plainPhrase + ')', 'g');
+
+                        if (html.indexOf(phrase) > -1) {
+                            html = html.replace(regex, '<span class="tooltip-trigger" data-tooltip="' + phrase + '">$1</span>');
+                        } else if (html.indexOf(plainPhrase) > -1) {
+                            html = html.replace(plainRegex, '<span class="tooltip-trigger" data-tooltip="' + phrase + '">$1</span>');
+                        }
+                    });
+
+                    textEl.innerHTML = html;
+                });
+
+                // Add click listeners
+                document.querySelectorAll('.tooltip-trigger').forEach(function(trigger) {
+                    trigger.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        var word = this.getAttribute('data-tooltip');
+                        showTooltip(word, this);
+                    });
+                });
+            }
+
+            var tooltipPopup = document.getElementById('tooltipPopup');
+            var tooltipWord = document.getElementById('tooltipWord');
+            var tooltipMeaning = document.getElementById('tooltipMeaning');
+            var tooltipClose = document.getElementById('tooltipClose');
+            var overlay = document.getElementById('overlay');
+
+            function showTooltip(word, element) {
+                var meaning = tooltipsData[word] || 'التفسير غير متوفر حالياً';
+                tooltipWord.textContent = word;
+                tooltipMeaning.textContent = meaning;
+
+                var rect = element.getBoundingClientRect();
+                var popupW = Math.min(340, window.innerWidth * 0.9);
+                var popupH = tooltipPopup.offsetHeight || 120;
+
+                var left = rect.left + (rect.width / 2) - (popupW / 2);
+                var top = rect.bottom + 12;
+
+                if (left < 8) left = 8;
+                if (left + popupW > window.innerWidth - 8) left = window.innerWidth - popupW - 8;
+
+                if (top + popupH > window.innerHeight - 20) {
+                    top = rect.top - popupH - 12;
+                }
+
+                tooltipPopup.style.left = left + 'px';
+                tooltipPopup.style.top = top + 'px';
+
+                overlay.classList.add('visible');
+                tooltipPopup.classList.add('visible');
+            }
+
+            function hideTooltip() {
+                overlay.classList.remove('visible');
+                tooltipPopup.classList.remove('visible');
+            }
+
+            tooltipClose.addEventListener('click', hideTooltip);
+            overlay.addEventListener('click', hideTooltip);
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') hideTooltip();
+            });
+
+            /* ===== SCROLL TO TOP ===== */
+            var scrollTopBtn = document.getElementById('scrollTop');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 400) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            }, { passive: true });
+
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            /* ===== INIT ===== */
+            initTooltips();
+
+            /* ===== LAZY ANIMATION OBSERVER ===== */
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.style.animationPlayState = 'running';
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                document.querySelectorAll('.dua-card').forEach(function(card) {
+                    card.style.animationPlayState = 'paused';
+                    observer.observe(card);
+                });
+            }
+
+        })();
+    </script>
+</body>
+</html>
+
